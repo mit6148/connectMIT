@@ -32,6 +32,8 @@ db.once('open', function(callback) {
     console.log('database connected');
 });
 
+app.use('/users', users);
+
 
 /**
 * Has app listen on correct port 
