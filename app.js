@@ -25,7 +25,7 @@ var port = process.env.PORT || 3000;
 * Database Setup
 *********************************************************************/
 var mongoose = require('mongoose');
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/rendezvousdb');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/6148db');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(callback) {
