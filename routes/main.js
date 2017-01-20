@@ -20,7 +20,7 @@ router.get('/settings', function(req, res){
 });
 
 router.get('/explore', function(req, res){
-	res.render('explore');
+	res.render('makeConnections');
 });
 
 module.exports = router;
