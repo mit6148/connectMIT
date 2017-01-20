@@ -37,4 +37,13 @@ $(function(){
         });
 	});
 
+	$('#homeTab').on('click', function(){
+		$.ajax({
+            url: '/main/my-connections',
+            success: function(data) {
+                window.location.assign("/main/my-connections");
+            }
+        });
+	});
+
 });

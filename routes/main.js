@@ -19,6 +19,8 @@ router.get('/settings', function(req, res){
 	res.render('settings');
 });
 
-
+router.get('/explore', function(req, res){
+	res.render('explore');
+});
 
 module.exports = router;
