@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title app name here
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/stylesheet.css')
+    script(src='https://code.jquery.com/jquery-3.1.1.min.js')
+    script(src='/js/controller.js')
+    script(src='/js/bootstrap.js')
+    link(href='https://fonts.googleapis.com/css?family=Karla', rel='stylesheet')
+  body.index
+    nav.navbar.navbar-default.navbar-static-top(style='background-color: #A31F34; border-bottom: 0;')
+      section.container-fluid
+        section.navbar-header
+          a.navbar-brand(href='#') app name!!
+        section.navbar-collapse.collapse
+          ul.nav.navbar-nav.navbar-right
+            li#myConnectionsTab(style='background-color: #861A2B; width: 150px; text-align: center;')
+              a(href='#', data-transition='slide') my connections
+            li#exploreTab(style='background-color: #681422; width: 150px; text-align: center;')
+              a(href='#') explore??
+            li#searchTab(style='background-color: #4B0F18; width: 150px; text-align: center;')
+              a(href='#') search
+            li#settingsTab(style='background-color: #2D090F; width: 150px; text-align: center;')
+              a(href='#') settings??
