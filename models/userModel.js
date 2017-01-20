@@ -14,7 +14,9 @@ var userSchema = new Schema({
 		unique: true},
 	password: {
 		type: String, 
-		required: true}
+		required: true},
+	connections: {type: [String]}
+	//other things to have: phone number, name, course, year of grad, address, work
 });
 
 var User = mongoose.model('User', userSchema);
