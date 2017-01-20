@@ -115,6 +115,13 @@ body.index {
 	margin-top: 0px;
 }
 
+#password-panel {
+	width: 400px;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 200px;
+}
+
 #enter-button {
 	margin-top: 10px;
 }
@@ -146,4 +153,8 @@ body.index {
 	border: 1px solid #861A2B;
 	/*margin: 120px;*/
 	/*margin-top: 60px;*/
+}
+
+#return-login {
+	margin: 10px;
 }

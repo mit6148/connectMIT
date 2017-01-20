@@ -66,6 +66,10 @@ router.post('/register', function(req, res){
     });
 });
 
+router.get('/forgotPassword', function(req, res){
+    res.render('forgotPassword');
+});
+
 router.get('/register', function(req, res){
     res.render('registration');
 });
