@@ -65,7 +65,7 @@ router.post('/register', function(req, res){
 });
 
 router.get('/register', function(req, res){
-    res.render('connections');
+    res.render('registration');
 });
 
 router.post('/login',
