@@ -37,7 +37,14 @@ db.once('open', function(callback) {
 app.use('/users', users);
 app.use('/main', main);
 
-
+// app.get('/', function(req, res){
+// 	if (req.session.email){
+// 		res.redirect('/main');
+// 	}
+// 	else{
+// 		res.render('index.html');
+// 	}
+// });
 /**
 * Has app listen on correct port 
 */

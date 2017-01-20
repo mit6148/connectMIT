@@ -4,23 +4,53 @@ var mongoose = require('mongoose');
 
 
 router.get('/', function(req, res){
-	res.render('connections');
+	if (req.session.email){
+		res.render('connections');
+	}
+	else{
+		res.redirect('/');
+	}
+	
 });
 
 router.get('/my-connections', function(req, res){
-	res.render('connections');
+	if (req.session.email){
+		res.render('connections');
+	}
+	else{
+		res.redirect('/');
+	}
+	
 });
 
 router.get('/search', function(req, res){
-	res.render('search');
+	if (req.session.email){
+		res.render('search');
+	}
+	else{
+		res.redirect('/');
+	}
+	
 });
 
 router.get('/settings', function(req, res){
-	res.render('settings');
+	if (req.session.email){
+		res.render('settings');
+	}
+	else{
+		res.redirect('/');
+	}
+	
 });
 
 router.get('/explore', function(req, res){
-	res.render('makeConnections');
+	if (req.session.email){
+		res.render('makeConnections');
+	}
+	else{
+		res.redirect('/');
+	}
+	
 });
 
 module.exports = router;
