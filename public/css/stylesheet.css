@@ -8,6 +8,10 @@ body.index {
   background-size: cover;
 }
 
+.inline {
+	display: inline-block;
+}
+
 .panel > .panel-heading {
 	background-color: #A31F34;
 	color: white;
@@ -27,12 +31,12 @@ body.index {
 	background-color: #771726; 
 	color: white; 
 	border-radius: 5px;
-	border: 1px solid #B3594D;
+	border: 1px solid #861A2B;
 }
 
 .button-link{
-	background:none;
-	border:none; 
+	background: none;
+	border: none; 
 	padding: 0;
 	cursor: pointer;
 	margin-top: 10px;
@@ -40,7 +44,56 @@ body.index {
 }
 
 .button-link:hover{
-	text-decoration:underline;
+	text-decoration: underline;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: white;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #A8A8A8;
+  background-color: transparent;
+}
+
+[class*='col-'] {
+  float: left;
+}
+
+.col-1-3 {
+  width: 33.33%;
+  padding-right: 10px;
+  /*overflow: scroll;*/
+}
+
+.col-2-3 {
+  width: 66.66%;
+  /*background-color: #f9e8e8;*/
+  /*border-left: 2px solid #B3594D;*/
+  /*overflow: scroll;*/
+}
+
+.connection-buttons {
+	width: 30%;
+	height: 50px;
+	font-size: 20px;
+	background-color: #771726; 
+	color: white; 
+	border-radius: 5px;
+	border: 1px solid #861A2B;
+	margin: 120px;
+	margin-top: 60px;
 }
 
 #login-panel {
@@ -62,3 +115,27 @@ body.index {
 	text-align: center;
 }
 
+#explore-panel {
+	width: 60%;
+	height: 50vh;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 100px;
+}
+
+#search-bar {
+	width: 80%;
+	margin: 50px;
+	margin-right: 10px;
+}
+
+#search-button {
+	width: 10%;
+	/*font-size: 20px;*/
+	background-color: #771726; 
+	color: white; 
+	border-radius: 5px;
+	border: 1px solid #861A2B;
+	/*margin: 120px;*/
+	/*margin-top: 60px;*/
+}

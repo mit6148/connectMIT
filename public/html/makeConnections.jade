@@ -1,0 +1,46 @@
+doctype html
+html
+  head
+    title app name here
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/stylesheet.css')
+    script(src='https://code.jquery.com/jquery-3.1.1.min.js')
+    script(src='/js/bootstrap.js')
+    link(href='https://fonts.googleapis.com/css?family=Karla', rel='stylesheet')
+  body.index
+    nav.navbar.navbar-default.navbar-static-top(style='background-color: #A31F34; border-bottom: 0;')
+      section.container-fluid
+        section.navbar-header
+          a.navbar-brand(href='#') app name!!
+        section.navbar-collapse.collapse
+          ul.nav.navbar-nav.navbar-right
+            li(style='background-color: #861A2B; width: 150px; text-align: center;')
+              a(href='#', data-transition='slide') my connections
+            li(style='background-color: #681422; width: 150px; text-align: center;')
+              a(href='#') explore??
+            li(style='background-color: #4B0F18; width: 150px; text-align: center;')
+              a(href='#') search
+            li(style='background-color: #2D090F; width: 150px; text-align: center;')
+              a(href='#') settings??
+
+    #explore-panel.panel.panel-default
+      .panel-heading
+      .panel-body
+        .col-1-3
+          img(src='/background.jpg', style='width:120px; height:150px;')
+        .col-2-3
+          .idk(style="background-color: #DDADB5; margin-left: 15px; padding: 10px;")
+            h4#login-heading Real Person
+            p(style='white-space:pre;')
+              | course everything + 17 minors
+              | full-time neon sign
+              | these heights are blowing me!!!! i'm dropping out
+              | does this page have more info?? what are the Essentials 
+              | two truths and a lie:
+              | 1. i am a human
+              | 2. i built the national monument alone by hand in a single day
+              | 3. sometimes i sleep
+
+    input.connection-buttons.inline(type='submit', value="nah i'm good")
+    input.connection-buttons.inline(type='submit', value='aye connection time' style="float: right;")
+
