@@ -4,7 +4,9 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
+var flash = require('connect-flash');
 
+router.use(flash());
 router.use(passport.initialize());
 router.use(passport.session());
 
@@ -35,14 +37,21 @@ function(username, password, done) {
         User.findOne({
           'email': username, 
       }, function(err, user) {
+        var message;
         if (err) {
+            message = "Login failed. Please try again."
+            req.flash('error', message);
             return done(err);
         }
 
         if (!user) {
+            message = "Username or password is incorrect."
+            req.flash('error', message);
             return done(null, false);
         }
         if (!bcrypt.compareSync(password, user.password)) {
+            message = "Username or password is incorrect."
+            req.flash('error', message);
             return done(null, false);
         }
         return done(null, user);
