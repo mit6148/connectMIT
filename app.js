@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var flash = require('connect-flash');
 var users = require('./routes/users');
 var main = require('./routes/main');
 
@@ -33,6 +34,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(callback) {
     console.log('database connected');
 });
+
 
 app.use('/users', users);
 app.use('/main', main);
