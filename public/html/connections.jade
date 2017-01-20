@@ -5,6 +5,7 @@ html
     link(rel='stylesheet', href='/css/bootstrap.css')
     link(rel='stylesheet', href='/css/stylesheet.css')
     script(src='https://code.jquery.com/jquery-3.1.1.min.js')
+    script(src='/js/controller.js')
     script(src='/js/bootstrap.js')
     link(href='https://fonts.googleapis.com/css?family=Karla', rel='stylesheet')
   body.index
@@ -14,13 +15,13 @@ html
           a.navbar-brand(href='#') app name!!
         section.navbar-collapse.collapse
           ul.nav.navbar-nav.navbar-right
-            li(style='background-color: #861A2B; width: 150px; text-align: center;')
+            li#myConnectionsTab(style='background-color: #861A2B; width: 150px; text-align: center;')
               a(href='#', data-transition='slide') my connections
-            li(style='background-color: #681422; width: 150px; text-align: center;')
+            li#exploreTab(style='background-color: #681422; width: 150px; text-align: center;')
               a(href='#') explore??
-            li(style='background-color: #4B0F18; width: 150px; text-align: center;')
+            li#searchTab(style='background-color: #4B0F18; width: 150px; text-align: center;')
               a(href='#') search
-            li(style='background-color: #2D090F; width: 150px; text-align: center;')
+            li#settingsTab(style='background-color: #2D090F; width: 150px; text-align: center;')
               a(href='#') settings??
 
     table.table(style='border: 1px solid black;')

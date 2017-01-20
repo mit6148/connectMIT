@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var users = require('./routes/users');
-var home = require('./routes/home');
+var main = require('./routes/main');
 
 
 
@@ -34,7 +34,7 @@ db.once('open', function(callback) {
 });
 
 app.use('/users', users);
-app.use('/home', home);
+app.use('/main', main);
 
 
 /**
