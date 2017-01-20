@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var session = require('express-session');
 var users = require('./routes/users');
 var main = require('./routes/main');
 
@@ -11,7 +12,7 @@ var main = require('./routes/main');
 var app = express();
 
 app.use(bodyParser.json());
-// app.use(session({ secret : '6170', resave : true, saveUninitialized : true }));
+app.use(session({ secret : '6148', resave : true, saveUninitialized : true }));
 app.use(express.static('public'));
 app.use(express.static(__dirname + '/public/html'));
 app.use(bodyParser.urlencoded({

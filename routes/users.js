@@ -17,11 +17,13 @@ var hashPassword = function(password) {
 };
 
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user.id);
 });
 
-passport.deserializeUser(function(user, done) {
-  done(null, user);
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user){
+    done(err, user);
+  });
 });
 
 passport.use(new LocalStrategy({
@@ -68,11 +70,34 @@ router.get('/register', function(req, res){
     res.render('registration');
 });
 
-router.post('/login',
-    passport.authenticate('local', { successRedirect: '/main',
-                                   failureRedirect: '/'
-                                   // failureFlash: 'Invalid username or password'
-                               })
-);
+// router.post('/login',
+//     passport.authenticate('local', { successRedirect: '/main',
+//                                    failureRedirect: '/'
+//                                    // failureFlash: 'Invalid username or password'
+//                                })
+// );
+
+router.get('/login', function(req, res, next) {
+      passport.authenticate('local', function(err, user, info) {
+            if (err) { 
+                return next(err); 
+            }
+            if (!user) { 
+                return res.redirect('/'); 
+            }
+            req.logIn(user, function(err) {
+                if (err) { return next(err); 
+                }
+                req.session.email = user.email;
+                return res.redirect('/main');
+            });
+    })(req, res, next);
+});
+
+router.get('/logout', function(req,res){
+    req.session.destroy();
+    req.logout();
+    res.redirect('/');
+});
 
 module.exports = router;
