@@ -69,7 +69,7 @@ router.get('/register', function(req, res){
 });
 
 router.post('/login',
-    passport.authenticate('local', { successRedirect: '/home',
+    passport.authenticate('local', { successRedirect: '/main',
                                    failureRedirect: '/'
                                    // failureFlash: 'Invalid username or password'
                                })
