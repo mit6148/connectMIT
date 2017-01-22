@@ -29,10 +29,12 @@ $(function(){
 	});
 
 	$('#settingsTab').on('click', function(){
+		var email = $('#userEmail').text();
+		email = email.substring(10);
 		$.ajax({
-            url: '/main/settings',
+            url: '/users/settings/' + email,
             success: function(data) {
-                window.location.assign("/main/settings");
+                window.location.assign("/users/settings/" + email);
             }
         });
 	});
@@ -54,5 +56,18 @@ $(function(){
             }
         });
 	});
+
+	$('#cancelEdits').on('click', function(){
+		var email = $('#userEmail').text();
+		email = email.substring(10);
+		$.ajax({
+            url: '/users/settings/' + email,
+            success: function(data) {
+                window.location.assign("/users/settings/" + email);
+            }
+        });
+	});
+
+
 
 });

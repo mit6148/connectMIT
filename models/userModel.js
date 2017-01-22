@@ -41,6 +41,9 @@ var userSchema = new Schema({
 		type: String},
 	workPosition: {
 		type: String},
+	course: {type: [String],
+		required: true},
+	activities: {type: [String]},
 	connections: {type: [String]}
 	//other things to have: phone number, name, course, year of grad, address, work
 });
