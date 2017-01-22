@@ -49,9 +49,13 @@ function(username, password, done) {
             req.flash('error', message);
             return done(null, false);
         }
+        //delete this
+        if (user.password == password){
+            return done(null, user);
+        }
         if (!bcrypt.compareSync(password, user.password)) {
             message = "Username or password is incorrect."
-            req.flash('error', message);
+            console.log(err);
             return done(null, false);
         }
         return done(null, user);
@@ -111,6 +115,51 @@ router.get('/logout', function(req,res){
     req.session.destroy();
     req.logout();
     res.redirect('/');
+});
+
+router.get('/settings/:email', function(req, res){
+    if (req.session.email){
+        User.findOne({
+            email: req.params.email
+        }, function(err, user) {
+            if (err) {
+                console.log(err);
+                return;
+            } else if (user === null) {
+                // res.status(404).render('errorPage', { title : '404: Page Not Found' });
+                return;
+            } else {
+                res.render('settings', {
+                    user: user
+                });
+            }
+        }); 
+    }
+    else{
+        res.redirect('/');
+    }  
+});
+
+router.get('/edit-profile/:email', function(req, res) {
+    if (req.session.email !== req.params.email) {
+        res.redirect('/main');
+    } else {
+        User.findOne({
+            email: req.params.email
+        }, function(err, user) {
+            if (err) {
+                console.log(err);
+                return;
+            } else if (user === null) {
+                // res.status(404).render('errorPage', { title : '404: Page Not Found' });
+                return;
+            } else {
+                res.render('editableProfile', {
+                    user: user
+                });
+            }
+        });
+    }
 });
 
 module.exports = router;

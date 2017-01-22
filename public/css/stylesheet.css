@@ -203,3 +203,13 @@ body.index {
 #return-login {
 	margin: 10px;
 }
+
+.settings{
+	width: 80%;
+	margin: 0 auto;
+}
+
+.settingsInfo{
+	margin: 0 auto;
+	width: 90%;
+}

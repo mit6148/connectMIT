@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 
 router.get('/', function(req, res){
 	if (req.session.email){
-		res.render('connections');
+		res.render('connections', {email: req.session.email});
 	}
 	else{
 		res.redirect('/');
@@ -15,7 +15,7 @@ router.get('/', function(req, res){
 
 router.get('/my-connections', function(req, res){
 	if (req.session.email){
-		res.render('connections');
+		res.render('connections', {email: req.session.email});
 	}
 	else{
 		res.redirect('/');
@@ -25,7 +25,7 @@ router.get('/my-connections', function(req, res){
 
 router.get('/search', function(req, res){
 	if (req.session.email){
-		res.render('search');
+		res.render('search', {email: req.session.email});
 	}
 	else{
 		res.redirect('/');
@@ -35,7 +35,7 @@ router.get('/search', function(req, res){
 
 router.get('/settings', function(req, res){
 	if (req.session.email){
-		res.render('settings');
+		res.render('settings', {email: req.session.email});
 	}
 	else{
 		res.redirect('/');
@@ -45,7 +45,7 @@ router.get('/settings', function(req, res){
 
 router.get('/explore', function(req, res){
 	if (req.session.email){
-		res.render('makeConnections');
+		res.render('makeConnections', {email: req.session.email});
 	}
 	else{
 		res.redirect('/');
