@@ -183,4 +183,21 @@ router.get('/edit-profile/:email', function(req, res) {
     }
 });
 
+// router.get('/connect', function(req, res){
+//     User.findOne({
+//         email: req.params.email
+//     }, function(err, currentUser){
+//         if (err){
+//             console.log(err);
+//             return;
+//         }
+//         else if (currentUser === null){
+
+//         }
+//         else{
+//             //
+//         }
+//     });
+// });
+
 module.exports = router;

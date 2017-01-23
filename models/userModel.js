@@ -62,6 +62,10 @@ userSchema.methods.editInfo = function(course, phoneNumber, address, gradYear, w
 	return true;
 }
 
+userSchema.methods.addMatch = function(email){
+	this.connections.push(email);
+	return true;
+}
 
 var User = mongoose.model('User', userSchema);
 
