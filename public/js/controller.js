@@ -429,10 +429,11 @@ $(function(){
   $('#connectBtn').on('click', function() {
     var email = $('#connectBtn').attr('class').split(" ")[2]
     $.ajax({
+        url: '/users/connect/'
         email: email,
         type: 'PUT',
         success: function(data) {
-            window.location.assign("/users/connect/" + email);
+            alert("connected");
         }
     });
 });
