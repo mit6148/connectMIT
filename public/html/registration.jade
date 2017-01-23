@@ -55,7 +55,7 @@ html
                         label(style='margin-left: 10px;') City *
                     tr
                       td(style='text-align: left; border: none;')
-                        select(id = "state" style="width: 100%; height: 34px;")
+                        select(id = "state" name="state" style="width: 100%; height: 34px;")
                           option
                           option(value='AL') Alabama
                           option(value='AK') Alaska
@@ -113,7 +113,7 @@ html
                         input.form-control(type='text', name = 'zip' id = 'zip')  
                         label(style='margin-left: 10px;') ZIP Code
                       td(style='text-align: left; border: none;')
-                        select(id = "country" style="width: 100%; height: 34px;")
+                        select(id = "country", name ='country' style="width: 100%; height: 34px;")
                           option
                             option(value='AF') Afghanistan
                             option(value='AX') Åland Islands
@@ -371,7 +371,7 @@ html
                         label(style='margin-left: 10px;') Phone Number *
                     tr
                       td(style='text-align: left; border: none;')
-                        select(id = "gradYear" style="width: 100%; height: 34px;")
+                        select(id = "gradYear" name = "gradYear" style="width: 100%; height: 34px;")
                           option
                           option(value='2021') 2021
                           option(value='2020') 2020

@@ -65,10 +65,37 @@ function(username, password, done) {
 
 router.post('/register', function(req, res){
     var user = req.body;
+    var majors = user.selectedCourses.split(',');
     var password = hashPassword(user.password);
+    var name;
+        if (req.body.middle === "") {
+            name = req.body.first + " " + req.body.last;
+        } else {
+            name = req.body.first + " " + req.body.middle + " " + req.body.last;
+        }
+    var phoneNumber = user.phoneNumber;
+    var address;
+    address = user.street + " " + user.city;
+    if (user.state != ""){
+        address += ", " + user.state;
+    }
+    if (user.zip != ""){
+        address += " " + user.zip;
+    }
+    address += " " + user.country;
+    var gradYear = user.gradYear;
+    var workLoc = user.work;
+    var workPosition = user.position;
     User.create({
         email: user.email,
-        password: password
+        password: password,
+        name: name,
+        phoneNumber: phoneNumber,
+        address: address,
+        gradYear: gradYear,
+        workLoc: workLoc,
+        workPosition: workPosition,
+        course: majors
     }, function(err, user){
         if (err){
             console.log(err);

@@ -8,7 +8,7 @@ html
     script(src='/js/controller.js')
     script(src='/js/bootstrap.js')
     link(href='https://fonts.googleapis.com/css?family=Karla:400,700', rel='stylesheet')
-  body.index
+  body.index.editableProfile
     nav.navbar.navbar-default.navbar-static-top(style='background-color: #A31F34; border-bottom: 0;')
       section.container-fluid
         section.navbar-header
@@ -67,18 +67,148 @@ html
               th(style="font-weight: 700")
                 | Class Year
               th
-                | Course(s)
-              th
                 | Activities
             tr
-              td 
-                | #{user.gradYear}
-              td
-                - each item in user.course
-                  li=item
-              td
+              td     
+                select(id = "gradYear" name = "gradYear" style="width: 50%; height: 34px;")
+                  option #{user.gradYear}
+                  option(disabled) ---
+                  option(value='2021') 2021
+                  option(value='2020') 2020
+                  option(value='2019') 2019
+                  option(value='2018') 2018
+                  option(value='2017') 2017
+                  option(value='2016') 2016
+                  option(value='2015') 2015
+                  option(value='2014') 2014
+                  option(value='2013') 2013
+                  option(value='2012') 2012
+                  option(value='2011') 2011
+                  option(value='2010') 2010
+                  option(value='2009') 2009
+                  option(value='2008') 2008
+                  option(value='2007') 2007
+                  option(value='2006') 2006
+                  option(value='2005') 2005
+                  option(value='2004') 2004
+                  option(value='2003') 2003
+                  option(value='2002') 2002
+                  option(value='2001') 2001
+                  option(value='2000') 2000
+                  option(value='1999') 1999
+                  option(value='1998') 1998
+                  option(value='1997') 1997
+                  option(value='1996') 1996
+                  option(value='1995') 1995
+                  option(value='1994') 1994
+                  option(value='1993') 1993
+                  option(value='1992') 1992
+                  option(value='1991') 1991
+                  option(value='1990') 1990
+                  option(value='1989') 1989
+                  option(value='1988') 1988
+                  option(value='1987') 1987
+                  option(value='1986') 1986
+                  option(value='1985') 1985
+                  option(value='1984') 1984
+                  option(value='1983') 1983
+                  option(value='1982') 1982
+                  option(value='1981') 1981
+                  option(value='1980') 1980
+                  option(value='1979') 1979
+                  option(value='1978') 1978
+                  option(value='1977') 1977
+                  option(value='1976') 1976
+                  option(value='1975') 1975
+                  option(value='1974') 1974
+                  option(value='1973') 1973
+                  option(value='1972') 1972
+                  option(value='1971') 1971
+                  option(value='1970') 1970
+                  option(value='1969') 1969
+                  option(value='1968') 1968
+                  option(value='1967') 1967
+                  option(value='1966') 1966
+                  option(value='1965') 1965
+                  option(value='1964') 1964
+                  option(value='1963') 1963
+                  option(value='1962') 1962
+                  option(value='1961') 1961
+                  option(value='1960') 1960
+                  option(value='1959') 1959
+                  option(value='1958') 1958
+                  option(value='1957') 1957
+                  option(value='1956') 1956
+                  option(value='1955') 1955
+                  option(value='1954') 1954
+                  option(value='1953') 1953
+                  option(value='1952') 1952
+                  option(value='1951') 1951
+                  option(value='1950') 1950
+                  option(value='1949') 1949
+                  option(value='1948') 1948
+                  option(value='1947') 1947
+                  option(value='1946') 1946
+                  option(value='1945') 1945
+                  option(value='1944') 1944
+                  option(value='1943') 1943
+                  option(value='1942') 1942
+                  option(value='1941') 1941
+                  option(value='1940') 1940
+              td(colspan='2')
                 - each item in user.activities
                   li=item
+            tr
+              th(style="padding-top: 15px")
+                | Course(s)
+            tr
+              td(colspan='3' style='border: none;')
+                table.selectTable
+                  tr
+                    td All Majors
+                    td
+                    td Your Major(s)
+                  tr
+                    td 
+                      select.select(id='allCourses', size='28' multiple)
+                        option(value='0') Undecided
+                        option(value='1') Course 1: Civil and Environmental Engineering
+                        option(value='2') Course 2: Mechanical Engineering
+                        option(value='3') Course 3: Materials Science and Engineering
+                        option(value='4') Course 4: Architecture
+                        option(value='5') Course 5: Chemistry
+                        option(value='6') Course 6: Electrical Engineering and Computer Science
+                        option(value='7') Course 7: Biology
+                        option(value='8') Course 8: Physics
+                        option(value='9') Course 9: Brain and Cognitive Sciences
+                        option(value='10') Course 10: Chemical Engineering
+                        option(value='11') Course 11: Urban Studies and Planning
+                        option(value='12') Course 12: Earth, Atmospheric, and Planetary Sciences
+                        option(value='14') Course 14: Economics
+                        option(value='15') Course 15: Management
+                        option(value='16') Course 16: Aeronautics and Astronautics
+                        option(value='17') Course 17: Political Science
+                        option(value='18') Course 18: Mathematics
+                        option(value='20') Course 20: Biological Engineering
+                        option(value='21') Course 21: Humanities
+                        option(value='21.1') Course 21A: Anthropology
+                        option(value='21.2') Course 21H: History
+                        option(value='21.3') Course 21G: Glocal Studies and Languages
+                        option(value='21.4') Course 21L: Literature
+                        option(value='21.5') Course 21M: Music and Theater Arts
+                        option(value='21.6') Course 21W: Comparative Media Studies/Writing
+                        option(value='22') Course 22: Nuclear Science and Engineering
+                        option(value='24') Course 24: Linguistics and Philosophy
+                    td
+                      input.selectButtons.moveCourse#addAll(type='button', value='>>', style='display: block;')
+                      input.selectButtons.moveCourse#addSome(type='button', value='>', style='display: block;')
+                      input.selectButtons.moveCourse#removeSome(type='button', value='<', style='display: block;')
+                      input.selectButtons.moveCourse#removeAll(type='button', value='<<', style='display: block;')
+                    td
+                      select.select(id='yourCourses' size='28' multiple)
+                  tr
+                    td 
+                      input(id='selectedCourses' name='selectedCourses' type='hidden', value='')
             tr
               td(colspan='3')
                 h3(style="color: #A31F34; border-bottom: 1px solid gray;")

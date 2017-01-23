@@ -50,7 +50,7 @@ $(function(){
 
 	$('#logoutBtn').on('click', function(){
 		$.ajax({
-            url: '../users/logout',
+            url: '../../users/logout',
             success: function(data) {
                 window.location.assign("/");
             }
