@@ -35,7 +35,7 @@ html
         h4(style="margin: 5px;")
           | Profile -- Settings
         form(method='get', action='/users/edit-profile/#{user.email}')
-            input.btn.button#editProfile(type="submit" value="Edit Profile")
+            input.submitButtons#editProfile(type="submit" value="Edit Profile" style="border: 1px solid white; float: right; margin-top: -30px;")
       .panel-body
         h1(style="margin-top: 5px; text-align: center")
           | #{user.name}

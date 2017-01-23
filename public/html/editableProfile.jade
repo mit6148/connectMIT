@@ -99,8 +99,8 @@ html
                   input.form-control(id='workPosition' type='text', name = 'workPosition' value='#{user.workPosition}')
                 else
                   input.form-control#workPosition(type='text', name = 'workPosition')
-        input.btn.button#saveProfiled(type="submit" value="Save" style="margin-right: 20px")
-        input.btn.button#cancelEdits(type="submit" value="Cancel")
+        input.submitButtons#cancelEdits(type="submit" value="Cancel" style="float: right;")
+        input.submitButtons#saveProfiled(type="submit" value="Save" style="margin-right: 20px; float: right;")
                 
 
 
