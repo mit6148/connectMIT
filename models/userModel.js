@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var random = require('mongoose-simple-random');
 
 var userSchema = new Schema({
 	email: {
@@ -45,8 +46,10 @@ var userSchema = new Schema({
 		required: true},
 	activities: {type: [String]},
 	connections: {type: [String]}
-	//other things to have: phone number, name, course, year of grad, address, work
 });
+
+userSchema.plugin(random);
+
 
 userSchema.methods.editInfo = function(course, phoneNumber, address, gradYear, workLoc, workPosition, activities) {
 	this.course = course;
@@ -60,7 +63,7 @@ userSchema.methods.editInfo = function(course, phoneNumber, address, gradYear, w
 }
 
 
-
 var User = mongoose.model('User', userSchema);
+
 
 module.exports = User;

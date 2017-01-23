@@ -6,6 +6,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var flash = require('connect-flash');
 
+
 router.use(flash());
 router.use(passport.initialize());
 router.use(passport.session());
