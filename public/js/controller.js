@@ -149,4 +149,28 @@ $(function(){
         $('#yourCourses').html(yourCourses);
     });
 
+    if ($('body').is('.editableProfile')) {
+        var checkedMajors = $('#majors').text().split(',');
+        var yourCourses = document.getElementById('yourCourses');
+        var allCourses = document.getElementById('allCourses');
+        for (i = 0; i < allCourses.options.length; i++) {
+            for (j = 0; j < checkedMajors.length; j++) {
+                if (allCourses.options[i].text == checkedMajors[j]) {
+                    var option = document.createElement('option');
+                    option.value = allCourses.options[i].value;
+                    option.innerHTML = allCourses.options[i].text;
+                    yourCourses.appendChild(option);
+                    allCourses.options[i].selected = true;
+                }
+            }
+        }
+        $('#allCourses :selected').remove();
+
+        var concatCourses = ""
+        for (i = 0; i < yourCourses.options.length; i++) {
+            concatCourses += yourCourses.options[i].text + ',';
+        }
+        document.getElementById('selectedCourses').value = concatCourses.substring(0, concatCourses.length - 1);
+    } // end if
+
 });
