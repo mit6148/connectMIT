@@ -51,12 +51,14 @@ router.get('/explore', function(req, res){
 				console.log(err);
 			}else{
 				console.log(result);
-				res.render('makeConnections', {email: req.session.email, user: result});
+				var names = result.name.split(" ");
+				var initials = names[0].charAt(0) + "." + names[names.length - 1].charAt(0) + ".";
+
+				res.render('makeConnections', {email: req.session.email, user: result, initials: initials});
 			}
 			// if (result.email == req.session.email){
 
 			// }
-
 			
 		});
 		
