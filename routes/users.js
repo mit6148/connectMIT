@@ -194,7 +194,7 @@ router.put('/connect/:email', function(req, res){
             console.log("no current user");
         } else{
             var connectionEmail = req.params.email;
-            console.log(connectionEmail);
+            // console.log(connectionEmail);
             User.findOne({
                 email: connectionEmail
             }, function(error, user){

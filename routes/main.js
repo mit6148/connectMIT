@@ -6,7 +6,31 @@ var User = require('../models/userModel');
 
 router.get('/', function(req, res){
 	if (req.session.email){
-		res.render('connections', {email: req.session.email});
+		// res.render('connections', {email: req.session.email});
+		User.findOne({
+			email: req.session.email
+		}, function(err, user){
+			if (err){
+				console.log(err);
+			} else{
+				User.find({"email": {$in: user.connections}}, function(error, myConnections){
+					if (error){
+						console.log(error);
+					} else{
+						var connectArray = [];
+						for (var i = 0; i < myConnections.length; i+=3) {
+							var temp = myConnections.slice(i, i + 3);
+							if (temp.length < 3) {
+								var filler = new Array(3 - temp.length).fill(null);
+								temp = temp.concat(filler);
+							}
+							connectArray.push(temp);
+						}
+						res.render('connections', {email: req.session.email, connections: connectArray});
+					}
+				});	
+			}
+		});
 	}
 	else{
 		res.redirect('/');
