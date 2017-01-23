@@ -48,6 +48,19 @@ var userSchema = new Schema({
 	//other things to have: phone number, name, course, year of grad, address, work
 });
 
+userSchema.methods.editInfo = function(course, phoneNumber, address, gradYear, workLoc, workPosition, activities) {
+	this.course = course;
+	this.phoneNumber = phoneNumber;
+	this.address = address;
+	this.gradYear = gradYear;
+	this.workLoc = workLoc;
+	this.workPosition = workPosition;
+	this.activities = activities;
+	return true;
+}
+
+
+
 var User = mongoose.model('User', userSchema);
 
 module.exports = User;

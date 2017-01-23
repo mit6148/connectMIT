@@ -1,0 +1,172 @@
+{
+	"users": [
+		{
+			"email": "hchen15@mit.edu",
+			"password": "password",
+			"name": "Hannah Chen",
+			"course": ["6"],
+			"phoneNumber": "4087504950",
+			"address": "305 Memorial Drive Cambridge, MA 02139 US",
+			"gradYear": 2018,
+			"activities": ["Track and Field", "Alpha Phi"]
+		},
+		{
+			"email": "sarontek@mit.edu",
+			"password": "password",
+			"name": "Saron Teklezgi",
+			"course": ["6"],
+			"phoneNumber": "4088789008",
+			"address": "305 Memorial Drive Cambridge, MA 02139 US",
+			"gradYear": 2018
+		},
+		{
+			"email": "jakec@alum.mit.edu", 
+			"password": "password",
+			"name": "Jacob Chen",
+			"course": ["9, 5"],
+			"phoneNumber": "4086789990",
+			"address": "465 Andover Court Gurnee, IL 60031 US",
+			"gradYear": 1998,
+			"workLoc": "Novartis",
+			"workPosition": "Researcher"
+		},
+		{
+			"email": "epearson@alum.mit.edu", 
+			"password": "password",
+			"name": "Edmund Pearson",
+			"course": ["18"],
+			"phoneNumber": "5678701112",
+			"address": "58 Liberty Street New York, NY 10045 US",
+			"gradYear": 1998,
+			"workLoc": "Novartis",
+			"workPosition": "Researcher",
+			"activities": ["UA"]
+		},
+		{
+			"email": "anag00@alum.mit.edu", 
+			"password": "password",
+			"name": "Ana Graves",
+			"course": ["18"],
+			"phoneNumber": "9008701112",
+			"address": "1301 Fifth Avenue Seattle WA 98101 US",
+			"gradYear": 2000,
+			"workLoc": "Magnusson Klemencic Associates",
+			"activities": ["Swimming"]
+		},
+		{
+			"email": "vickieo@alum.mit.edu", 
+			"password": "password",
+			"name": "Vickie Olson",
+			"course": ["18"],
+			"phoneNumber": "5678701112",
+			"address": "58 Liberty Street New York, NY 10045 US",
+			"gradYear": 2009,
+			"workLoc": "Bank of NY",
+			"workPosition": "Senior Associate"
+		},
+		{
+			"email": "joshk@alum.mit.edu", 
+			"password": "password",
+			"name": "Joshua Keller",
+			"course": ["10"],
+			"phoneNumber": "8906511112",
+			"address": "1320 N Courthouse Rd Arlington, VA 22201 US",
+			"gradYear": 2014,
+			"workLoc": "Verizon",
+			"workPosition": "Litigation Counsel"
+		},
+		{
+			"email": "kannmorris@alum.mit.edu", 
+			"password": "password",
+			"name": "Kelli Morrison",
+			"course": ["15"],
+			"phoneNumber": "7896511115",
+			"address": "9500 Gilman Drive La Jolla, CA 92093 US",
+			"gradYear": 1990,
+			"workLoc": "UC San Diego",
+			"workPosition": "Marketing Professor",
+			"activities": ["Sigma Kappa", "Dance Troupe"]
+		},
+		{
+			"email": "jg123@alum.mit.edu", 
+			"password": "password",
+			"name": "Jorge Guerrero",
+			"course": ["8"],
+			"phoneNumber": "4376589015",
+			"address": "1 Bethel Valley Rd. Oak Ridge, TN 37831 US",
+			"gradYear": 2001,
+			"workLoc": "Oak Ridge National Laboratory",
+			"workPosition": "Research Scientist",
+			"activities": ["Football"]
+		},
+		{
+			"email": "lbridges1@alum.mit.edu", 
+			"password": "password",
+			"name": "Lucy Bridges",
+			"course": ["6"],
+			"phoneNumber": "6576589001",
+			"address": "14 4th Street Brooklyn, NY 11231 US",
+			"gradYear": 2015,
+			"workLoc": "Microsoft",
+			"workPosition": "Software Engineer"
+		},
+		{
+			"email": "katrinam@mit.edu", 
+			"password": "password",
+			"name": "Katrina Mikofalvy",
+			"course": ["9", "7"],
+			"phoneNumber": "3056008791",
+			"address": "305 Memorial Drive Cambridge, MA 02139 US",
+			"gradYear": 2018,
+			"activities": ["Fixation", "Dance Troupe", "Sigma Kappa"]
+		},
+		{
+			"email": "djquinn@alum.mit.edu", 
+			"password": "password",
+			"name": "Daniel Quinn",
+			"course": ["2", "15"],
+			"phoneNumber": "8906559002",
+			"address": "25 Pyburn Road Lynnfield MA 01940 US",
+			"gradYear": 2006,
+			"workLoc": "GE Aviation",
+			"workPosition": "Lead Engineer",
+			"activities": ["Tennis", "Phi Beta Epsilon"]
+		},
+		{
+			"email": "gbates@alum.mit.edu", 
+			"password": "password",
+			"name": "Geneva Bates",
+			"course": ["20"],
+			"phoneNumber": "766123675",
+			"address": "1919 E Thomas Road Phoenix, AZ 85016 US",
+			"gradYear": 1983,
+			"workLoc": "Phoenix Children's Hospital",
+			"workPosition": "Chief Research Officer",
+			"activities": ["GlobeMed"]
+		},
+		{
+			"email": "tlgrant13@alum.mit.edu", 
+			"password": "password",
+			"name": "Tom Grant",
+			"course": ["10", "15"],
+			"phoneNumber": "906224678",
+			"address": "15/15 Moo 18 Lamlukka Kukot Pathumthani 12130, Thailand",
+			"gradYear": 2013,
+			"workLoc": "McKinsey & Company",
+			"workPosition": "Associate",
+			"activities": ["Sailing"]
+		},
+		{
+			"email": "jiahaoy@alum.mit.edu", 
+			"password": "password",
+			"name": "Jiahao Yang",
+			"course": ["6"],
+			"phoneNumber": "886224678",
+			"address": "71 Stevenson St. San Francisco, CA 94105 US",
+			"gradYear": 1999,
+			"workLoc": "VMware",
+			"workPosition": "Product Manager",
+			"activities": ["Fencing"]
+		}
+	]
+}
