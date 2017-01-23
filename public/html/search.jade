@@ -5,6 +5,7 @@ html
     link(rel='stylesheet', href='/css/bootstrap.css')
     link(rel='stylesheet', href='/css/stylesheet.css')
     script(src='https://code.jquery.com/jquery-3.1.1.min.js')
+    script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
     script(src='/js/controller.js')
     script(src='/js/bootstrap.js')
     link(href='https://fonts.googleapis.com/css?family=Karla', rel='stylesheet')
@@ -15,7 +16,7 @@ html
           a#homeTab.navbar-brand(href='#') app name!!
         section.navbar-collapse.collapse
           ul.nav.navbar-nav.navbar-right
-            li#userEmail(style="color: white; font-size: 15px; margin-right: 8px; margin-top: 15px") 
+            li#userEmail(style="color: white; font-size: 15px; margin-right: 15px; margin-top: 15px") 
               | welcome #{email}
             li#myConnectionsTab(style='background-color: #861A2B; width: 150px; text-align: center;')
               a(href='#', data-transition='slide') connections
@@ -31,20 +32,40 @@ html
                   | &nbsp
                 a#logoutBtn(href='#' style="color: white;") logout
 
-    p(style='white-space:pre;')
-      | time to search it up!!! what do we need here
-      | 1. a search bar
-      | 1b. autocomplete?????
-      | 2. some filters!!
-      | 3. wait uh i guess a new page for all the results
-      | darn 
-      | 4. on the new page: the results!!
-      | 5. plus a sidebar with filters maybe so you can adjust and search again
-      | 5b. should we just force them to go back???? maybe
-      | 5c. but the ease of use bro!! give the people what they want
-      | 5d. but the ease of creation dude!!! i'm not trying to make all that
-      | a true dilemma 
-      | end list
+    h1(style="text-align: center; padding-bottom: 10px;") s e a r c h &nbsp o r &nbsp w h a t e v e r
 
-    input#search-bar.centered-input.inline(placeholder='search it up man')
-    input#search-button.inline(type='submit', value="search")
+    .panel.panel-default.settings(style="margin-bottom: 50px;")
+      .panel-heading
+      .panel-body
+        input#search-bar.centered-input.inline(placeholder='search it up man')
+        input#search-button.inline(type='submit', value="search")
+        h4 filter by
+        p(style='white-space:pre;')
+          | - class: dropdown + select multiple? autocomplete + select multiple?? clearly the key is select mult
+          | a GIANT SLIDER with all the years and you drag to choose your range
+          | - activities: actually the multi select autocomplete could work here???
+          | - course: uhhh are we using that thing again
+          | formatting is: a planning disaster
+          | - location?????
+
+        h5 notes
+        p(style='white-space:pre; font-size: 12px;')
+          | time to search it up!!! what do we need here
+          | 1. a search bar
+          | 1b. autocomplete?????
+          | 2. some filters!!
+          | 3. wait uh i guess a new page for all the results
+          | darn 
+          | 4. on the new page: the results!!
+          | 5. plus a sidebar with filters maybe so you can adjust and search again
+          | 5b. should we just force them to go back???? maybe
+          | 5c. but the ease of use bro!! give the people what they want
+          | 5d. but the ease of creation dude!!! i'm not trying to make all that
+          | a true dilemma 
+          | end list
+ 
+
+        .ui-widget
+          label(for='tags') Tag programming languages: 
+          input#tags(size='50')
+
