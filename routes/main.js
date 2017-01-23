@@ -93,19 +93,37 @@ router.get('/settings', function(req, res){
 
 router.get('/explore', function(req, res){
 	if (req.session.email){
-		User.findOneRandom(function(err, result){
-			if (err){
+
+		// User.findOneRandom(function(err, result){
+		// 	if (err){
+		// 		console.log(err);
+		// 	}else{
+		// 		console.log(result.email);
+
+		// 		var names = result.name.split(" ");
+		// 		var initials = names[0].charAt(0) + "." + names[names.length - 1].charAt(0) + ".";
+
+		// 		res.render('makeConnections', {email: req.session.email, user: result, initials: initials});
+		// 	}
+		// 	// if (result.email == req.session.email){
+
+		// 	// }
+			
+		// });
+
+		User.findOne({email: req.session.email}, function(err, user) {
+			if (err) {
 				console.log(err);
-			}else{
-				var names = result.name.split(" ");
+			}
+			User.findRandom({ email: { $nin: user.connections.concat(req.session.email) } }, {}, {}, function(error, result) {
+				if (error) {
+					console.log(error);
+				}
+				var names = result[0].name.split(" ");
 				var initials = names[0].charAt(0) + "." + names[names.length - 1].charAt(0) + ".";
 
-				res.render('makeConnections', {email: req.session.email, user: result, initials: initials});
-			}
-			// if (result.email == req.session.email){
-
-			// }
-			
+				res.render('makeConnections', {email: req.session.email, user: result[0], initials: initials});
+			});
 		});
 		
 	}
