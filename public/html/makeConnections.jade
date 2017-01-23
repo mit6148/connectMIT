@@ -38,20 +38,23 @@ html
       .panel-body
         .col-1-3
           p(style="font-size: 110px; margin-top: 80px;")
-            | W. O.
+            | !{initials}
         .col-2-3
           .idk(style="background-color: #DDADB5; margin-left: 15px; padding: 10px; height: 43vh; ")
             .vert-align(style="position: relative; top: 50%; transform: translateY(-50%);")
-              h4#login-heading Real Person
-              p(style='white-space:pre;')
-                | course everything + 17 minors
-                | full-time neon sign
-                | these heights are blowing me!!!! i'm dropping out
-                | does this page have more info?? what are the Essentials 
-                | two truths and a lie:
-                | 1. i am a human
-                | 2. i built the national monument alone by hand in a single day
-                | 3. sometimes i sleep
+              h2#login-heading(style="margin-bottom: 20px;") !{user.name}
+              p(style='white-space:pre; font-size: 18px;')
+                | email: !{user.email}
+              p(style='white-space:pre; font-size: 18px;')
+                | phone: !{user.phoneNumber}
+              p(style='white-space:pre; font-size: 18px;')
+                | address: !{user.address}
+              if user.workLoc != null
+                p(style='white-space:pre; font-size: 18px;')
+                  | location of employment: !{user.workLoc}
+                  if user.workPosition != null
+                    p(style='white-space:pre; font-size: 18px;')
+                      | position: !{user.workPosition}
 
     input.connection-buttons.inline#ignoreBtn(type='submit', value="nah i'm good")
     input.connection-buttons.inline#connectBtn(type='submit', value='aye connection time' style="float: right;")
