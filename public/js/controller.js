@@ -433,7 +433,8 @@ $(function(){
         email: email,
         type: 'PUT',
         success: function(data) {
-            alert("connected");
+            // temp?
+            window.location.assign("/main/my-connections");
         }
     });
 });
