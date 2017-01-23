@@ -16,7 +16,21 @@ router.get('/', function(req, res){
 
 router.get('/my-connections', function(req, res){
 	if (req.session.email){
-		res.render('connections', {email: req.session.email});
+		User.findOne({
+			email: req.session.email
+		}, function(err, user){
+			if (err){
+				console.log(err);
+			} else{
+				User.find({"email": {$in: user.connections}}, function(error, myConnections){
+					if (error){
+						console.log(error);
+					} else{
+						res.render('connections', {email: req.session.email, connections: myConnections});
+					}
+				});	
+			}
+		});
 	}
 	else{
 		res.redirect('/');
@@ -50,7 +64,6 @@ router.get('/explore', function(req, res){
 			if (err){
 				console.log(err);
 			}else{
-				console.log(result);
 				var names = result.name.split(" ");
 				var initials = names[0].charAt(0) + "." + names[names.length - 1].charAt(0) + ".";
 
