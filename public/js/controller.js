@@ -68,6 +68,17 @@ $(function(){
         });
 	});
 
+    $('#connectBtn').on('click', function() {
+        var email = $('#connectBtn').attr('class').split(" ")[2]
+        $.ajax({
+            email: email,
+            type: 'PUT',
+            success: function(data) {
+                window.location.assign("/users/connect/" + email);
+            }
+        });
+    });
+
     //course major picker
     $('#addAll').click(function() {
         // move all values from #allCourses to #yourCourses
