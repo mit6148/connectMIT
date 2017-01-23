@@ -26,7 +26,16 @@ router.get('/my-connections', function(req, res){
 					if (error){
 						console.log(error);
 					} else{
-						res.render('connections', {email: req.session.email, connections: myConnections});
+						var connectArray = [];
+						for (var i = 0; i < myConnections.length; i+=3) {
+							var temp = myConnections.slice(i, i + 3);
+							if (temp.length < 3) {
+								var filler = new Array(3 - temp.length).fill(null);
+								temp = temp.concat(filler);
+							}
+							connectArray.push(temp);
+						}
+						res.render('connections', {email: req.session.email, connections: connectArray});
 					}
 				});	
 			}
