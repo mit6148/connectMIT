@@ -62,7 +62,7 @@ userSchema.methods.editInfo = function(course, phoneNumber, address, gradYear, w
 	return true;
 }
 
-userSchema.methods.addMatch = function(email){
+userSchema.methods.addConnection = function(email){
 	this.connections.push(email);
 	return true;
 }
