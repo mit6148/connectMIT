@@ -429,7 +429,7 @@ $(function(){
   $('#connectBtn').on('click', function() {
     var email = $('#connectBtn').attr('class').split(" ")[2];
     $.ajax({
-        url: '/users/connect/',
+        url: '/users/connect/' + email,
         email: email,
         type: 'PUT',
         success: function(data) {

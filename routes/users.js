@@ -41,13 +41,13 @@ function(username, password, done) {
         var message;
         if (err) {
             message = "Login failed. Please try again."
-            req.flash('error', message);
+            // req.flash('error', message);
             return done(err);
         }
 
         if (!user) {
             message = "Username or password is incorrect."
-            req.flash('error', message);
+            // req.flash('error', message);
             return done(null, false);
         }
         //delete this
@@ -183,9 +183,9 @@ router.get('/edit-profile/:email', function(req, res) {
     }
 });
 
-router.put('/connect', function(req, res){
+router.put('/connect/:email', function(req, res){
     User.findOne({
-        email: req.params.email
+        email: req.session.email
     }, function(err, currentUser){
         if (err){
             console.log(err);
@@ -193,7 +193,8 @@ router.put('/connect', function(req, res){
         } else if (currentUser === null){
             console.log("no current user");
         } else{
-            var connectionEmail = req.body.email;
+            var connectionEmail = req.params.email;
+            console.log(connectionEmail);
             User.findOne({
                 email: connectionEmail
             }, function(error, user){
@@ -201,7 +202,7 @@ router.put('/connect', function(req, res){
                     console.log(error);
                 } else{
                     currentUser.addConnection(user.email);
-                    console.log("success");
+                    currentUser.save();
                 }
             });
         }
