@@ -173,129 +173,133 @@ $(function(){
         document.getElementById('selectedCourses').value = concatCourses.substring(0, concatCourses.length - 1);
     } // end if
 
-    var availableTags1 = [
-        '2021',
-        '2020',
-        '2019',
-        '2018',
-        '2017',
-        '2016',
-        '2015',
-        '2014',
-        '2013',
-        "2012",
-        '2011',
-        '2010',
-        '2009',
-        '2008',
-        '2007',
-        '2006',
-        '2005',
-        '2004',
-        '2003',
-        '2002',
-        '2001',
-        '2000',
-        '1999',
-        '1998',
-        '1997',
-        '1996',
-        '1995',
-        '1994',
-        '1993',
-        '1992',
-        '1991',
-        '1990',
-        '1989',
-        '1988',
-        '1987',
-        '1986',
-        '1985',
-        '1984',
-        '1983',
-        '1982',
-        '1981',
-        '1980',
-        '1979',
-        '1978',
-        '1977',
-        '1976',
-        '1975',
-        '1974',
-        '1973',
-        '1972',
-        '1971',
-        '1970',
-        '1969',
-        '1968',
-        '1967',
-        '1966',
-        '1965',
-        '1964',
-        '1963',
-        '1962',
-        '1961',
-        '1960',
-        '1959',
-        '1958',
-        '1957',
-        '1956',
-        '1955',
-        '1954',
-        '1953',
-        '1952',
-        '1951',
-        '1950',
-        '1949',
-        '1948',
-        '1947',
-        '1946',
-        '1945',
-        '1944',
-        '1943',
-        '1942',
-        '1941',
-        '1940'
-    ];
-    function split( val ) {
-      return val.split( /,\s*/ );
-    }
-    function extractLast( term ) {
-      return split( term ).pop();
-    }
- 
-    $( "#tags1" )
-      // don't navigate away from the field on tab when selecting an item
-      .on( "keydown", function( event ) {
-        if ( event.keyCode === $.ui.keyCode.TAB &&
-            $( this ).autocomplete( "instance" ).menu.active ) {
-          event.preventDefault();
-        }
-      })
-      .autocomplete({
-        minLength: 0,
-        source: function( request, response ) {
-          // delegate back to autocomplete, but extract the last term
-          response( $.ui.autocomplete.filter(
-            availableTags1, extractLast( request.term ) ) );
-        },
-        focus: function() {
-          // prevent value inserted on focus
-          return false;
-        },
-        select: function( event, ui ) {
-          var terms = split( this.value );
-          // remove the current input
-          terms.pop();
-          // add the selected item
-          terms.push( ui.item.value );
-          // add placeholder to get the comma-and-space at the end
-          terms.push( "" );
-          this.value = terms.join( ", " );
-          return false;
-        }
-      });
 
+    if ($('body').is('.search')) {
+	    var availableTags1 = [
+	        '2021',
+	        '2020',
+	        '2019',
+	        '2018',
+	        '2017',
+	        '2016',
+	        '2015',
+	        '2014',
+	        '2013',
+	        "2012",
+	        '2011',
+	        '2010',
+	        '2009',
+	        '2008',
+	        '2007',
+	        '2006',
+	        '2005',
+	        '2004',
+	        '2003',
+	        '2002',
+	        '2001',
+	        '2000',
+	        '1999',
+	        '1998',
+	        '1997',
+	        '1996',
+	        '1995',
+	        '1994',
+	        '1993',
+	        '1992',
+	        '1991',
+	        '1990',
+	        '1989',
+	        '1988',
+	        '1987',
+	        '1986',
+	        '1985',
+	        '1984',
+	        '1983',
+	        '1982',
+	        '1981',
+	        '1980',
+	        '1979',
+	        '1978',
+	        '1977',
+	        '1976',
+	        '1975',
+	        '1974',
+	        '1973',
+	        '1972',
+	        '1971',
+	        '1970',
+	        '1969',
+	        '1968',
+	        '1967',
+	        '1966',
+	        '1965',
+	        '1964',
+	        '1963',
+	        '1962',
+	        '1961',
+	        '1960',
+	        '1959',
+	        '1958',
+	        '1957',
+	        '1956',
+	        '1955',
+	        '1954',
+	        '1953',
+	        '1952',
+	        '1951',
+	        '1950',
+	        '1949',
+	        '1948',
+	        '1947',
+	        '1946',
+	        '1945',
+	        '1944',
+	        '1943',
+	        '1942',
+	        '1941',
+	        '1940'
+	    ];
+	    function split( val ) {
+	      return val.split( /,\s*/ );
+	    }
+	    function extractLast( term ) {
+	      return split( term ).pop();
+	    }
+	 
+	    $( "#tags1" )
+	      // don't navigate away from the field on tab when selecting an item
+	      .on( "keydown", function( event ) {
+	        if ( event.keyCode === $.ui.keyCode.TAB &&
+	            $( this ).autocomplete( "instance" ).menu.active ) {
+	          event.preventDefault();
+	        }
+	      })
+	      .autocomplete({
+	        minLength: 0,
+	        source: function( request, response ) {
+	          // delegate back to autocomplete, but extract the last term
+	          response( $.ui.autocomplete.filter(
+	            availableTags1, extractLast( request.term ) ) );
+	        },
+	        focus: function() {
+	          // prevent value inserted on focus
+	          return false;
+	        },
+	        select: function( event, ui ) {
+	          var terms = split( this.value );
+	          // remove the current input
+	          terms.pop();
+	          // add the selected item
+	          terms.push( ui.item.value );
+	          // add placeholder to get the comma-and-space at the end
+	          terms.push( "" );
+	          this.value = terms.join( ", " );
+	          return false;
+	        }
+	      });
+	}
+
+    if ($('body').is('.search')) {
       var availableTags2 = [
         'Undecided',
         'Course 1: Civil and Environmental Engineering',
@@ -364,6 +368,10 @@ $(function(){
           return false;
         }
       });
+     }
+
+
+    if ($('body').is('.search')) {
 
       var availableTags3 = [
         'pretend there are activities'
@@ -406,5 +414,16 @@ $(function(){
           return false;
         }
       });
+     }
+
+  $('#ignoreBtn').on("click", function(){
+  		console.log("click")
+		$.ajax({
+            url: '/main/explore',
+            success: function(data) {
+                window.location.assign("/main/explore");
+            }
+        });
+  });
 
 });

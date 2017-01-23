@@ -47,9 +47,19 @@ router.get('/settings', function(req, res){
 router.get('/explore', function(req, res){
 	if (req.session.email){
 		User.findOneRandom(function(err, result){
-			console.log(result);
+			if (err){
+				console.log(err);
+			}else{
+				console.log(result);
+				res.render('makeConnections', {email: req.session.email, user: result});
+			}
+			// if (result.email == req.session.email){
+
+			// }
+
+			
 		});
-		res.render('makeConnections', {email: req.session.email});
+		
 	}
 	else{
 		res.redirect('/');
