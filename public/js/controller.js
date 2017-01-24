@@ -440,15 +440,22 @@ $(function(){
 });
 
     $('#search-button').on('click', function() {
-        console.log($('#courses').val().split(", "));
+        console.log($('#years').val().split(", "));
+        var courses =$('#years').val().split(", ");
+        console.log(courses.splice(0, courses.length - 1));
+
+        // console.log($('#years').val().split(", "));
+        // console.log($('#courses').val().split(", "));
+        // console.log($('#activities').val().split(", "));
+
         $.ajax({
             url: '/main/send-search/',
             type: 'POST',
             data: {
                 "searchTerm": $('#search-bar').val(),
-                "yearFilter": $('#years').val().split(", "),
-                "courseFilter": $('#courses').val().split(", "),
-                "activityFilter": $('#activities').val().split(", ")
+                "yearFilter": $('#years').val(),
+                "courseFilter": $('#courses').val(),
+                "activityFilter": $('#activities').val()
             },
             success: function(data) {
                 console.log("nice");
