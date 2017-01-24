@@ -47,8 +47,9 @@ html
                       h3#login-heading !{person.name}
                       p(style='white-space:pre;')
                         | !{person.email}
-                        | !{person.course}
-                        | pertinent info??
+                      - each item in person.course
+                        p=item
+                        
                   #enter-button(style='margin-top: 10px;')
                     input.submitButtons(type='submit', value='Send Message' style="width: 100%;")
 
