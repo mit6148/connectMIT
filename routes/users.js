@@ -205,8 +205,6 @@ router.put('/connect/:email', function(req, res){
                     res.send({
                         success: true
                     });
-                    // temp?
-                    // res.redirect('/main/my-connections');
                 }
             });
         }

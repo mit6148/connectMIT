@@ -439,18 +439,36 @@ $(function(){
     });
 });
 
+    // $('#search-button').on('click', function() {
+    //     $.ajax({
+    //         url: '/main/send-search/',
+    //         data: {
+    //             "searchTerm": $('#search-bar').val(),
+    //             "yearFilter": $('#years').val(),
+    //             "courseFilter": $('#courses').val(),
+    //             "activityFilter": $('#activities').val(),
+    //         },
+    //         success: function(data) {
+    //             console.log("nice");
+    //             // window.location.assign("/main/send-search");
+    //         }
+    //     });
+    // });
+
     $('#search-button').on('click', function() {
+        var searchTerm = $('#search-bar').val() != '' ? $('#search-bar').val() : undefined;
+        var yearFilter = $('#years').val() != '' ? $('#years').val() : undefined;
+        var courseFilter = $('#courses').val() != '' ? $('#courses').val() : undefined;
+        var activityFilter = $('#activities').val() != '' ? $('#activities').val() : undefined;
         $.ajax({
-            url: '/main/send-search/',
-            data: {
-                "searchTerm": $('#search-bar').val(),
-                "yearFilter": $('#years').val(),
-                "courseFilter": $('#courses').val(),
-                "activityFilter": $('#activities').val(),
-            },
+            url: '/main/search/' + searchTerm + '/' + yearFilter + '/' + courseFilter + '/' + activityFilter,
+            "searchTerm": searchTerm,
+            "yearFilter": yearFilter,
+            "courseFilter": courseFilter,
+            "activityFilter": activityFilter,
             success: function(data) {
                 console.log("nice");
-                // window.location.assign("/main/send-search");
+                window.location.assign('/main/search/' + searchTerm + '/' + yearFilter + '/' + courseFilter + '/' + activityFilter);
             }
         });
     });

@@ -132,28 +132,21 @@ router.get('/explore', function(req, res){
 	}
 });
 
-router.get('/send-search', function(req, res){
+router.get('/search/:searchTerm/:yearFilter/:courseFilter/:activityFilter', function(req, res){
 	if (req.session.email){
 
-		// console.log("get success");
-		// console.log(req.query.);
-		// console.log("-----");
-		// console.log(req.query.searchTerm);
-		// console.log(req.query.yearFilter);
-		// console.log(req.query.courseFilter);
-		// console.log(req.query.activityFilter);
+		var searchTerm = req.params.searchTerm != 'undefined' ? req.params.searchTerm : '';
 
-		var yearFilter = req.query.yearFilter != '' ? req.query.yearFilter.split(", ") : undefined;
+		var yearFilter = req.params.yearFilter != 'undefined' ? req.params.yearFilter.split(", ") : undefined;
 		yearFilter = yearFilter != undefined ? yearFilter.splice(0, yearFilter.length - 1) : undefined;
 
-		var courseFilter = req.query.courseFilter != '' ? req.query.courseFilter.split(", ") : undefined;
+		var courseFilter = req.params.courseFilter != 'undefined' ? req.params.courseFilter.split(", ") : undefined;
 		courseFilter = courseFilter != undefined ? courseFilter.splice(0, courseFilter.length - 1) : undefined;
 
-		var activityFilter = req.query.activityFilter != '' ? req.query.activityFilter.split(", ") : undefined;
+		var activityFilter = req.params.activityFilter != 'undefined' ? req.params.activityFilter.split(", ") : undefined;
 		activityFilter = activityFilter != undefined ? activityFilter.splice(0, activityFilter.length - 1) : undefined;
 
-
-		User.find( { $or: [{ email : { $regex: ".*" + req.query.searchTerm + ".*" } }, { name : { $regex: ".*" + req.query.searchTerm + ".*" } } ] } , function(err, users) {
+		User.find( { $or: [{ email : { $regex: ".*" + searchTerm + ".*" } }, { name : { $regex: ".*" + searchTerm + ".*" } } ] } , function(err, users) {
 			if (err) {
 				console.log(err);
 			}
@@ -164,48 +157,49 @@ router.get('/send-search', function(req, res){
 			}
 
 			if (yearFilter == undefined && courseFilter == undefined && activityFilter == undefined) {
-				console.log('nothing');
+				// console.log('nothing');
+				// console.log(users);
 				res.render('search', {email: req.session.email, results: users});
-				// res.render('settings', {email: req.session.email});
+
 			} else if (yearFilter == undefined && courseFilter == undefined) {
-				console.log('no year + course');
+				// console.log('no year + course');
 				User.find({ email : { $in : eligible }, activities : { $in : activityFilter } }, function(error, results) {
-					console.log(results);
+					// console.log(results);
 					res.render('search', {email: req.session.email, results: results});
 				});
 
 			} else if (yearFilter == undefined && activityFilter == undefined) {
-				console.log('no year + activity');
+				// console.log('no year + activity');
 				User.find({ email : { $in : eligible }, courses : { $in : courseFilter } }, function(error, results) {
-					console.log(results);
+					// console.log(results);
 					res.render('search', {email: req.session.email, results: results});
 				});
 
 			} else if (courseFilter == undefined && activityFilter == undefined) {
-				console.log('no course + activity');
+				// console.log('no course + activity');
 				User.find({ email : { $in : eligible }, gradYear : { $in : yearFilter } }, function(error, results) {
-					console.log(results);
+					// console.log(results);
 					res.render('search', {email: req.session.email, results: results});
 				});
 
 			} else if (yearFilter == undefined) {
-				console.log('no year');
+				// console.log('no year');
 				User.find({ email : { $in : eligible }, activities : { $in : activityFilter }, courses : { $in : courseFilter } }, function(error, results) {
-					console.log(results);
+					// console.log(results);
 					res.render('search', {email: req.session.email, results: results});
 				});
 
 			} else if (courseFilter == undefined) {
-				console.log('no course');
+				// console.log('no course');
 				User.find({ email : { $in : eligible }, activities : { $in : activityFilter }, gradYear : { $in : yearFilter } }, function(error, results) {
-					console.log(results);
+					// console.log(results);
 					res.render('search', {email: req.session.email, results: results});
 				});
 
 			} else if (activityFilter == undefined) {
-				console.log('no activity');
+				// console.log('no activity');
 				User.find({ email : { $in : eligible }, gradYear : { $in : yearFilter }, courses : { $in : courseFilter } }, function(error, results) {
-					console.log(results);
+					// console.log(results);
 					res.render('search', {email: req.session.email, results: results});
 				});
 			}
