@@ -433,7 +433,7 @@ $(function(){
         email: email,
         type: 'PUT',
         success: function(data) {
-            // temp?
+            alert("You have successfully connected!")
             window.location.assign("/main/my-connections");
         }
     });
