@@ -202,8 +202,11 @@ router.put('/connect/:email', function(req, res){
                 } else{
                     currentUser.addConnection(user.email);
                     currentUser.save();
+                    res.send({
+                        success: true
+                    });
                     // temp?
-                    res.redirect('/main/my-connections');
+                    // res.redirect('/main/my-connections');
                 }
             });
         }
