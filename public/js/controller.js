@@ -266,7 +266,7 @@ $(function(){
 	      return split( term ).pop();
 	    }
 	 
-	    $( "#tags1" )
+	    $( "#years" )
 	      // don't navigate away from the field on tab when selecting an item
 	      .on( "keydown", function( event ) {
 	        if ( event.keyCode === $.ui.keyCode.TAB &&
@@ -337,7 +337,7 @@ $(function(){
       return split( term ).pop();
     }
  
-    $( "#tags2" )
+    $( "#courses" )
       // don't navigate away from the field on tab when selecting an item
       .on( "keydown", function( event ) {
         if ( event.keyCode === $.ui.keyCode.TAB &&
@@ -383,7 +383,7 @@ $(function(){
       return split( term ).pop();
     }
  
-    $( "#tags3" )
+    $( "#activities" )
       // don't navigate away from the field on tab when selecting an item
       .on( "keydown", function( event ) {
         if ( event.keyCode === $.ui.keyCode.TAB &&
@@ -438,5 +438,22 @@ $(function(){
         }
     });
 });
+
+    $('#search-button').on('click', function() {
+        console.log($('#courses').val().split(", "));
+        $.ajax({
+            url: '/main/send-search/',
+            type: 'POST',
+            data: {
+                "searchTerm": $('#search-bar').val(),
+                "yearFilter": $('#years').val().split(", "),
+                "courseFilter": $('#courses').val().split(", "),
+                "activityFilter": $('#activities').val().split(", ")
+            },
+            success: function(data) {
+                console.log("nice");
+            }
+        });
+    });
 
 });

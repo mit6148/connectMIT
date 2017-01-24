@@ -132,4 +132,30 @@ router.get('/explore', function(req, res){
 	}
 });
 
+router.post('/send-search', function(req, res){
+	if (req.session.email){
+		console.log(req.body.searchTerm);
+		// console.log(req.body.yearFilter == undefined);
+
+		// email + name: check to see if search term is within
+		// year: check to see if user is in x year
+		// course: check to see if user is in any of selected courses? or all?
+		// activity: same as above
+
+		User.find( { $or: [{ email : { $regex: ".*" + req.body.searchTerm + ".*" } }, { name : { $regex: ".*" + req.body.searchTerm + ".*" } } ] } , function(err, users) {
+			if (err) {
+				console.log(err);
+			}
+			console.log(users);
+
+		});
+
+		res.render('searchResults', {email: req.session.email});
+	}
+	else{
+		res.redirect('/');
+	}
+	
+});
+
 module.exports = router;
