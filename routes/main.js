@@ -170,7 +170,7 @@ router.get('/search/:searchTerm/:yearFilter/:courseFilter/:activityFilter', func
 
 			} else if (yearFilter == undefined && activityFilter == undefined) {
 				// console.log('no year + activity');
-				User.find({ email : { $in : eligible }, courses : { $in : courseFilter } }, function(error, results) {
+				User.find({ email : { $in : eligible }, course : { $in : courseFilter } }, function(error, results) {
 					// console.log(results);
 					res.render('search', {email: req.session.email, results: results});
 				});
@@ -184,7 +184,7 @@ router.get('/search/:searchTerm/:yearFilter/:courseFilter/:activityFilter', func
 
 			} else if (yearFilter == undefined) {
 				// console.log('no year');
-				User.find({ email : { $in : eligible }, activities : { $in : activityFilter }, courses : { $in : courseFilter } }, function(error, results) {
+				User.find({ email : { $in : eligible }, activities : { $in : activityFilter }, course : { $in : courseFilter } }, function(error, results) {
 					// console.log(results);
 					res.render('search', {email: req.session.email, results: results});
 				});
@@ -198,7 +198,7 @@ router.get('/search/:searchTerm/:yearFilter/:courseFilter/:activityFilter', func
 
 			} else if (activityFilter == undefined) {
 				// console.log('no activity');
-				User.find({ email : { $in : eligible }, gradYear : { $in : yearFilter }, courses : { $in : courseFilter } }, function(error, results) {
+				User.find({ email : { $in : eligible }, gradYear : { $in : yearFilter }, course : { $in : courseFilter } }, function(error, results) {
 					// console.log(results);
 					res.render('search', {email: req.session.email, results: results});
 				});

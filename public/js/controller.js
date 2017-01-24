@@ -467,7 +467,6 @@ $(function(){
             "courseFilter": courseFilter,
             "activityFilter": activityFilter,
             success: function(data) {
-                console.log("nice");
                 window.location.assign('/main/search/' + searchTerm + '/' + yearFilter + '/' + courseFilter + '/' + activityFilter);
             }
         });
