@@ -442,15 +442,15 @@ $(function(){
     $('#search-button').on('click', function() {
         $.ajax({
             url: '/main/send-search/',
-            type: 'POST',
             data: {
                 "searchTerm": $('#search-bar').val(),
                 "yearFilter": $('#years').val(),
                 "courseFilter": $('#courses').val(),
-                "activityFilter": $('#activities').val()
+                "activityFilter": $('#activities').val(),
             },
             success: function(data) {
                 console.log("nice");
+                // window.location.assign("/main/send-search");
             }
         });
     });

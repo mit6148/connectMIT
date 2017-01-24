@@ -9,7 +9,7 @@ html
     script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
     script(src='/js/controller.js')
     script(src='/js/bootstrap.js')
-    link(href='https://fonts.googleapis.com/css?family=Karla', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Karla:400,700', rel='stylesheet')
   body.index.search
     nav.navbar.navbar-default.navbar-static-top(style='background-color: #A31F34; border-bottom: 0;')
       section.container-fluid
@@ -56,4 +56,72 @@ html
               .ui-widget
                 label(for='activities') Activity &nbsp 
                 input#activities(size='50' style="width: 100%;")
+        
+        h4 RESULTS!!
+        table.table
+          tr
+            td
+              .panel.panel-default
+                .panel-heading
+                  h4.inline user name (maybe change padding)
+                  input.submitButtons.inline(value='connect' style='text-align: center; border: 1px solid white; float: right; margin-top: 7px;')
+                .panel-body
+                  table(style='width: 100%; font-size: 14px;')
+                    tr
+                      td(colspan='3')
+                        h4(style="color: #A31F34; border-bottom: 1px solid gray;")
+                          | Contact Info 
+                    tr
+                      th(style="font-weight: 700; width: 33.33%")
+                        | Email
+                      th(style="width: 33.33%")
+                        | Phone Number
+                      th(style="width: 33.33%")
+                        | Address
+                    tr
+                      td
+                        | x
+                      td
+                        | x
+                      td
+                        | x
+                    tr
+                      td(colspan='3')
+                        h4(style="color: #A31F34; border-bottom: 1px solid gray;")
+                          | MIT Info
+                    tr
+                      th(style="font-weight: 700")
+                        | Class Year
+                      th
+                        | Course(s)
+                      th
+                        | Activities
+                    tr
+                      td 
+                        | x
+                      td
+                        | x
+                      td
+                        | x
+                    tr
+                      td(colspan='3')
+                        h4(style="color: #A31F34; border-bottom: 1px solid gray;")
+                          | Work Info
+                    tr
+                      th(style="font-weight: 700")
+                        | Place of Employment
+                      th
+                        | Position
+                    tr
+                      td
+                        | x
+                      td
+                        | x
+
+
+
+
+
+
+
 
