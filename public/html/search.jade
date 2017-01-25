@@ -70,7 +70,7 @@ html
                   .panel.panel-default
                     .panel-heading
                       h4.inline !{user.name}
-                      input.submitButtons.inline(value='connect' style='text-align: center; border: 1px solid white; float: right; margin-top: 7px;')
+                      input#connectBtn.submitButtons.inline(type='submit' class='#{user.email}' value='connect' style='text-align: center; border: 1px solid white; float: right; margin-top: 7px;')
                     .panel-body
                       table(style='width: 100%; font-size: 14px;')
                         tr
