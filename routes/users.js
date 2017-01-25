@@ -75,15 +75,7 @@ router.post('/register', function(req, res){
             name = req.body.first + " " + req.body.middle + " " + req.body.last;
         }
     var phoneNumber = user.phoneNumber;
-    var address;
-    address = user.street + " " + user.city;
-    if (user.state != ""){
-        address += ", " + user.state;
-    }
-    if (user.zip != ""){
-        address += " " + user.zip;
-    }
-    address += " " + user.country;
+    var address = user.address;
     var gradYear = user.gradYear;
     var workLoc = user.work;
     var workPosition = user.position;
