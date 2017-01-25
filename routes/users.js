@@ -147,6 +147,7 @@ router.get('/settings/:email', function(req, res){
                 console.log(err);
                 return;
             } else if (user === null) {
+                console.log("user is null");
                 // res.status(404).render('errorPage', { title : '404: Page Not Found' });
                 return;
             } else {
@@ -181,6 +182,22 @@ router.get('/edit-profile/:email', function(req, res) {
             }
         });
     }
+});
+
+router.put('/edit-profile/:email', function(req, res){
+    User.findOne({
+        email: req.session.email
+    }, function(err, user){
+        if (err){
+            console.log(err);
+        } else{
+            user.editInfo(req.body.course.split(','), req.body.phoneNumber, req.body.address, req.body.gradYear, req.body.workLoc, req.body.workPosition);
+            user.save();
+            res.send({
+                success: true
+            })
+        }
+    });
 });
 
 router.put('/connect/:email', function(req, res){

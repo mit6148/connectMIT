@@ -41,9 +41,9 @@ $(function(){
 
 	$('#homeTab').on('click', function(){
 		$.ajax({
-            url: '/main/my-connections',
+            url: '/main',
             success: function(data) {
-                window.location.assign("/main/my-connections");
+                window.location.assign("/main");
             }
         });
 	});
@@ -471,5 +471,29 @@ $(function(){
             }
         });
     });
+
+     $('#saveProfile', this).click(function() {
+        var email = $('#userEmail').text(); 
+        email = email.substring(10);
+        $.ajax({
+            url: "/users/edit-profile/" + email,
+            type: 'PUT',
+            data: {
+                "phoneNumber": $('#phoneNumber').val(),
+                "course": $('#selectedCourses').val().trim().replace(/<(.|\n)*?>/g, ''),
+                "gradYear": $('#gradYear').find(":selected").text(),
+                "address": $('#address').val(),
+                "workLoc": $('#workLocation').val(),
+                "workPosition": $('#workPosition').val()
+            },
+            success: function(data) {
+                window.location.assign("/users/settings/" + email);
+            },
+            error: function(data) {
+                alert("An error has occurred. Please try again.");
+            }
+
+        });
+    }); // end profile update
 
 });

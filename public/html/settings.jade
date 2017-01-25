@@ -17,12 +17,12 @@ html
           ul.nav.navbar-nav.navbar-right
             li#userEmail(style="color: white; font-size: 15px; margin-right: 15px; margin-top: 15px") 
               | welcome #{user.email}
-            li#myConnectionsTab(style='background-color: #861A2B; width: 150px; text-align: center;')
-              a(href='#', data-transition='slide') connections
-            li#exploreTab(style='background-color: #681422; width: 150px; text-align: center;')
+            li#exploreTab(style='background-color: #861A2B; width: 150px; text-align: center;')
               a(href='#') explore
-            li#searchTab(style='background-color: #4B0F18; width: 150px; text-align: center;')
+            li#searchTab(style='background-color: #681422; width: 150px; text-align: center;')
               a(href='#') search
+            li#myConnectionsTab(style='background-color: #4B0F18; width: 150px; text-align: center;')
+              a(href='#', data-transition='slide') my connections
             li.dropdown
               a.dropdown-toggle(href='#', data-toggle='dropdown' style='background-color: #2D090F; width: 150px; text-align: center;') profile
               .dropdown-menu(style="text-align: center; width: 10px;")
@@ -79,8 +79,8 @@ html
               td 
                 | #{user.gradYear}
               td
-                - each item in user.course
-                  li=item
+                - each course in user.course
+                  li=course
               td
                 - each item in user.activities
                   li=item

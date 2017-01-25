@@ -51,14 +51,14 @@ var userSchema = new Schema({
 userSchema.plugin(random);
 
 
-userSchema.methods.editInfo = function(course, phoneNumber, address, gradYear, workLoc, workPosition, activities) {
+userSchema.methods.editInfo = function(course, phoneNumber, address, gradYear, workLoc, workPosition) {
 	this.course = course;
 	this.phoneNumber = phoneNumber;
 	this.address = address;
 	this.gradYear = gradYear;
 	this.workLoc = workLoc;
 	this.workPosition = workPosition;
-	this.activities = activities;
+	// this.activities = activities;
 	return true;
 }
 
