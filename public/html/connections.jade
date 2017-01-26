@@ -49,10 +49,11 @@ html
             if person != null
               #connections-panel.panel.panel-default
                 .panel-heading
-                .panel-body(style='padding: 10px; height: 100%;')
+                  h4.inline !{person.name}
+                  input.disconnect.submitButtons.inline(type='submit' class='#{person.email}' value='disconnect' style='text-align: center; border: 1px solid white; float: right; margin-top: 7px;')
+                .panel-body(style='padding: 10px; height: 100%; text-align: center;')
                   .idk(style="background-color: #DDADB5; padding: 10px; height: 120px;")
                     .vert-align(style="position: relative; top: 50%; transform: translateY(-50%);")
-                      h3#login-heading !{person.name}
                       p(style='white-space:pre;')
                         | !{person.email}
                       - each item in person.course

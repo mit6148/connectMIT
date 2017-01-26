@@ -469,6 +469,14 @@ $(function() {
         });
     });
 
+    if (localStorage.getItem('connectNotification') == "true" && $('body').is('.explore')) {
+        $.notify("Successfully connected with " + localStorage.getItem('connectButton'), {
+            style: "connected"
+        });
+        localStorage.setItem('connectNotification', false);
+        localStorage.setItem('connectButton', '');
+    }
+
     $('#search-button').on('click', function() {
         var searchTerm = $('#search-bar').val() != '' ? $('#search-bar').val() : undefined;
         var yearFilter = $('#years').val() != '' ? $('#years').val() : undefined;
@@ -564,18 +572,32 @@ $(function() {
         });
     }); // end profile update
 
-    if (localStorage.getItem('connectNotification') == "true" && $('body').is('.explore')) {
-        $.notify("Successfully connected with " + localStorage.getItem('connectButton'), {
-            style: "connected"
-        });
-        localStorage.setItem('connectNotification', false);
-        localStorage.setItem('connectButton', '');
-    }
-
     $('.sendMessage').on('click', function(){
     	var email = $(this).attr('class').split(" ")[2];
         window.location.href = "mailto:" + email + "?subject=[connectMIT]";
     });
+
+    $('.disconnect').on('click', function() {
+        var email = this.className.split(" ")[3];
+        localStorage.setItem('disconnectButton', this.parentElement.childNodes[0].textContent);
+        $.ajax({
+            url: '/users/disconnect/' + email,
+            email: email,
+            type: 'PUT',
+            success: function(data) {
+                window.location.assign("/main/my-connections");
+                localStorage.setItem('disconnectNotification', true);
+            }
+        });
+    });
+
+    if (localStorage.getItem('disconnectNotification') == "true" && $('body').is('.explore')) {
+        $.notify("Successfully connected with " + localStorage.getItem('disconnectButton'), {
+            style: "connected"
+        });
+        localStorage.setItem('disconnectNotification', false);
+        localStorage.setItem('disconnectButton', '');
+    }
 
 });
 
