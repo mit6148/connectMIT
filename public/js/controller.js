@@ -574,8 +574,24 @@ $(function() {
     }); // end profile update
 
     $('.sendMessage').on('click', function(){
+        console.log('what');
     	var email = $(this).attr('class').split(" ")[2];
+        console.log(email);
         window.location.href = "mailto:" + email + "?subject=[connectMIT]";
+    });
+
+    $('.viewProfile').on('click', function() {
+        var email = this.className.split(" ")[2];
+        // // should this be in main or users?
+        $.ajax({
+            url: '/users/viewProfile/' + email,
+            email: email,
+            success: function(data) {
+                console.log("profile view");
+                window.location.assign("/users/viewProfile/" + email);
+                // localStorage.setItem('disconnectNotification', true);
+            }
+        });
     });
 
     $('.disconnect').on('click', function() {
