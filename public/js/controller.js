@@ -582,14 +582,12 @@ $(function() {
 
     $('.viewProfile').on('click', function() {
         var email = this.className.split(" ")[2];
-        // // should this be in main or users?
+        // should this be in main or users?
         $.ajax({
             url: '/users/viewProfile/' + email,
             email: email,
             success: function(data) {
-                console.log("profile view");
                 window.location.assign("/users/viewProfile/" + email);
-                // localStorage.setItem('disconnectNotification', true);
             }
         });
     });
