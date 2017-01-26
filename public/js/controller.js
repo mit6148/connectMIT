@@ -455,28 +455,11 @@ $(function(){
         email: email,
         type: 'PUT',
         success: function(data) {
-            // alert("You have successfully connected!")
             window.location.assign("/main/explore");
             localStorage.setItem('connectNotification', true);
         }
     });
 });
-
-    // $('#search-button').on('click', function() {
-    //     $.ajax({
-    //         url: '/main/send-search/',
-    //         data: {
-    //             "searchTerm": $('#search-bar').val(),
-    //             "yearFilter": $('#years').val(),
-    //             "courseFilter": $('#courses').val(),
-    //             "activityFilter": $('#activities').val(),
-    //         },
-    //         success: function(data) {
-    //             console.log("nice");
-    //             // window.location.assign("/main/send-search");
-    //         }
-    //     });
-    // });
 
     $('#search-button').on('click', function() {
         var searchTerm = $('#search-bar').val() != '' ? $('#search-bar').val() : undefined;
@@ -493,6 +476,54 @@ $(function(){
                 window.location.assign('/main/search/' + searchTerm + '/' + yearFilter + '/' + courseFilter + '/' + activityFilter);
             }
         });
+    });
+
+    if ($('body').is('.search') && $('.connectOrDisconnect')[0] != undefined) {
+        $.ajax({
+            url: "/main/connections",
+            success: function(data) {
+                connections = data;
+                $('.connectOrDisconnect').each(function() {
+                    if (connections.splice(0, connections.length - 1).indexOf(this.className.split(" ")[3]) > -1) {
+                        this.value = 'disconnect';
+                        this.style.visibility = 'visible';
+                    } else if (this.className.split(" ")[3] == connections[connections.length - 1]) {
+                        this.value = 'you';
+                    } else {
+                        this.value = 'connect';
+                        this.style.visibility = 'visible';
+                    }
+                });
+            }
+        });
+    }
+
+    $('.connectOrDisconnect').on('click', function() {
+        var currentButton = this;
+        if (this.value == 'connect') {
+            var email = this.className.split(" ")[3];
+            $.ajax({
+                url: '/users/connect/' + email,
+                email: email,
+                type: 'PUT',
+                success: function(data) {
+                    currentButton.value = 'disconnect';
+                  $.notify("Successfully connected with " + currentButton.parentElement.childNodes[0].textContent, {style: "connected"});
+                }
+            });
+        } else if (this.value == 'disconnect') {
+            var email = this.className.split(" ")[3];
+            $.ajax({
+                url: '/users/disconnect/' + email,
+                email: email,
+                type: 'PUT',
+                success: function(data) {
+                    currentButton.value = 'connect';
+                    console.log(currentButton.parentElement.childNodes[0].textContent);
+                      $.notify("Successfully disconnected from " + currentButton.parentElement.childNodes[0].textContent, {style: "connected"});
+                }
+            });
+        }
     });
 
      $('#saveProfile', this).click(function() {
@@ -523,6 +554,7 @@ $(function(){
       $.notify("Successfully connected with x", {style: "connected"});
       localStorage.setItem('connectNotification', false);
     }
+
 });
 
 
