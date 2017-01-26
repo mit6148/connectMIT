@@ -43,7 +43,6 @@ $(function() {
     });
 
     function recenter(controlDiv, map, current_location) {
-        console.log($('#recenter'));
         document.getElementById('recenter').style.visibility = 'visible';
         document.getElementById('recenter').addEventListener('click', function() {
             map.setZoom(5);
