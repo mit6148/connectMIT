@@ -38,8 +38,8 @@ html
       .panel-heading
         h4(style="margin: 5px;")
           | &nbsp
-        form(method='get', action='/users/edit-profile/#{user.email}')
-            input.submitButtons.sendMessage(class='#{user.email}' type="submit" value="Send Message" style="border: 1px solid white; float: right; margin-top: -30px;")
+
+        input.submitButtons.sendMessage(class='#{user.email}' type="submit" value="Send Message" style="border: 1px solid white; float: right; margin-top: -30px;")
 
       .panel-body
         h1(style="margin-top: 5px; text-align: center")
