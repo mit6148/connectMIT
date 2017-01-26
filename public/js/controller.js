@@ -574,7 +574,7 @@ $(function() {
 
     $('.sendMessage').on('click', function(){
     	var email = $(this).attr('class').split(" ")[2];
-        window.location.href = "mailto:" + email;
+        window.location.href = "mailto:" + email +"[connectMIT]";
     });
 
 });
