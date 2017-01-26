@@ -37,7 +37,7 @@ html
     .panel.panel-default.settings
       .panel-heading
         h4(style="margin: 5px;")
-          | Profile -- Settings
+          | &nbsp
         form(method='get', action='/users/edit-profile/#{user.email}')
             input.submitButtons#editProfile(type="submit" value="Edit Profile" style="border: 1px solid white; float: right; margin-top: -30px;")
       .panel-body
@@ -74,31 +74,39 @@ html
                 | Class Year
               th
                 | Course(s)
-              th
-                | Activities
+              if user.activities != ''
+                th
+                  | Activities
             tr
               td 
-                | #{user.gradYear}
+                | !{user.gradYear}
               td
-                - each course in user.course
-                  li=course
-              td
-                - each item in user.activities
+                - each item in user.course
                   li=item
-            tr
-              td(colspan='3')
-                h3(style="color: #A31F34; border-bottom: 1px solid gray;")
-                  | Work Info
-            tr
-              th(style="font-weight: 700")
-                | Place of Employment
-              th
-                | Position
-            tr
-              td
-                | #{user.workLoc}
-              td
-                | #{user.workPosition}
+              if user.activities != null
+                td
+                  - each item in user.activities
+                    li=item
+
+            if user.workLoc != null && user.workLoc != ''
+              tr
+                td(colspan='3')
+                  h3(style="color: #A31F34; border-bottom: 1px solid gray;")
+                    | Work Info
+              tr
+                th(style="font-weight: 700")
+                  | Employer
+
+                if user.workPosition != null && user.workPosition != ''
+                  th
+                    | Position
+              tr
+                td
+                  | !{user.workLoc}
+
+                if user.workPosition != null && user.workPosition != ''
+                  td
+                    | !{user.workPosition}
                 
 
 
