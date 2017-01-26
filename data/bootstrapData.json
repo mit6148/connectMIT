@@ -145,18 +145,6 @@
 			"activities": ["GlobeMed"]
 		},
 		{
-			"email": "tlgrant13@alum.mit.edu", 
-			"password": "password",
-			"name": "Tom Grant",
-			"course": ["Course 10: Chemical Engineering", "Course 15: Management"],
-			"phoneNumber": "906224678",
-			"address": "15/15 Moo 18 Lamlukka Kukot Pathumthani 12130, Thailand",
-			"gradYear": 2013,
-			"workLoc": "McKinsey & Company",
-			"workPosition": "Associate",
-			"activities": ["Sailing"]
-		},
-		{
 			"email": "jiahaoy@alum.mit.edu", 
 			"password": "password",
 			"name": "Jiahao Yang",
