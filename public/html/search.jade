@@ -82,7 +82,7 @@ html
                 td(style="border: none;")
                   .panel.panel-default
                     .panel-heading
-                      h4.inline !{user.name}
+                      h4.inline(id='notifName' name='#{user.name}') !{user.name}
                       input.connectOrDisconnect.submitButtons.inline(type='submit' class='#{user.email}' value='' style='text-align: center; border: 1px solid white; float: right; margin-top: 7px; visibility: hidden;')
                     .panel-body
                       table(style='width: 100%; font-size: 14px;')

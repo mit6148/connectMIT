@@ -455,7 +455,8 @@ $(function() {
     });
 
     $('#connectBtn').on('click', function() {
-        localStorage.setItem('connectButton', this.parentElement.childNodes[3].childNodes[1].childNodes[1].childNodes[0].childNodes[0].childNodes[0].textContent);
+        localStorage.setItem('connectButton', $('h2').attr('name'));
+        // localStorage.setItem('connectButton', this.parentElement.childNodes[3].childNodes[1].childNodes[1].childNodes[0].childNodes[0].childNodes[0].textContent);
         var email = $('#connectBtn').attr('class').split(" ")[2];
         $.ajax({
             url: '/users/connect/' + email,
@@ -517,6 +518,7 @@ $(function() {
 
     $('.connectOrDisconnect').on('click', function() {
         var currentButton = this;
+        console.log($('#notifName').attr('name'));
         if (this.value == 'connect') {
             var email = this.className.split(" ")[3];
             $.ajax({
@@ -525,7 +527,7 @@ $(function() {
                 type: 'PUT',
                 success: function(data) {
                     currentButton.value = 'disconnect';
-                    $.notify("Successfully connected with " + currentButton.parentElement.childNodes[0].textContent, {
+                    $.notify("Successfully connected with " + $('#notifName').attr('name'), {
                         style: "connected"
                     });
                 }
@@ -538,8 +540,8 @@ $(function() {
                 type: 'PUT',
                 success: function(data) {
                     currentButton.value = 'connect';
-                    console.log(currentButton.parentElement.childNodes[0].textContent);
-                    $.notify("Successfully disconnected from " + currentButton.parentElement.childNodes[0].textContent, {
+                    // console.log(currentButton.parentElement.childNodes[0].textContent);
+                    $.notify("Successfully disconnected from " + $('#notifName').attr('name'), {
                         style: "connected"
                     });
                 }

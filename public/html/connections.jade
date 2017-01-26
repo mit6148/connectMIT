@@ -61,4 +61,18 @@ html
                         
                   #enter-button(style='margin-top: 10px;')
                     input.submitButtons.sendMessage(class = '#{person.email}', type='submit', value='Send Message' style="width: 100%;")
-
+      tr
+        td(style='width: 33.33%; border: none;')
+          #connections-panel.panel.panel-default
+            .panel-heading
+              h4.inline first lastname
+              input.disconnect.submitButtons.inline(type='submit' class='tbd' value='disconnect' style='text-align: center; border: 1px solid white; float: right; margin-top: 7px;')
+            .panel-body(style='padding: 10px; height: 100%; text-align: center;')
+              .idk(style="background-color: #DDADB5; padding: 10px; height: 120px;")
+                .vert-align(style="position: relative; top: 50%; transform: translateY(-50%);")
+                  p(style='white-space:pre;')
+                    | email
+                    | course
+                    | maybe another
+              #enter-button(style='margin-top: 10px;')
+                    input.submitButtons.sendMessage(class = 'tbd', type='submit', value='Send Message' style="width: 100%;")

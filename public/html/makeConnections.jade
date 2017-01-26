@@ -45,7 +45,7 @@ html
         .col-2-3
           .idk(style="background-color: #DDADB5; margin-left: 15px; padding: 10px; height: 43vh; ")
             .vert-align(style="position: relative; top: 50%; transform: translateY(-50%);")
-              h2#login-heading(style="margin-bottom: 20px;") !{user.name}
+              h2#login-heading(style="margin-bottom: 20px;" name='#{user.name}') !{user.name}
               p(style='white-space:pre; font-size: 18px;')
                 | email: !{user.email}
               p(style='white-space:pre; font-size: 18px;')
