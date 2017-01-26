@@ -455,7 +455,6 @@ $(function() {
     });
 
     $('#connectBtn').on('click', function() {
-        // console.log(this.parentElement.childNodes[3].childNodes[1].childNodes[1].childNodes[0].childNodes[0].childNodes[0].textContent);
         localStorage.setItem('connectButton', this.parentElement.childNodes[3].childNodes[1].childNodes[1].childNodes[0].childNodes[0].childNodes[0].textContent);
         var email = $('#connectBtn').attr('class').split(" ")[2];
         $.ajax({
@@ -591,8 +590,8 @@ $(function() {
         });
     });
 
-    if (localStorage.getItem('disconnectNotification') == "true" && $('body').is('.explore')) {
-        $.notify("Successfully connected with " + localStorage.getItem('disconnectButton'), {
+    if (localStorage.getItem('disconnectNotification') == "true" && $('body').is('.my-connections')) {
+        $.notify("Successfully disconnected from " + localStorage.getItem('disconnectButton'), {
             style: "connected"
         });
         localStorage.setItem('disconnectNotification', false);
