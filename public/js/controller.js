@@ -572,6 +572,11 @@ $(function() {
         localStorage.setItem('connectButton', '');
     }
 
+    $('.sendMessage').on('click', function(){
+    	var email = $(this).attr('class').split(" ")[2];
+        window.location.href = "mailto:user@" + email;
+    });
+
 });
 
 
