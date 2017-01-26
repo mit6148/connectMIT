@@ -36,6 +36,16 @@ body.index {
 	border: 1px solid #861A2B;
 }
 
+.recenterButton {
+	width: 80px;
+	background-color: #771726; 
+	color: white; 
+	border-radius: 5px;
+	border: 1px solid #861A2B;
+	font-size: 16px;
+	margin: 10px;
+}
+
 .button-link{
 	background: none;
 	border: none; 
