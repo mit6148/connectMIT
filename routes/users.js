@@ -5,6 +5,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var flash = require('connect-flash');
+var request = require('request');
 
 
 router.use(flash());
@@ -187,7 +188,7 @@ router.put('/edit-profile/:email', function(req, res){
             user.save();
             res.send({
                 success: true
-            })
+            });
         }
     });
 });
@@ -218,6 +219,75 @@ router.put('/connect/:email', function(req, res){
             });
         }
     });
+});
+
+router.get('/user-location', function(req, res){
+    if (req.session.email){
+        User.findOne({
+            email: req.session.email
+        }, function(err, user){
+            if (err){
+                console.log(err);
+            } else{
+                var address = user.address;
+                address = address.split(' ').join('+');
+                request('https://maps.googleapis.com/maps/api/geocode/json?address=' + address + '&key=AIzaSyBWmIQ1b3Uoj8FrHF14lTo9VDs2CADz9wY', function(error, response, body) {
+                if (!error && response.statusCode == 200) {
+                    body = JSON.parse(body);
+                    var lat = body.results[0].geometry.location.lat;
+                    var lng = body.results[0].geometry.location.lng;
+                    res.send({
+                        lat: lat,
+                        lng: lng
+                    });
+                } else {
+                    console.log("address is invalid");
+                    return;
+                }
+            });
+            }
+        });
+    }
+    else{
+        console.log("no user logged in");
+    }
+});
+
+router.get('/connections-locations', function(req, res){
+    if (req.session.email){
+        User.findOne({
+            email: req.session.email
+        }, function(err, user){
+            if (err){
+                console.log(err);
+            } else{
+
+                var connections = user.connections;
+                User.find(
+                    {"email": {$in: user.connections}
+                }, function(error, myConnections){
+                    if (error){
+                        console.log("can't find connections");
+                    } else{
+                        var coords = [];
+                        myConnections.forEach(function(connection){
+                            var address = connection.address;
+                            coords.push([address, connection.name]);
+
+                        }); //end for each loop
+                        res.send({
+                            addresses: coords
+                        });
+                    }
+                }); //end User.find
+
+                
+            }
+        }); //end User.findOne
+    }
+    else{
+        console.log("no user logged in");
+    }
 });
 
 module.exports = router;

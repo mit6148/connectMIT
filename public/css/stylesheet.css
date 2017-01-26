@@ -225,7 +225,12 @@ body.index {
   height: 225px;
   width: 325px;
 }
-
+#map_connections {
+  height: 400px;
+  width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
 #pac-input {
   background-color: #fff;
   font-family: 'Karla', sans-serif;;
