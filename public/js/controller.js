@@ -455,6 +455,8 @@ $(function() {
     });
 
     $('#connectBtn').on('click', function() {
+        // console.log(this.parentElement.childNodes[3].childNodes[1].childNodes[1].childNodes[0].childNodes[0].childNodes[0].textContent);
+        localStorage.setItem('connectButton', this.parentElement.childNodes[3].childNodes[1].childNodes[1].childNodes[0].childNodes[0].childNodes[0].textContent);
         var email = $('#connectBtn').attr('class').split(" ")[2];
         $.ajax({
             url: '/users/connect/' + email,
@@ -488,13 +490,15 @@ $(function() {
         $.ajax({
             url: "/main/connections",
             success: function(data) {
-                connections = data;
                 $('.connectOrDisconnect').each(function() {
-                    if (connections.splice(0, connections.length - 1).indexOf(this.className.split(" ")[3]) > -1) {
-                        this.value = 'disconnect';
-                        this.style.visibility = 'visible';
-                    } else if (this.className.split(" ")[3] == connections[connections.length - 1]) {
-                        this.value = 'you';
+                    connections = data;
+                    if (connections.indexOf(this.className.split(" ")[3]) > -1) {
+                        if (this.className.split(" ")[3] == connections[connections.length - 1]) {
+                            this.value = 'you';
+                        } else {
+                            this.value = 'disconnect';
+                            this.style.visibility = 'visible';
+                        }
                     } else {
                         this.value = 'connect';
                         this.style.visibility = 'visible';
@@ -561,10 +565,11 @@ $(function() {
     }); // end profile update
 
     if (localStorage.getItem('connectNotification') == "true" && $('body').is('.explore')) {
-        $.notify("Successfully connected with x", {
+        $.notify("Successfully connected with " + localStorage.getItem('connectButton'), {
             style: "connected"
         });
         localStorage.setItem('connectNotification', false);
+        localStorage.setItem('connectButton', '');
     }
 
 });
