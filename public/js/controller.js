@@ -1,72 +1,94 @@
-$(function(){
+$(function() {
 
-	$('#myConnectionsTab').on('click', function (){
-		$.ajax({
+    $.notify.addStyle("connected", {
+        html: "<div>\n<span data-notify-text></span>\n</div>",
+        classes: {
+            base: {
+                "font-weight": "bold",
+                "padding": "8px 15px 8px 14px",
+                "text-shadow": "0 1px 0 rgba(255, 255, 255, 0.5)",
+                "border": "1px solid #fbeed5",
+                "border-radius": "4px",
+                // "border": "2px solid black",
+                "white-space": "nowrap",
+                "padding-left": "25px",
+                "margin-bottom": "50px",
+                "background-repeat": "no-repeat",
+                "background-position": "3px 7px",
+                "color": "#468847",
+                "background-color": "#DFF0D8",
+                "background-image": "url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAutJREFUeNq0lctPE0Ecx38zu/RFS1EryqtgJFA08YCiMZIAQQ4eRG8eDGdPJiYeTIwHTfwPiAcvXIwXLwoXPaDxkWgQ6islKlJLSQWLUraPLTv7Gme32zoF9KSTfLO7v53vZ3d/M7/fIth+IO6INt2jjoA7bjHCJoAlzCRw59YwHYjBnfMPqAKWQYKjGkfCJqAF0xwZjipQtA3MxeSG87VhOOYegVrUCy7UZM9S6TLIdAamySTclZdYhFhRHloGYg7mgZv1Zzztvgud7V1tbQ2twYA34LJmF4p5dXF1KTufnE+SxeJtuCZNsLDCQU0+RyKTF27Unw101l8e6hns3u0PBalORVVVkcaEKBJDgV3+cGM4tKKmI+ohlIGnygKX00rSBfszz/n2uXv81wd6+rt1orsZCHRdr1Imk2F2Kob3hutSxW8thsd8AXNaln9D7CTfA6O+0UgkMuwVvEFFUbbAcrkcTA8+AtOk8E6KiQiDmMFSDqZItAzEVQviRkdDdaFgPp8HSZKAEAL5Qh7Sq2lIJBJwv2scUqkUnKoZgNhcDKhKg5aH+1IkcouCAdFGAQsuWZYhOjwFHQ96oagWgRoUov1T9kRBEODAwxM2QtEUl+Wp+Ln9VRo6BcMw4ErHRYjH4/B26AlQoQQTRdHWwcd9AH57+UAXddvDD37DmrBBV34WfqiXPl61g+vr6xA9zsGeM9gOdsNXkgpEtTwVvwOklXLKm6+/p5ezwk4B+j6droBs2CsGa/gNs6RIxazl4Tc25mpTgw/apPR1LYlNRFAzgsOxkyXYLIM1V8NMwyAkJSctD1eGVKiq5wWjSPdjmeTkiKvVW4f2YPHWl3GAVq6ymcyCTgovM3FzyRiDe2TaKcEKsLpJvNHjZgPNqEtyi6mZIm4SRFyLMUsONSSdkPeFtY1n0mczoY3BHTLhwPRy9/lzcziCw9ACI+yql0VLzcGAZbYSM5CCSZg1/9oc/nn7+i8N9p/8An4JMADxhH+xHfuiKwAAAABJRU5ErkJggg==)"
+            },
+        }
+    });
+
+    $('#myConnectionsTab').on('click', function() {
+        $.ajax({
             url: '/main/my-connections',
             success: function(data) {
                 window.location.assign("/main/my-connections");
             }
         });
 
-	});
+    });
 
-	$('#searchTab').on('click', function(){
-		$.ajax({
+    $('#searchTab').on('click', function() {
+        $.ajax({
             url: '/main/search',
             success: function(data) {
                 window.location.assign("/main/search");
             }
         });
-	});
+    });
 
-	$('#exploreTab').on('click', function(){
-		$.ajax({
+    $('#exploreTab').on('click', function() {
+        $.ajax({
             url: '/main/explore',
             success: function(data) {
                 window.location.assign("/main/explore");
             }
         });
-	});
+    });
 
-	$('#settingsTab').on('click', function(){
-		var email = $('#userEmail').text();
-		email = email.substring(10);
-		$.ajax({
+    $('#settingsTab').on('click', function() {
+        var email = $('#userEmail').text();
+        email = email.substring(10);
+        $.ajax({
             url: '/users/settings/' + email,
             success: function(data) {
                 window.location.assign("/users/settings/" + email);
             }
         });
-	});
+    });
 
-	$('#homeTab').on('click', function(){
-		$.ajax({
+    $('#homeTab').on('click', function() {
+        $.ajax({
             url: '/main',
             success: function(data) {
                 window.location.assign("/main");
             }
         });
-	});
+    });
 
-	$('#logoutBtn').on('click', function(){
-		$.ajax({
+    $('#logoutBtn').on('click', function() {
+        $.ajax({
             url: '../../users/logout',
             success: function(data) {
                 window.location.assign("/");
             }
         });
-	});
+    });
 
-	$('#cancelEdits').on('click', function(){
-		var email = $('#userEmail').text();
-		email = email.substring(10);
-		$.ajax({
+    $('#cancelEdits').on('click', function() {
+        var email = $('#userEmail').text();
+        email = email.substring(10);
+        $.ajax({
             url: '/users/settings/' + email,
             success: function(data) {
                 window.location.assign("/users/settings/" + email);
             }
         });
-	});
+    });
 
     //course major picker
     $('#addAll').click(function() {
@@ -175,285 +197,275 @@ $(function(){
 
 
     if ($('body').is('.search')) {
-	    var availableTags1 = [
-	        '2021',
-	        '2020',
-	        '2019',
-	        '2018',
-	        '2017',
-	        '2016',
-	        '2015',
-	        '2014',
-	        '2013',
-	        "2012",
-	        '2011',
-	        '2010',
-	        '2009',
-	        '2008',
-	        '2007',
-	        '2006',
-	        '2005',
-	        '2004',
-	        '2003',
-	        '2002',
-	        '2001',
-	        '2000',
-	        '1999',
-	        '1998',
-	        '1997',
-	        '1996',
-	        '1995',
-	        '1994',
-	        '1993',
-	        '1992',
-	        '1991',
-	        '1990',
-	        '1989',
-	        '1988',
-	        '1987',
-	        '1986',
-	        '1985',
-	        '1984',
-	        '1983',
-	        '1982',
-	        '1981',
-	        '1980',
-	        '1979',
-	        '1978',
-	        '1977',
-	        '1976',
-	        '1975',
-	        '1974',
-	        '1973',
-	        '1972',
-	        '1971',
-	        '1970',
-	        '1969',
-	        '1968',
-	        '1967',
-	        '1966',
-	        '1965',
-	        '1964',
-	        '1963',
-	        '1962',
-	        '1961',
-	        '1960',
-	        '1959',
-	        '1958',
-	        '1957',
-	        '1956',
-	        '1955',
-	        '1954',
-	        '1953',
-	        '1952',
-	        '1951',
-	        '1950',
-	        '1949',
-	        '1948',
-	        '1947',
-	        '1946',
-	        '1945',
-	        '1944',
-	        '1943',
-	        '1942',
-	        '1941',
-	        '1940'
-	    ];
-	    function split( val ) {
-	      return val.split( /,\s*/ );
-	    }
-	    function extractLast( term ) {
-	      return split( term ).pop();
-	    }
-	 
-	    $( "#years" )
-	      // don't navigate away from the field on tab when selecting an item
-	      .on( "keydown", function( event ) {
-	        if ( event.keyCode === $.ui.keyCode.TAB &&
-	            $( this ).autocomplete( "instance" ).menu.active ) {
-	          event.preventDefault();
-	        }
-	      })
-	      .autocomplete({
-	        minLength: 0,
-	        source: function( request, response ) {
-	          // delegate back to autocomplete, but extract the last term
-	          response( $.ui.autocomplete.filter(
-	            availableTags1, extractLast( request.term ) ) );
-	        },
-	        focus: function() {
-	          // prevent value inserted on focus
-	          return false;
-	        },
-	        select: function( event, ui ) {
-	          var terms = split( this.value );
-	          // remove the current input
-	          terms.pop();
-	          // add the selected item
-	          terms.push( ui.item.value );
-	          // add placeholder to get the comma-and-space at the end
-	          terms.push( "" );
-	          this.value = terms.join( ", " );
-	          return false;
-	        }
-	      });
-	}
+        var availableTags1 = [
+            '2021',
+            '2020',
+            '2019',
+            '2018',
+            '2017',
+            '2016',
+            '2015',
+            '2014',
+            '2013',
+            "2012",
+            '2011',
+            '2010',
+            '2009',
+            '2008',
+            '2007',
+            '2006',
+            '2005',
+            '2004',
+            '2003',
+            '2002',
+            '2001',
+            '2000',
+            '1999',
+            '1998',
+            '1997',
+            '1996',
+            '1995',
+            '1994',
+            '1993',
+            '1992',
+            '1991',
+            '1990',
+            '1989',
+            '1988',
+            '1987',
+            '1986',
+            '1985',
+            '1984',
+            '1983',
+            '1982',
+            '1981',
+            '1980',
+            '1979',
+            '1978',
+            '1977',
+            '1976',
+            '1975',
+            '1974',
+            '1973',
+            '1972',
+            '1971',
+            '1970',
+            '1969',
+            '1968',
+            '1967',
+            '1966',
+            '1965',
+            '1964',
+            '1963',
+            '1962',
+            '1961',
+            '1960',
+            '1959',
+            '1958',
+            '1957',
+            '1956',
+            '1955',
+            '1954',
+            '1953',
+            '1952',
+            '1951',
+            '1950',
+            '1949',
+            '1948',
+            '1947',
+            '1946',
+            '1945',
+            '1944',
+            '1943',
+            '1942',
+            '1941',
+            '1940'
+        ];
+
+        function split(val) {
+            return val.split(/,\s*/);
+        }
+
+        function extractLast(term) {
+            return split(term).pop();
+        }
+
+        $("#years")
+            // don't navigate away from the field on tab when selecting an item
+            .on("keydown", function(event) {
+                if (event.keyCode === $.ui.keyCode.TAB &&
+                    $(this).autocomplete("instance").menu.active) {
+                    event.preventDefault();
+                }
+            })
+            .autocomplete({
+                minLength: 0,
+                source: function(request, response) {
+                    // delegate back to autocomplete, but extract the last term
+                    response($.ui.autocomplete.filter(
+                        availableTags1, extractLast(request.term)));
+                },
+                focus: function() {
+                    // prevent value inserted on focus
+                    return false;
+                },
+                select: function(event, ui) {
+                    var terms = split(this.value);
+                    // remove the current input
+                    terms.pop();
+                    // add the selected item
+                    terms.push(ui.item.value);
+                    // add placeholder to get the comma-and-space at the end
+                    terms.push("");
+                    this.value = terms.join(", ");
+                    return false;
+                }
+            });
+    }
 
     if ($('body').is('.search')) {
-      var availableTags2 = [
-        'Undecided',
-        'Course 1: Civil and Environmental Engineering',
-        'Course 2: Mechanical Engineering',
-        'Course 3: Materials Science and Engineering',
-        'Course 4: Architecture',
-        'Course 5: Chemistry',
-        'Course 6: Electrical Engineering and Computer Science',
-        'Course 7: Biology',
-        'Course 8: Physics',
-        'Course 9: Brain and Cognitive Sciences',
-        'Course 10: Chemical Engineering',
-        'Course 11: Urban Studies and Planning',
-        'Course 12: Earth, Atmospheric, and Planetary Sciences',
-        'Course 14: Economics',
-        'Course 15: Management',
-        'Course 16: Aeronautics and Astronautics',
-        'Course 17: Political Science',
-        'Course 18: Mathematics',
-        'Course 20: Biological Engineering',
-        'Course 21: Humanities',
-        'Course 21A: Anthropology',
-        'Course 21H: History',
-        'Course 21G: Glocal Studies and Languages',
-        'Course 21L: Literature',
-        'Course 21M: Music and Theater Arts',
-        'Course 21W: Comparative Media Studies/Writing',
-        'Course 22: Nuclear Science and Engineering',
-        'Course 24: Linguistics and Philosophy'
-    ];
-    function split( val ) {
-      return val.split( /,\s*/ );
-    }
-    function extractLast( term ) {
-      return split( term ).pop();
-    }
- 
-    $( "#courses" )
-      // don't navigate away from the field on tab when selecting an item
-      .on( "keydown", function( event ) {
-        if ( event.keyCode === $.ui.keyCode.TAB &&
-            $( this ).autocomplete( "instance" ).menu.active ) {
-          event.preventDefault();
+        var availableTags2 = [
+            'Undecided',
+            'Course 1: Civil and Environmental Engineering',
+            'Course 2: Mechanical Engineering',
+            'Course 3: Materials Science and Engineering',
+            'Course 4: Architecture',
+            'Course 5: Chemistry',
+            'Course 6: Electrical Engineering and Computer Science',
+            'Course 7: Biology',
+            'Course 8: Physics',
+            'Course 9: Brain and Cognitive Sciences',
+            'Course 10: Chemical Engineering',
+            'Course 11: Urban Studies and Planning',
+            'Course 12: Earth, Atmospheric, and Planetary Sciences',
+            'Course 14: Economics',
+            'Course 15: Management',
+            'Course 16: Aeronautics and Astronautics',
+            'Course 17: Political Science',
+            'Course 18: Mathematics',
+            'Course 20: Biological Engineering',
+            'Course 21: Humanities',
+            'Course 21A: Anthropology',
+            'Course 21H: History',
+            'Course 21G: Glocal Studies and Languages',
+            'Course 21L: Literature',
+            'Course 21M: Music and Theater Arts',
+            'Course 21W: Comparative Media Studies/Writing',
+            'Course 22: Nuclear Science and Engineering',
+            'Course 24: Linguistics and Philosophy'
+        ];
+
+        function split(val) {
+            return val.split(/,\s*/);
         }
-      })
-      .autocomplete({
-        minLength: 0,
-        source: function( request, response ) {
-          // delegate back to autocomplete, but extract the last term
-          response( $.ui.autocomplete.filter(
-            availableTags2, extractLast( request.term ) ) );
-        },
-        focus: function() {
-          // prevent value inserted on focus
-          return false;
-        },
-        select: function( event, ui ) {
-          var terms = split( this.value );
-          // remove the current input
-          terms.pop();
-          // add the selected item
-          terms.push( ui.item.value );
-          // add placeholder to get the comma-and-space at the end
-          terms.push( "" );
-          this.value = terms.join( ", " );
-          return false;
+
+        function extractLast(term) {
+            return split(term).pop();
         }
-      });
-     }
+
+        $("#courses")
+            // don't navigate away from the field on tab when selecting an item
+            .on("keydown", function(event) {
+                if (event.keyCode === $.ui.keyCode.TAB &&
+                    $(this).autocomplete("instance").menu.active) {
+                    event.preventDefault();
+                }
+            })
+            .autocomplete({
+                minLength: 0,
+                source: function(request, response) {
+                    // delegate back to autocomplete, but extract the last term
+                    response($.ui.autocomplete.filter(
+                        availableTags2, extractLast(request.term)));
+                },
+                focus: function() {
+                    // prevent value inserted on focus
+                    return false;
+                },
+                select: function(event, ui) {
+                    var terms = split(this.value);
+                    // remove the current input
+                    terms.pop();
+                    // add the selected item
+                    terms.push(ui.item.value);
+                    // add placeholder to get the comma-and-space at the end
+                    terms.push("");
+                    this.value = terms.join(", ");
+                    return false;
+                }
+            });
+    }
 
 
     if ($('body').is('.search')) {
 
-      var availableTags3 = [
-        'pretend there are activities'
-    ];
-    function split( val ) {
-      return val.split( /,\s*/ );
-    }
-    function extractLast( term ) {
-      return split( term ).pop();
-    }
- 
-    $( "#activities" )
-      // don't navigate away from the field on tab when selecting an item
-      .on( "keydown", function( event ) {
-        if ( event.keyCode === $.ui.keyCode.TAB &&
-            $( this ).autocomplete( "instance" ).menu.active ) {
-          event.preventDefault();
-        }
-      })
-      .autocomplete({
-        minLength: 0,
-        source: function( request, response ) {
-          // delegate back to autocomplete, but extract the last term
-          response( $.ui.autocomplete.filter(
-            availableTags3, extractLast( request.term ) ) );
-        },
-        focus: function() {
-          // prevent value inserted on focus
-          return false;
-        },
-        select: function( event, ui ) {
-          var terms = split( this.value );
-          // remove the current input
-          terms.pop();
-          // add the selected item
-          terms.push( ui.item.value );
-          // add placeholder to get the comma-and-space at the end
-          terms.push( "" );
-          this.value = terms.join( ", " );
-          return false;
-        }
-      });
-     }
+        var availableTags3 = [
+            'pretend there are activities'
+        ];
 
-  $('#ignoreBtn').on("click", function(){
-  		console.log("click")
-		$.ajax({
+        function split(val) {
+            return val.split(/,\s*/);
+        }
+
+        function extractLast(term) {
+            return split(term).pop();
+        }
+
+        $("#activities")
+            // don't navigate away from the field on tab when selecting an item
+            .on("keydown", function(event) {
+                if (event.keyCode === $.ui.keyCode.TAB &&
+                    $(this).autocomplete("instance").menu.active) {
+                    event.preventDefault();
+                }
+            })
+            .autocomplete({
+                minLength: 0,
+                source: function(request, response) {
+                    // delegate back to autocomplete, but extract the last term
+                    response($.ui.autocomplete.filter(
+                        availableTags3, extractLast(request.term)));
+                },
+                focus: function() {
+                    // prevent value inserted on focus
+                    return false;
+                },
+                select: function(event, ui) {
+                    var terms = split(this.value);
+                    // remove the current input
+                    terms.pop();
+                    // add the selected item
+                    terms.push(ui.item.value);
+                    // add placeholder to get the comma-and-space at the end
+                    terms.push("");
+                    this.value = terms.join(", ");
+                    return false;
+                }
+            });
+    }
+
+    $('#ignoreBtn').on("click", function() {
+        console.log("click")
+        $.ajax({
             url: '/main/explore',
             success: function(data) {
                 window.location.assign("/main/explore");
             }
         });
-  });
-
-  $('#connectBtn').on('click', function() {
-    var email = $('#connectBtn').attr('class').split(" ")[2];
-    $.ajax({
-        url: '/users/connect/' + email,
-        email: email,
-        type: 'PUT',
-        success: function(data) {
-            alert("You have successfully connected!")
-            window.location.assign("/main/my-connections");
-        }
     });
-});
 
-    // $('#search-button').on('click', function() {
-    //     $.ajax({
-    //         url: '/main/send-search/',
-    //         data: {
-    //             "searchTerm": $('#search-bar').val(),
-    //             "yearFilter": $('#years').val(),
-    //             "courseFilter": $('#courses').val(),
-    //             "activityFilter": $('#activities').val(),
-    //         },
-    //         success: function(data) {
-    //             console.log("nice");
-    //             // window.location.assign("/main/send-search");
-    //         }
-    //     });
-    // });
+    $('#connectBtn').on('click', function() {
+        var email = $('#connectBtn').attr('class').split(" ")[2];
+        $.ajax({
+            url: '/users/connect/' + email,
+            email: email,
+            type: 'PUT',
+            success: function(data) {
+                window.location.assign("/main/explore");
+                localStorage.setItem('connectNotification', true);
+            }
+        });
+    });
 
     $('#search-button').on('click', function() {
         var searchTerm = $('#search-bar').val() != '' ? $('#search-bar').val() : undefined;
@@ -472,8 +484,60 @@ $(function(){
         });
     });
 
-     $('#saveProfile', this).click(function() {
-        var email = $('#userEmail').text(); 
+    if ($('body').is('.search') && $('.connectOrDisconnect')[0] != undefined) {
+        $.ajax({
+            url: "/main/connections",
+            success: function(data) {
+                connections = data;
+                $('.connectOrDisconnect').each(function() {
+                    if (connections.splice(0, connections.length - 1).indexOf(this.className.split(" ")[3]) > -1) {
+                        this.value = 'disconnect';
+                        this.style.visibility = 'visible';
+                    } else if (this.className.split(" ")[3] == connections[connections.length - 1]) {
+                        this.value = 'you';
+                    } else {
+                        this.value = 'connect';
+                        this.style.visibility = 'visible';
+                    }
+                });
+            }
+        });
+    }
+
+    $('.connectOrDisconnect').on('click', function() {
+        var currentButton = this;
+        if (this.value == 'connect') {
+            var email = this.className.split(" ")[3];
+            $.ajax({
+                url: '/users/connect/' + email,
+                email: email,
+                type: 'PUT',
+                success: function(data) {
+                    currentButton.value = 'disconnect';
+                    $.notify("Successfully connected with " + currentButton.parentElement.childNodes[0].textContent, {
+                        style: "connected"
+                    });
+                }
+            });
+        } else if (this.value == 'disconnect') {
+            var email = this.className.split(" ")[3];
+            $.ajax({
+                url: '/users/disconnect/' + email,
+                email: email,
+                type: 'PUT',
+                success: function(data) {
+                    currentButton.value = 'connect';
+                    console.log(currentButton.parentElement.childNodes[0].textContent);
+                    $.notify("Successfully disconnected from " + currentButton.parentElement.childNodes[0].textContent, {
+                        style: "connected"
+                    });
+                }
+            });
+        }
+    });
+
+    $('#saveProfile', this).click(function() {
+        var email = $('#userEmail').text();
         email = email.substring(10);
         $.ajax({
             url: "/users/edit-profile/" + email,
@@ -495,80 +559,86 @@ $(function(){
 
         });
     }); // end profile update
-        
+
+    if (localStorage.getItem('connectNotification') == "true" && $('body').is('.explore')) {
+        $.notify("Successfully connected with x", {
+            style: "connected"
+        });
+        localStorage.setItem('connectNotification', false);
+    }
 
 });
 
 
 function initMap() {
-            var map = new google.maps.Map(document.getElementById('map_registration'), {
-                center: {
-                    lat: 42.3601,
-                    lng: -71.0942
-                },
-                zoom: 12,
-                mapTypeControl: false,
-                streetViewControl: false,
-                scrollwheel: false
-            });
-            var input = /** @type {!HTMLInputElement} */ (
-                document.getElementById('pac-input'));
+    var map = new google.maps.Map(document.getElementById('map_registration'), {
+        center: {
+            lat: 42.3601,
+            lng: -71.0942
+        },
+        zoom: 12,
+        mapTypeControl: false,
+        streetViewControl: false,
+        scrollwheel: false
+    });
+    var input = /** @type {!HTMLInputElement} */ (
+        document.getElementById('pac-input'));
 
 
-            var types = document.getElementById('type-selector');
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
+    var types = document.getElementById('type-selector');
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(types);
 
-            var autocomplete = new google.maps.places.Autocomplete(input);
-            autocomplete.bindTo('bounds', map);
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
 
-            var infowindow = new google.maps.InfoWindow();
-            var marker = new google.maps.Marker({
-                map: map,
-                anchorPoint: new google.maps.Point(0, -29)
-            });
+    var infowindow = new google.maps.InfoWindow();
+    var marker = new google.maps.Marker({
+        map: map,
+        anchorPoint: new google.maps.Point(0, -29)
+    });
 
-            autocomplete.addListener('place_changed', function() {
-                infowindow.close();
-                marker.setVisible(false);
-                var place = autocomplete.getPlace();
-                if (!place.geometry) {
-                    // User entered the name of a Place that was not suggested and
-                    // pressed the Enter key, or the Place Details request failed.
-                    window.alert("No details available for input: '" + place.name + "'");
-                    return;
-                }
+    autocomplete.addListener('place_changed', function() {
+        infowindow.close();
+        marker.setVisible(false);
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            // User entered the name of a Place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'");
+            return;
+        }
 
-                // If the place has a geometry, then present it on a map.
-                if (place.geometry.viewport) {
-                    map.fitBounds(place.geometry.viewport);
-                } else {
-                    map.setCenter(place.geometry.location);
-                    map.setZoom(16); // Why 16? Because it looks good.
-                }
-                marker.setIcon( /** @type {google.maps.Icon} */ ({
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(35, 35)
-                }));
-                marker.setPosition(place.geometry.location);
-                marker.setVisible(true);
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(16); // Why 16? Because it looks good.
+        }
+        marker.setIcon( /** @type {google.maps.Icon} */ ({
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(35, 35)
+        }));
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);
 
-                var address = '';
-                if (place.address_components) {
-                    address = [
-                        (place.address_components[0] && place.address_components[0].short_name || ''),
-                        (place.address_components[1] && place.address_components[1].short_name || ''),
-                        (place.address_components[2] && place.address_components[2].short_name || '')
-                    ].join(' ');
-                }
+        var address = '';
+        if (place.address_components) {
+            address = [
+                (place.address_components[0] && place.address_components[0].short_name || ''),
+                (place.address_components[1] && place.address_components[1].short_name || ''),
+                (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+        }
 
-                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-                infowindow.open(map, marker);
+        infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+        infowindow.open(map, marker);
 
-                latitudeTest = place.geometry.location.lat();
-                longitudeTest = place.geometry.location.lng();
-            });
-		}
+        latitudeTest = place.geometry.location.lat();
+        longitudeTest = place.geometry.location.lng();
+    });
+}

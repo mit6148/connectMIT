@@ -8,6 +8,7 @@ html
     script(src='https://code.jquery.com/jquery-3.1.1.min.js')
     script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
     script(src='/js/controller.js')
+    script(src='/js/notify.js')
     script(src='/js/bootstrap.js')
     link(href='https://fonts.googleapis.com/css?family=Karla:400,700', rel='stylesheet')
   body.index.search
@@ -38,7 +39,10 @@ html
     .panel.panel-default.settings(style="margin-bottom: 50px;")
       .panel-heading
       .panel-body
-        input#search-bar.centered-input.inline
+        if searchTerm != 'undefined'
+          input#search-bar.centered-input.inline(value='#{searchTerm}')
+        else
+          input#search-bar.centered-input.inline
         input#search-button.inline(type='submit', value="search")
 
         table.table
@@ -49,15 +53,24 @@ html
             td
               .ui-widget
                 label(for='years') Class Year &nbsp 
-                input#years(size='50' style="width: 100%;")
+                if yearFilter != 'undefined'
+                  input#years(size='50' style="width: 100%;" value='#{yearFilter}')
+                else
+                  input#years(size='50' style="width: 100%;")
             td
               .ui-widget
                 label(for='courses') Course &nbsp 
-                input#courses(size='50' style="width: 100%;")
+                if courseFilter != 'undefined'
+                  input#courses(size='50' style="width: 100%;" value='#{courseFilter}')
+                else
+                  input#courses(size='50' style="width: 100%;")
             td
               .ui-widget
                 label(for='activities') Activity &nbsp 
-                input#activities(size='50' style="width: 100%;")
+                if activityFilter != 'undefined'
+                  input#activities(size='50' style="width: 100%;" value='#{activityFilter}')
+                else
+                  input#activities(size='50' style="width: 100%;")
 
         if results != null
           table.table
@@ -70,7 +83,7 @@ html
                   .panel.panel-default
                     .panel-heading
                       h4.inline !{user.name}
-                      input#connectBtn.submitButtons.inline(type='submit' class='#{user.email}' value='connect' style='text-align: center; border: 1px solid white; float: right; margin-top: 7px;')
+                      input.connectOrDisconnect.submitButtons.inline(type='submit' class='#{user.email}' value='' style='text-align: center; border: 1px solid white; float: right; margin-top: 7px; visibility: hidden;')
                     .panel-body
                       table(style='width: 100%; font-size: 14px;')
                         tr
@@ -114,21 +127,22 @@ html
                               - each item in user.activities
                                 li=item
 
-                        if user.workLoc != null
+                        if user.workLoc != null && user.workLoc != ''
                           tr
                             td(colspan='3')
                               h4(style="color: #A31F34; border-bottom: 1px solid gray;")
                                 | Work Info
                           tr
                             th(style="font-weight: 700")
-                              | Place of Employment
-                            th
-                              | Position
+                              | Employer
+                            if user.workPosition != null && user.workPosition != ''
+                              th
+                                | Position
                           tr
                             td
                               | !{user.workLoc}
 
-                            if user.workPosition != null
+                            if user.workPosition != null && user.workPosition != ''
                               td
                                 | !{user.workPosition}
 

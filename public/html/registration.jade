@@ -6,6 +6,7 @@ html
     link(rel='stylesheet', href='/css/stylesheet.css')
     script(src='https://code.jquery.com/jquery-3.1.1.min.js')
     script(src='/js/controller.js')
+    script(src='/js/notify.js')
     script(src='/js/bootstrap.js')
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmIQ1b3Uoj8FrHF14lTo9VDs2CADz9wY&libraries=places&callback=initMap', async='', defer='')
     link(href='https://fonts.googleapis.com/css?family=Karla', rel='stylesheet')
@@ -213,7 +214,7 @@ html
                 tr
                   td(style='text-align: left; border: none;')
                     input.form-control(type='text', name = 'work' id = 'work')  
-                    label(style='margin-left: 10px;') Location of Employment
+                    label(style='margin-left: 10px;') Employer
                   td(style='text-align: left; border: none;')
                     input.form-control(type='text', name = 'position' id = 'position')  
                     label(style='margin-left: 10px;') Position

@@ -8,6 +8,7 @@ html
     script(src='/js/controller.js')
     script(src='/js/connectionsMapController.js')
     script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7S9Va6TMVqVBTSyumxx2GzyKL5euoqm8")
+    script(src='/js/notify.js')
     script(src='/js/bootstrap.js')
     link(href='https://fonts.googleapis.com/css?family=Karla', rel='stylesheet')
   body.index
@@ -33,12 +34,13 @@ html
                   | &nbsp
                 a#logoutBtn(href='#' style="color: white;") logout
 
-    h1(style="text-align: center; padding-bottom: 10px;") m y &nbsp &nbsp c o n n e c t i o n s
+    h1(style="text-align: center; padding-bottom: 10px;") m y &nbsp&nbsp c o n n e c t i o n s
     #recenter(style="margin-top:0px; font-family: 'Karla', sans-serif; visibility: hidden;")
       .inline(style='float: left;')
         button.recenterButton#userMenu(type='button')
           span Recenter
     #map_connections
+
     table.table
       - each group in connections
         tr
