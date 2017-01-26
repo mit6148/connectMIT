@@ -49,7 +49,74 @@ router.get('/my-connections', function(req, res){
 
 router.get('/search', function(req, res){
 	if (req.session.email){
-		res.render('search', {email: req.session.email, results: null});
+		res.render('search', {email: req.session.email, results: null, searchTerm: 'undefined', yearFilter: 'undefined', courseFilter: 'undefined', activityFilter: 'undefined'});
+	}
+	else{
+		res.redirect('/');
+	}
+	
+});
+
+router.get('/search/:searchTerm/:yearFilter/:courseFilter/:activityFilter', function(req, res){
+	if (req.session.email){
+
+		// console.log(req.params.yearFilter);
+
+		var searchTerm = req.params.searchTerm != 'undefined' ? req.params.searchTerm : '';
+
+		var yearFilter = req.params.yearFilter != 'undefined' ? req.params.yearFilter.split(", ") : undefined;
+		yearFilter = yearFilter != undefined ? yearFilter.splice(0, yearFilter.length - 1) : undefined;
+
+		var courseFilter = req.params.courseFilter != 'undefined' ? req.params.courseFilter.split(", ") : undefined;
+		courseFilter = courseFilter != undefined ? courseFilter.splice(0, courseFilter.length - 1) : undefined;
+
+		var activityFilter = req.params.activityFilter != 'undefined' ? req.params.activityFilter.split(", ") : undefined;
+		activityFilter = activityFilter != undefined ? activityFilter.splice(0, activityFilter.length - 1) : undefined;
+
+		User.find( { $or: [{ email : { $regex: ".*" + searchTerm + ".*" } }, { name : { $regex: ".*" + searchTerm + ".*" } } ] } , function(err, users) {
+			if (err) {
+				console.log(err);
+			}
+
+			var eligible = [];
+			for (var i = 0; i < users.length; i++) {
+				eligible.push(users[i].email);
+			}
+
+			if (yearFilter == undefined && courseFilter == undefined && activityFilter == undefined) {
+				res.render('search', {email: req.session.email, results: users, searchTerm: req.params.searchTerm, yearFilter: req.params.yearFilter, courseFilter: req.params.courseFilter, activityFilter: req.params.activityFilter});
+
+			} else if (yearFilter == undefined && courseFilter == undefined) {
+				User.find({ email : { $in : eligible }, activities : { $in : activityFilter } }, function(error, results) {
+					res.render('search', {email: req.session.email, results: results, searchTerm: req.params.searchTerm, yearFilter: req.params.yearFilter, courseFilter: req.params.courseFilter, activityFilter: req.params.activityFilter});
+				});
+
+			} else if (yearFilter == undefined && activityFilter == undefined) {
+				User.find({ email : { $in : eligible }, course : { $in : courseFilter } }, function(error, results) {
+					res.render('search', {email: req.session.email, results: results, searchTerm: req.params.searchTerm, yearFilter: req.params.yearFilter, courseFilter: req.params.courseFilter, activityFilter: req.params.activityFilter});
+				});
+
+			} else if (courseFilter == undefined && activityFilter == undefined) {
+				User.find({ email : { $in : eligible }, gradYear : { $in : yearFilter } }, function(error, results) {
+					res.render('search', {email: req.session.email, results: results, searchTerm: req.params.searchTerm, yearFilter: req.params.yearFilter, courseFilter: req.params.courseFilter, activityFilter: req.params.activityFilter});
+				});
+
+			} else if (yearFilter == undefined) {
+				User.find({ email : { $in : eligible }, activities : { $in : activityFilter }, course : { $in : courseFilter } }, function(error, results) {
+					res.render('search', {email: req.session.email, results: results, searchTerm: req.params.searchTerm, yearFilter: req.params.yearFilter, courseFilter: req.params.courseFilter, activityFilter: req.params.activityFilter});
+				});
+
+			} else if (courseFilter == undefined) {
+				User.find({ email : { $in : eligible }, activities : { $in : activityFilter }, gradYear : { $in : yearFilter } }, function(error, results) {
+					res.render('search', {email: req.session.email, results: results, searchTerm: req.params.searchTerm, yearFilter: req.params.yearFilter, courseFilter: req.params.courseFilter, activityFilter: req.params.activityFilter});
+				});
+
+			} else if (activityFilter == undefined) {
+				User.find({ email : { $in : eligible }, gradYear : { $in : yearFilter }, course : { $in : courseFilter } }, function(error, results) {
+					res.render('search', {email: req.session.email, results: results, searchTerm: req.params.searchTerm, yearFilter: req.params.yearFilter, courseFilter: req.params.courseFilter, activityFilter: req.params.activityFilter});
+				});
+			}
+		});
 	}
 	else{
 		res.redirect('/');
@@ -106,85 +173,6 @@ router.get('/explore', function(req, res){
 	else{
 		res.redirect('/');
 	}
-});
-
-router.get('/search/:searchTerm/:yearFilter/:courseFilter/:activityFilter', function(req, res){
-	if (req.session.email){
-
-		var searchTerm = req.params.searchTerm != 'undefined' ? req.params.searchTerm : '';
-
-		var yearFilter = req.params.yearFilter != 'undefined' ? req.params.yearFilter.split(", ") : undefined;
-		yearFilter = yearFilter != undefined ? yearFilter.splice(0, yearFilter.length - 1) : undefined;
-
-		var courseFilter = req.params.courseFilter != 'undefined' ? req.params.courseFilter.split(", ") : undefined;
-		courseFilter = courseFilter != undefined ? courseFilter.splice(0, courseFilter.length - 1) : undefined;
-
-		var activityFilter = req.params.activityFilter != 'undefined' ? req.params.activityFilter.split(", ") : undefined;
-		activityFilter = activityFilter != undefined ? activityFilter.splice(0, activityFilter.length - 1) : undefined;
-
-		User.find( { $or: [{ email : { $regex: ".*" + searchTerm + ".*" } }, { name : { $regex: ".*" + searchTerm + ".*" } } ] } , function(err, users) {
-			if (err) {
-				console.log(err);
-			}
-
-			var eligible = [];
-			for (var i = 0; i < users.length; i++) {
-				eligible.push(users[i].email);
-			}
-
-			if (yearFilter == undefined && courseFilter == undefined && activityFilter == undefined) {
-				// console.log('nothing');
-				// console.log(users);
-				res.render('search', {email: req.session.email, results: users});
-
-			} else if (yearFilter == undefined && courseFilter == undefined) {
-				// console.log('no year + course');
-				User.find({ email : { $in : eligible }, activities : { $in : activityFilter } }, function(error, results) {
-					// console.log(results);
-					res.render('search', {email: req.session.email, results: results});
-				});
-
-			} else if (yearFilter == undefined && activityFilter == undefined) {
-				// console.log('no year + activity');
-				User.find({ email : { $in : eligible }, course : { $in : courseFilter } }, function(error, results) {
-					// console.log(results);
-					res.render('search', {email: req.session.email, results: results});
-				});
-
-			} else if (courseFilter == undefined && activityFilter == undefined) {
-				// console.log('no course + activity');
-				User.find({ email : { $in : eligible }, gradYear : { $in : yearFilter } }, function(error, results) {
-					// console.log(results);
-					res.render('search', {email: req.session.email, results: results});
-				});
-
-			} else if (yearFilter == undefined) {
-				// console.log('no year');
-				User.find({ email : { $in : eligible }, activities : { $in : activityFilter }, course : { $in : courseFilter } }, function(error, results) {
-					// console.log(results);
-					res.render('search', {email: req.session.email, results: results});
-				});
-
-			} else if (courseFilter == undefined) {
-				// console.log('no course');
-				User.find({ email : { $in : eligible }, activities : { $in : activityFilter }, gradYear : { $in : yearFilter } }, function(error, results) {
-					// console.log(results);
-					res.render('search', {email: req.session.email, results: results});
-				});
-
-			} else if (activityFilter == undefined) {
-				// console.log('no activity');
-				User.find({ email : { $in : eligible }, gradYear : { $in : yearFilter }, course : { $in : courseFilter } }, function(error, results) {
-					// console.log(results);
-					res.render('search', {email: req.session.email, results: results});
-				});
-			}
-		});
-	}
-	else{
-		res.redirect('/');
-	}
-	
 });
 
 module.exports = router;
