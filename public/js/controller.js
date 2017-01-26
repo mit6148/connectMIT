@@ -574,9 +574,7 @@ $(function() {
     }); // end profile update
 
     $('.sendMessage').on('click', function(){
-        console.log('what');
     	var email = $(this).attr('class').split(" ")[2];
-        console.log(email);
         window.location.href = "mailto:" + email + "?subject=[connectMIT]";
     });
 
