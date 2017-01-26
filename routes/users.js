@@ -220,4 +220,15 @@ router.put('/connect/:email', function(req, res){
     });
 });
 
+router.put('/disconnect/:email', function(req, res){
+    User.findOne({email: req.session.email}, function(err, user) {
+        if (err) console.log(err);
+        user.removeConnection(req.params.email);
+        user.save();
+        res.send({
+            success: true
+        })
+    });
+});
+
 module.exports = router;

@@ -4,6 +4,14 @@ var mongoose = require('mongoose');
 var random = require('mongoose-simple-random');
 var User = require('../models/userModel');
 
+
+router.get('/connections', function(req, res) {
+	User.findOne({email: req.session.email}, function(err, user) {
+		if (err) console.log(err);
+		res.send(user.connections.concat(req.session.email));
+	});
+});
+
 router.get('/', function(req, res){
 	if (req.session.email){
 		res.render('home', {email: req.session.email});
@@ -59,8 +67,6 @@ router.get('/search', function(req, res){
 
 router.get('/search/:searchTerm/:yearFilter/:courseFilter/:activityFilter', function(req, res){
 	if (req.session.email){
-
-		// console.log(req.params.yearFilter);
 
 		var searchTerm = req.params.searchTerm != 'undefined' ? req.params.searchTerm : '';
 

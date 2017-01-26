@@ -67,6 +67,13 @@ userSchema.methods.addConnection = function(email){
 	return true;
 }
 
+userSchema.methods.removeConnection = function(email){
+	var index = this.connections.indexOf(email);
+	if (index !==  -1) {
+	    this.connections.splice(index, 1);
+	}
+}
+
 var User = mongoose.model('User', userSchema);
 
 
