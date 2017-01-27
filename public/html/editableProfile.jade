@@ -52,18 +52,18 @@ html
                 h3(style="color: #A31F34; border-bottom: 1px solid gray;")
                   | Contact Info 
             tr
-              th(style="font-weight: 700")
+              th(style="font-weight: 700; width: 33.33%")
                 | Email
-              th
+              th(style='width: 33.33%')
                 | Phone Number
-              th(style='padding-left: 50px')
+              th(style='padding-left: 60px')
                 | Address
             tr
               td(style='vertical-align: top')
                 | #{user.email}
               td(style='vertical-align: top')
                 input.form-control(id='phoneNumber' type='number', name = 'phoneNumber' value='#{user.phoneNumber}')
-              td(style='padding-left: 50px')
+              td(style='padding-left: 60px')
                 input#pac-input.controls(type='text', name='address', value='#{user.address}')
                 #map_registration
             tr
