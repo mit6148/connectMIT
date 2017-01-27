@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title connectMIT
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/stylesheet.css')
+    script(src='https://code.jquery.com/jquery-3.1.1.min.js')
+    script(src='/js/bootstrap.js')
+    link(href='https://fonts.googleapis.com/css?family=Karla', rel='stylesheet')
+  body.index
+
+
+    .panel.panel-default#password-panel
+      .panel-heading
+        h4(style="text-align: center;")
+          | Registration Successful
+        
+      .panel-body(style='padding: 15px; text-align: center')
+        p(style='white-space:pre;')
+          | You have successfully registered
+        form(method = 'get', action='/')
+          input.submitButtons#return-login(type="submit", value ="Return to Login")

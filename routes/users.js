@@ -95,9 +95,13 @@ router.post('/register', function(req, res){
             console.log(err);
         }
         else{
-            res.redirect('/');
+            res.redirect('/users/registrationSuccess');
         }
     });
+});
+
+router.get('/registrationSuccess', function(req, res){
+    res.render('registrationSuccess');
 });
 
 router.get('/forgotPassword', function(req, res){
