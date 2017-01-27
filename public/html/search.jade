@@ -77,6 +77,11 @@ html
             tr
               td(style='border-top: none; border-bottom: 1px solid #ddd;')
                 h4 results
+            if results == ''
+              tr
+                td
+                  p(style='color: gray')
+                    | no results found
             - each user in results
               tr
                 td(style="border: none;")

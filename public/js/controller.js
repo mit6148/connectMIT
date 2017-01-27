@@ -494,6 +494,25 @@ $(function() {
         });
     });
 
+    $('#search-bar').on('keydown', function(e) {
+        if (e.which == 13) {
+            var searchTerm = $('#search-bar').val() != '' ? $('#search-bar').val() : undefined;
+            var yearFilter = $('#years').val() != '' ? $('#years').val() : undefined;
+            var courseFilter = $('#courses').val() != '' ? $('#courses').val() : undefined;
+            var activityFilter = $('#activities').val() != '' ? $('#activities').val() : undefined;
+            $.ajax({
+                url: '/main/search/' + searchTerm + '/' + yearFilter + '/' + courseFilter + '/' + activityFilter,
+                "searchTerm": searchTerm,
+                "yearFilter": yearFilter,
+                "courseFilter": courseFilter,
+                "activityFilter": activityFilter,
+                success: function(data) {
+                    window.location.assign('/main/search/' + searchTerm + '/' + yearFilter + '/' + courseFilter + '/' + activityFilter);
+                }
+            });
+        }
+    });
+
     if ($('body').is('.search') && $('.connectOrDisconnect')[0] != undefined) {
         $.ajax({
             url: "/main/connections",

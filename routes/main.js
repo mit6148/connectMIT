@@ -79,7 +79,8 @@ router.get('/search/:searchTerm/:yearFilter/:courseFilter/:activityFilter', func
 		var activityFilter = req.params.activityFilter != 'undefined' ? req.params.activityFilter.split(", ") : undefined;
 		activityFilter = activityFilter != undefined ? activityFilter.splice(0, activityFilter.length - 1) : undefined;
 
-		User.find( { $or: [{ email : { $regex: ".*" + searchTerm + ".*" } }, { name : { $regex: ".*" + searchTerm + ".*" } } ] } , function(err, users) {
+		// User.find( { $or: [{ email : { $regex: ".*" + searchTerm + ".*" } }, { name : { $regex: ".*" + searchTerm + ".*" } } ] } , function(err, users) {
+		User.find( { $or: [{ email : { $regex: new RegExp(searchTerm, "i") } }, { name : { $regex: new RegExp(searchTerm, "i") } } ] } , function(err, users) {
 			if (err) {
 				console.log(err);
 			}
@@ -143,23 +144,6 @@ router.get('/search/:searchTerm/:yearFilter/:courseFilter/:activityFilter', func
 router.get('/explore', function(req, res){
 	if (req.session.email){
 
-		// User.findOneRandom(function(err, result){
-		// 	if (err){
-		// 		console.log(err);
-		// 	}else{
-		// 		console.log(result.email);
-
-		// 		var names = result.name.split(" ");
-		// 		var initials = names[0].charAt(0) + "." + names[names.length - 1].charAt(0) + ".";
-
-		// 		res.render('makeConnections', {email: req.session.email, user: result, initials: initials});
-		// 	}
-		// 	// if (result.email == req.session.email){
-
-		// 	// }
-			
-		// });
-
 		User.findOne({email: req.session.email}, function(err, user) {
 			if (err) {
 				console.log(err);
@@ -168,10 +152,14 @@ router.get('/explore', function(req, res){
 				if (error) {
 					console.log(error);
 				}
-				var names = result[0].name.split(" ");
-				var initials = names[0].charAt(0) + "." + names[names.length - 1].charAt(0) + ".";
+				if (result[0] != undefined) {
+					var names = result[0].name.split(" ");
+					var initials = names[0].charAt(0) + "." + names[names.length - 1].charAt(0) + ".";
+					res.render('makeConnections', {email: req.session.email, user: result[0], initials: initials});
+				} else {
+					res.render('makeConnections', {email: req.session.email, user: null, initials: null});
+				}
 
-				res.render('makeConnections', {email: req.session.email, user: result[0], initials: initials});
 			});
 		});
 		
