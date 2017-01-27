@@ -216,26 +216,26 @@ html
                   tr
                     td 
                       input(id='selectedCourses' name='selectedCourses' type='hidden', value='')
-            tr
-              td(colspan='3')
-                h3(style="color: #A31F34; border-bottom: 1px solid gray;")
-                  | Work Info
-            tr
-              th(style="font-weight: 700")
-                | Employer
-              th
-                | Position
-            tr
-              td
-                if user.workLoc != null
-                  input.form-control(id='workLocation' type='text', name = 'workLocation' value='#{user.workLoc}')
-                else
-                  input.form-control#workLocation(type='text', name = 'workLocation')
-              td
-                if user.workPosition != null
-                  input.form-control(id='workPosition' type='text', name = 'workPosition' value='#{user.workPosition}')
-                else
-                  input.form-control#workPosition(type='text', name = 'workPosition')
+
+            if user.workLoc != null && user.workLoc != ''
+              tr
+                td(colspan='3')
+                  h3(style="color: #A31F34; border-bottom: 1px solid gray;")
+                    | Work Info
+              tr
+                th(style="font-weight: 700")
+                  | Employer
+
+                if user.workPosition != null && user.workPosition != ''
+                  th
+                    | Position
+              tr
+                td
+                  | !{user.workLoc}
+
+                if user.workPosition != null && user.workPosition != ''
+                  td
+                    | !{user.workPosition}
         input.submitButtons#cancelEdits(type="submit" value="Cancel" style="float: right;")
         input.submitButtons#saveProfile(type="submit" value="Save" style="margin-right: 20px; float: right;")
 

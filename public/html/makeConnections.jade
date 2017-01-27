@@ -8,7 +8,7 @@ html
     script(src='/js/bootstrap.js')
     script(src='/js/notify.js')
     script(src='/js/controller.js')
-    link(href='https://fonts.googleapis.com/css?family=Karla', rel='stylesheet')
+    link(href='https://fonts.googleapis.com/css?family=Karla:400,700', rel='stylesheet')
   body.index.explore
     nav.navbar.navbar-default.navbar-static-top(style='background-color: #A31F34; border-bottom: 0;')
       section.container-fluid
@@ -49,20 +49,38 @@ html
             .idk(style="background-color: #DDADB5; margin-left: 15px; padding: 10px; height: 43vh; ")
               .vert-align(style="position: relative; top: 50%; transform: translateY(-50%);")
                 h2#login-heading(style="margin-bottom: 20px;" name='#{user.name}') !{user.name}
-                p(style='white-space:pre; font-size: 18px;')
-                  | email: !{user.email}
-                p(style='white-space:pre; font-size: 18px;')
-                  | phone: !{user.phoneNumber}
-                p(style='white-space:pre; font-size: 18px;')
-                  | !{user.course}
-                p(style='white-space:pre; font-size: 18px;')
-                  | address: !{user.address}
-                if user.workLoc != null
-                  p(style='white-space:pre; font-size: 18px;')
-                    | employer: !{user.workLoc}
-                    if user.workPosition != null
-                      p(style='white-space:pre; font-size: 18px;')
-                        | position: !{user.workPosition}
+                table(style='width: 100%; text-align: left; font-size: 18px; margin-left: 30px; margin-right: 50px; word-wrap: break-word;')
+                  tr
+                    th(style='width: 50%;')
+                      | Email
+                    th
+                      | Phone
+                  tr
+                    td(style='padding-bottom: 20px;')
+                      | !{user.email}
+                    td(style='padding-bottom: 20px;')
+                      | !{user.phoneNumber}
+                  tr
+                    th
+                      | Course(s)
+                    if user.activities != null && user.activities != ''
+                      th
+                        | Activities
+                  tr
+                    td(style='padding-bottom: 20px;')
+                      - each item in user.course
+                        li=item
+                    if user.activities != null && user.activities != ''
+                      td(style='padding-bottom: 20px;')
+                        - each item in user.activities
+                          li=item
+                table(style='width: 90%; font-size: 18px; text-align: left; margin-left: 30px;')
+                  tr
+                    th
+                      | Address
+                  tr
+                    td(colspan='2' style='padding-bottom: 20px;')
+                      | !{user.address}
 
       input.connection-buttons.inline#ignoreBtn(type='submit', value="maybe later")
       input.connection-buttons.inline#connectBtn(type='submit' class='#{user.email}' value='connect' style="float: right;")
