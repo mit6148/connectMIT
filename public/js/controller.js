@@ -571,6 +571,7 @@ $(function() {
     $('#saveProfile', this).click(function() {
         var email = $('#userEmail').text();
         email = email.substring(10);
+        console.log($('#address').text())
         $.ajax({
             url: "/users/edit-profile/" + email,
             type: 'PUT',
@@ -578,7 +579,7 @@ $(function() {
                 "phoneNumber": $('#phoneNumber').val(),
                 "course": $('#selectedCourses').val().trim().replace(/<(.|\n)*?>/g, ''),
                 "gradYear": $('#gradYear').find(":selected").text(),
-                "address": $('#address').val(),
+                "address": $('#pac-input').val(),
                 "workLoc": $('#workLocation').val(),
                 "workPosition": $('#workPosition').val()
             },
@@ -647,6 +648,10 @@ function initMap() {
     });
     var input = /** @type {!HTMLInputElement} */ (
         document.getElementById('pac-input'));
+    var old_location = $('#old_location').text();
+    if (old_location) {
+        $('#pac-input').val(old_location)
+    }
 
 
     var types = document.getElementById('type-selector');
@@ -702,7 +707,5 @@ function initMap() {
         infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
         infowindow.open(map, marker);
 
-        latitudeTest = place.geometry.location.lat();
-        longitudeTest = place.geometry.location.lng();
     });
 }

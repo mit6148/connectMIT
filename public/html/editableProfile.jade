@@ -9,6 +9,7 @@ html
     script(src='/js/notify.js')
     script(src='/js/bootstrap.js')
     link(href='https://fonts.googleapis.com/css?family=Karla:400,700', rel='stylesheet')
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBWmIQ1b3Uoj8FrHF14lTo9VDs2CADz9wY&libraries=places&callback=initMap', async='', defer='')
   body.index.editableProfile
     nav.navbar.navbar-default.navbar-static-top(style='background-color: #A31F34; border-bottom: 0;')
       section.container-fluid
@@ -55,15 +56,16 @@ html
                 | Email
               th
                 | Phone Number
-              th
+              th(style='padding-left: 50px')
                 | Address
             tr
-              td
+              td(style='vertical-align: top')
                 | #{user.email}
-              td
+              td(style='vertical-align: top')
                 input.form-control(id='phoneNumber' type='number', name = 'phoneNumber' value='#{user.phoneNumber}')
-              td
-                input.form-control(id='address' type='text', name = 'address' value='#{user.address}')
+              td(style='padding-left: 50px')
+                input#pac-input.controls(type='text', name='address', value='#{user.address}')
+                #map_registration
             tr
               td(colspan='3')
                 h3(style="color: #A31F34; border-bottom: 1px solid gray;")
@@ -236,6 +238,7 @@ html
                   input.form-control#workPosition(type='text', name = 'workPosition')
         input.submitButtons#cancelEdits(type="submit" value="Cancel" style="float: right;")
         input.submitButtons#saveProfile(type="submit" value="Save" style="margin-right: 20px; float: right;")
+
                 
 
 
