@@ -445,7 +445,6 @@ $(function() {
     }
 
     $('#ignoreBtn').on("click", function() {
-        console.log("click")
         $.ajax({
             url: '/main/explore',
             success: function(data) {
@@ -537,7 +536,6 @@ $(function() {
 
     $('.connectOrDisconnect').on('click', function() {
         var currentButton = this;
-        console.log($('#notifName').attr('name'));
         if (this.value == 'connect') {
             var email = this.className.split(" ")[3];
             $.ajax({
@@ -559,8 +557,54 @@ $(function() {
                 type: 'PUT',
                 success: function(data) {
                     currentButton.value = 'connect';
-                    // console.log(currentButton.parentElement.childNodes[0].textContent);
                     $.notify("Successfully disconnected from " + $('#notifName').attr('name'), {
+                        style: "connected"
+                    });
+                }
+            });
+        }
+    });
+
+    if ($('body').is('.viewProfilePage') && $('.disconnectProfile')[0] != undefined) {
+        console.log($('.disconnectProfile')[0].className.split(" "));
+        $.ajax({
+            url: "/main/connections",
+            success: function(data) {
+                connections = data;
+                var button = $('.disconnectProfile')[0];
+                if (connections.indexOf(button.className.split(" ")[2]) > -1 && button.className.split(" ")[2] != connections[connections.length - 1]) {
+                    button.value = 'disconnect';
+                } else {
+                    button.value = 'connect';
+                }
+            }
+        });
+    }
+
+    $('.disconnectProfile').on('click', function() {
+        var currentButton = this;
+        if (this.value == 'connect') {
+            var email = this.className.split(" ")[2];
+            $.ajax({
+                url: '/users/connect/' + email,
+                email: email,
+                type: 'PUT',
+                success: function(data) {
+                    currentButton.value = 'disconnect';
+                    $.notify("Successfully connected with " + $('.disconnectProfile').attr('name'), {
+                        style: "connected"
+                    });
+                }
+            });
+        } else if (this.value == 'disconnect') {
+            var email = this.className.split(" ")[2];
+            $.ajax({
+                url: '/users/disconnect/' + email,
+                email: email,
+                type: 'PUT',
+                success: function(data) {
+                    currentButton.value = 'connect';
+                    $.notify("Successfully disconnected from " + $('.disconnectProfile').attr('name'), {
                         style: "connected"
                     });
                 }

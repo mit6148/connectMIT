@@ -9,7 +9,7 @@ html
     script(src='/js/notify.js')
     script(src='/js/bootstrap.js')
     link(href='https://fonts.googleapis.com/css?family=Karla:400,700', rel='stylesheet')
-  body.index
+  body.index.viewProfilePage
     nav.navbar.navbar-default.navbar-static-top(style='background-color: #A31F34; border-bottom: 0;')
       section.container-fluid
         section.navbar-header
@@ -39,11 +39,13 @@ html
         h4(style="margin: 5px;")
           | &nbsp
 
-        input.submitButtons.sendMessage(class='#{user.email}' type="submit" value="Send Message" style="border: 1px solid white; float: right; margin-top: -30px;")
+        input.disconnectProfile.submitButtons(class='#{user.email}' name='#{user.name}' type="submit" value="" style="border: 1px solid white; float: right; margin-top: -30px;")
 
       .panel-body
         h1(style="margin-top: 5px; text-align: center")
           | #{user.name}
+
+        input.submitButtons.sendMessage(class='#{user.email}' type="submit" value="send message" style="float: left; margin-left: 43%;")
         
         .settingsInfo
 
