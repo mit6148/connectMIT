@@ -304,7 +304,7 @@ router.get('/connections-locations', function(req, res){
 router.get('/viewProfile/:email', function(req, res){
     User.findOne({email: req.params.email}, function(err, user) {
         if (err) console.log(err);
-        res.render('viewProfile', {user: user});
+        res.render('viewProfile', {user: user, email: req.session.email});
     });
 });
 
