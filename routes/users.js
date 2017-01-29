@@ -236,6 +236,23 @@ router.put('/disconnect/:email', function(req, res){
     });
 });
 
+router.put('/change-password/:email', function(req, res){
+    User.findOne({
+        email: req.params.email
+    }, function(err, user){
+        if (err) console.log(err);
+        else{
+            var password = req.body.password;
+            password = hashPassword(password);
+            user.changePassword(password);
+            user.save();
+            res.send({
+                success: true
+            })
+        }      
+    });
+})
+
 router.get('/user-location', function(req, res){
     if (req.session.email){
         User.findOne({

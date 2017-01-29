@@ -62,6 +62,11 @@ userSchema.methods.editInfo = function(course, phoneNumber, address, gradYear, w
 	return true;
 }
 
+userSchema.methods.changePassword = function(password){
+	this.password = password;
+	return true;
+}
+
 userSchema.methods.addConnection = function(email){
 	this.connections.push(email);
 	return true;

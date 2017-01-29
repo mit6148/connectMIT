@@ -765,6 +765,31 @@ $(function() {
         });
     });
 
+    $('#saveChangePass').on('click', function(){
+        var password = $('#passwordReset').val();
+        var confirmPassword = $('#passwordResetConfirm').val();
+        var email = $(this).attr('class').split(" ")[1];
+        if (password !== confirmPassword){
+            alert("Passwords do not match. Please try again");
+        }
+        else if (password.length < 6){
+            alert("Password must be longer than 6 characters")
+        }
+        else{
+            $.ajax({
+                url: '../../users/change-password/' + email,
+                type: 'PUT',
+                data: {
+                    "password": password
+                },
+                success: function(data) { 
+                    $('#passwordModal').modal('toggle');
+                }
+            });
+        }
+
+    });
+
 });
 
 

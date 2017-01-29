@@ -34,7 +34,26 @@ html
                 a#logoutBtn(href='#' style="color: white;") logout
 
     h1(style="text-align: center; padding-bottom: 10px;") e d i t &nbsp&nbsp p r o f i l e
+    #passwordModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='modalLabel', aria-hidden='true')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-header(style='text-align: center; background-color: #771726; color: white;')
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true' style='color: white') ×
+            h4#modalLabel.modal-title Change Password
+          .modal-body
+            #passwordChange(style='margin: 0 auto; text-align: center')
+              label(for='password') Password &nbsp
+              br
+              input.centered-input.inline#passwordReset(type='password' name='password' required)
+              br
+              label(for='password') Confirm Password &nbsp 
+              br
+              input.centered-input.inline#passwordResetConfirm(type='password' name='confirmPass' required)
 
+          .modal-footer
+            input.submitButtons(type='submit', value='Cancel' data-dismiss='modal' style="width: 75px; margin-right: 10px")
+            input.submitButtons#saveChangePass(type='submit', value='Save Changes', style="width: 125px;" class='#{user.email}')
     .panel.panel-default.settings(style="margin-bottom: 50px;")
       .panel-heading
 
@@ -66,6 +85,9 @@ html
               td(style='padding-left: 60px')
                 input#pac-input.controls(type='text', name='address', value='#{user.address}')
                 #map_registration
+            tr
+              td
+                input.submitButtons#changePass(type="submit" data-toggle='modal', data-target='#passwordModal', value="Change Password" style="float: left; width: 150px;")
             tr
               td(colspan='3')
                 h3(style="color: #A31F34; border-bottom: 1px solid gray;")
@@ -236,8 +258,9 @@ html
                 if user.workPosition != null && user.workPosition != ''
                   td
                     | !{user.workPosition}
-        input.submitButtons#cancelEdits(type="submit" value="Cancel" style="float: right;")
         input.submitButtons#saveProfile(type="submit" value="Save" style="margin-right: 20px; float: right;")
+        input.submitButtons#cancelEdits(type="submit" value="Cancel" style="float: right;")
+        
 
                 
 
