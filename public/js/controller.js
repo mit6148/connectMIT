@@ -646,7 +646,7 @@ $(function() {
     });
 
     if ($('body').is('.viewProfilePage') && $('.disconnectProfile')[0] != undefined) {
-        console.log($('.disconnectProfile')[0].className.split(" "));
+        // console.log($('.disconnectProfile')[0].className.split(" "));
         $.ajax({
             url: "/main/connections",
             success: function(data) {
@@ -755,6 +755,15 @@ $(function() {
         localStorage.setItem('disconnectNotification', false);
         localStorage.setItem('disconnectButton', '');
     }
+
+    $('#backBtn').on('click', function(){
+        $.ajax({
+            url: '../../main/my-connections',
+            success: function(data) {
+                window.location.assign("/main/my-connections");
+            }
+        });
+    });
 
 });
 

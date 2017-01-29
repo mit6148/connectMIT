@@ -287,7 +287,7 @@ router.get('/connections-locations', function(req, res){
                         var coords = [];
                         myConnections.forEach(function(connection){
                             var address = connection.address;
-                            coords.push([address, connection.name]);
+                            coords.push([address, connection.name, connection.email]);
 
                         }); //end for each loop
                         res.send({

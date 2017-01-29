@@ -20,7 +20,9 @@ $(function() {
                                     lat: lat,
                                     lng: lng
                                 }
-                                addMarker(position, map, address[1]);
+                                var url = '../users/viewProfile/' + address[2];
+                                var content = '<div id="markerWindow" style="text-align: center;">' + '<h4>' + address[1] + '</h4>' + '<form method="get" action="' + url + '">' +             '<input class="button btn submitButtons" style="margin-top: 0px; margin-left: 0px;" type="submit" value = "view profile">' +             '</form>' +             '</div>';
+                                addMarker(position, map, content);
                             }
                         });
                     }); //end for Each	
@@ -63,16 +65,13 @@ $(function() {
             streetViewControl: false,
             scrollwheel: false
         });
-        var marker = new google.maps.Marker({
-            position: center,
-            map: map
-        });
+        addCurrentLocMarker({lat: current_lat, lng: current_lng}, map);
         return map;
     }
 
-    function addMarker(location, map, name) {
+    function addMarker(location, map, content) {
         var infowindow = new google.maps.InfoWindow({
-            content: name
+            content: content
         });
 
 
@@ -85,5 +84,23 @@ $(function() {
             infowindow.open(map, marker);
         });
     }
+
+    function addCurrentLocMarker(location, map) {
+
+        var infowindow = new google.maps.InfoWindow({
+            content: '<h4>' + "You" + '</h4>'
+        });
+        var image = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+        // var image = 'http://crcfchurch.com/wp-content/uploads/2015/09/map-pin.png';
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            icon: image
+        });
+
+        marker.addListener('click', function(){
+            infowindow.open(map, marker);
+        });
+  }
 
 });
