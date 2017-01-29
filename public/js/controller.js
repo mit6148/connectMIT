@@ -787,6 +787,9 @@ $(function() {
                     $('#passwordModal').modal('toggle');
                     $('#passwordReset').val('');
                     $('#passwordResetConfirm').val('');
+                    $.notify("Successfully changed password", {
+                        style: "connected"
+                    });
                 }
             });
         }
