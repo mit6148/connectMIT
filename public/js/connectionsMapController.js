@@ -21,7 +21,7 @@ $(function() {
                                     lng: lng
                                 }
                                 var url = '../users/viewProfile/' + address[2];
-                                var content = '<div id="markerWindow" style="text-align: center;">' + '<h4>' + address[1] + '</h4>' + '<form method="get" action="' + url + '">' +             '<input class="button btn submitButtons" style="margin-top: 0px; margin-left: 0px;" type="submit" value = "view profile">' +             '</form>' +             '</div>';
+                                var content = '<div id="markerWindow" style="text-align: center;">' + '<h4>' + address[1] + '</h4>' + '<form method="get" action="' + url + '">' +             '<input class="button submitButtons" style="margin-top: 0px; margin-left: 0px; font-family: \'Karla\', sans-serif;" type="submit" value = "view profile">' +             '</form>' +             '</div>';
                                 addMarker(position, map, content);
                             }
                         });

@@ -80,6 +80,8 @@ router.post('/register', function(req, res){
     var gradYear = user.gradYear;
     var workLoc = user.work;
     var workPosition = user.position;
+    var activities = user.activities.split(", ");
+    activities = activities.splice(0, activities.length - 1);
     User.create({
         email: user.email,
         password: password,
@@ -89,7 +91,8 @@ router.post('/register', function(req, res){
         gradYear: gradYear,
         workLoc: workLoc,
         workPosition: workPosition,
-        course: majors
+        course: majors,
+        activities: activities
     }, function(err, user){
         if (err){
             console.log(err);
@@ -188,7 +191,9 @@ router.put('/edit-profile/:email', function(req, res){
         if (err){
             console.log(err);
         } else{
-            user.editInfo(req.body.course.split(','), req.body.phoneNumber, req.body.address, req.body.gradYear, req.body.workLoc, req.body.workPosition);
+            var activities = req.body.activities.split(",");
+            activities = activities.splice(0, activities.length - 1);
+            user.editInfo(req.body.course.split(','), req.body.phoneNumber, req.body.address, req.body.gradYear, req.body.workLoc, req.body.workPosition, activities);
             user.save();
             res.send({
                 success: true
