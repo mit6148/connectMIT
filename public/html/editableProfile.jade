@@ -2,9 +2,11 @@ doctype html
 html
   head
     title connectMIT
+    link(rel='stylesheet', href='//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css')
     link(rel='stylesheet', href='/css/bootstrap.css')
     link(rel='stylesheet', href='/css/stylesheet.css')
     script(src='https://code.jquery.com/jquery-3.1.1.min.js')
+    script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
     script(src='/js/controller.js')
     script(src='/js/notify.js')
     script(src='/js/bootstrap.js')
@@ -162,9 +164,9 @@ html
                   option(value='1942') 1942
                   option(value='1941') 1941
                   option(value='1940') 1940
-              td(colspan='2')
-                - each item in user.activities
-                  li=item
+              td
+                .ui-widget
+                  input.form-control#activities(size='50' style="width: 100%;" value="#{user.activities}")
             tr
               th(style="padding-top: 15px")
                 | Course(s)
