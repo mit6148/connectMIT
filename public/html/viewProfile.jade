@@ -78,7 +78,7 @@ html
                 | Class Year
               th
                 | Course(s)
-              if user.activities != ''
+              if user.activities != null && user.activities != ''
                 th
                   | Activities
             tr
@@ -87,7 +87,7 @@ html
               td
                 - each item in user.course
                   li=item
-              if user.activities != null
+              if user.activities != null && user.activities != ''
                 td
                   - each item in user.activities
                     li=item
