@@ -76,9 +76,9 @@ router.get('/search/:searchTerm/:yearFilter/:courseFilter/:activityFilter', func
 		var courseFilter = req.params.courseFilter != 'undefined' ? req.params.courseFilter.split(", ") : undefined;
 		courseFilter = courseFilter != undefined ? courseFilter.splice(0, courseFilter.length - 1) : undefined;
 
-		var activityFilter = req.params.activityFilter != 'undefined' ? req.params.activityFilter.split(", ") : undefined;
+		var activityFilter = req.params.activityFilter != 'undefined' ? (req.params.activityFilter + " ").split(", ") : undefined;
 		activityFilter = activityFilter != undefined ? activityFilter.splice(0, activityFilter.length - 1) : undefined;
-
+		
 		// User.find( { $or: [{ email : { $regex: ".*" + searchTerm + ".*" } }, { name : { $regex: ".*" + searchTerm + ".*" } } ] } , function(err, users) {
 		User.find( { $or: [{ email : { $regex: new RegExp(searchTerm, "i") } }, { name : { $regex: new RegExp(searchTerm, "i") } } ] } , function(err, users) {
 			if (err) {

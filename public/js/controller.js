@@ -400,7 +400,86 @@ $(function() {
     if ($('body').is('.search')) {
 
         var availableTags3 = [
-            'pretend there are activities'
+            "Alpha Delta Phi",
+            "Alpha Epsilon Pi",
+            "Chi Phi",
+            "Delta Kappa Epsilon",
+            "Delta Tau Delta",
+            "Delta Upsilon",
+            "Kappa Sigma",
+            "Lambda Chi Alpha",
+            "Nu Delta",
+            "No. Six",
+            "Phi Beta Epsilon",
+            "Phi Delta Theta",
+            "Phi Kappa Sigma",
+            "Phi Kappa Theta",
+            "Phi Sigma Kappa",
+            "Pi Lambda Phi",
+            "Sigma Alpha Epsilon",
+            "Sigma Chi",
+            "Sigma Nu",
+            "Sigma Phi Epsilon",
+            "Tau Epsilon Phi",
+            "Theta Chi",
+            "Theta Delta Chi",
+            "Theta Xi",
+            "Zeta Beta Tau",
+            "Zeta Psi",
+            "Alpha Chi Omega",
+            "Alpha Epsilon Phi",
+            "Alpha Phi",
+            "Delta Phi Epsilon",
+            "Kappa Alpha Theta",
+            "Pi Beta Phi",
+            "Sigma Kappa",
+
+            "Baseball",
+            "Basketball",
+            "Crew",
+            "Cross Country",
+            "Fencing",
+            "Field Hockey",
+            "Football",
+            "Lacrosse",
+            "Rifle",
+            "Sailing",
+            "Soccer",
+            "Softball",
+            "Squash",
+            "Swimming and Diving",
+            "Tennis",
+            "Track and Field",
+            "Volleyball",
+            "Water Polo",
+
+            "Society of Women Engineers",
+            "Tau Beta Pi",
+
+            "Ballroom Dance",
+            "Dance Troupe",
+            "A capella",
+            "MIT Symphony Orchestra",
+            "Marching Band",
+            "Theater",
+            "Jazz Ensemble",
+
+            "The Tech",
+            "Technique",
+
+            "UA",
+            "Class Council",
+
+            "ROTC",
+            "SaveTFP",
+            "GlobeMed",
+            "Amphibious Achievement",
+            "TechX",
+            "Panhel",
+            "IFC",
+            "MedLinks",
+            "LGBT",
+            "Fossil Free"
         ];
 
         function split(val) {
@@ -481,6 +560,7 @@ $(function() {
         var yearFilter = $('#years').val() != '' ? $('#years').val() : undefined;
         var courseFilter = $('#courses').val() != '' ? $('#courses').val() : undefined;
         var activityFilter = $('#activities').val() != '' ? $('#activities').val() : undefined;
+        // console.log(activityFilter.indexOf(" "));
         $.ajax({
             url: '/main/search/' + searchTerm + '/' + yearFilter + '/' + courseFilter + '/' + activityFilter,
             "searchTerm": searchTerm,
