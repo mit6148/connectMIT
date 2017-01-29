@@ -785,11 +785,19 @@ $(function() {
                 },
                 success: function(data) { 
                     $('#passwordModal').modal('toggle');
+                    $('#passwordReset').val('');
+                    $('#passwordResetConfirm').val('');
                 }
             });
         }
 
     });
+
+    $('#cancelChangePass').on('click', function(){
+        $('#passwordReset').val('');
+        $('#passwordResetConfirm').val('');
+    });
+
 
 });
 
