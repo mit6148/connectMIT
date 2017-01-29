@@ -353,7 +353,7 @@
 			if (align === "middle") {
 				css.top = '45%';
 			} else if (align === "center") {
-				css.left = '40.6%';
+				css.left = '38%';
 			} else {
 				css[align] = 0;
 			}
