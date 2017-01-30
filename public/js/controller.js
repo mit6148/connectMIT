@@ -919,8 +919,8 @@ $(function() {
         var workLoc = $('#work').val();
         var workPosition = $('#position').val();
 
-        var activities = $('#activities').val().split(', ');
-        activities = activities.splice(0, activities.length - 1);
+        var activities = $('#activities').val();
+        
         $.ajax({
                 url: '/users/register',
                 type: 'POST',

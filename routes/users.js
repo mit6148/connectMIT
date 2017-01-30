@@ -68,6 +68,14 @@ function(username, password, done) {
 router.post('/register', function(req, res){
     var user = req.body;
     var password = hashPassword(user.password);
+    var course = user.course.split(',');
+    var activities = user.activities.split(', ');
+    activities = activities.splice(0, activities.length - 1);
+    console.log("activities: ");
+    console.log(activities);
+    console.log("courses: ");
+    console.log(course);
+
     User.create({
         email: user.email,
         password: password,
@@ -77,8 +85,8 @@ router.post('/register', function(req, res){
         gradYear: user.gradYear,
         workLoc: user.workLoc,
         workPosition: user.workPosition,
-        course: user.course,
-        activities: user.activities
+        course: course,
+        activities: activities
     }, function(err, user){
         if (err){
             res.send({
