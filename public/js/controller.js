@@ -892,40 +892,56 @@ $(function() {
         $('#passwordResetConfirm').val('');
     });
 
-    // $('#saveChangePass').on('click', function(){
-    //     var password = $('#passwordReset').val();
-    //     var confirmPassword = $('#passwordResetConfirm').val();
-    //     var email = $(this).attr('class').split(" ")[1];
-    //     if (password !== confirmPassword){
-    //         $.notify("Passwords do not match. Please try again.", {
-    //             style: "failure",
-    //             globalPosition: "top center"
-    //         });
-    //     }
-    //     else if (password.length < 6){
-    //         $.notify("Password must be longer than 6 characters", {
-    //             style: "failure",
-    //             globalPosition: "top center"
-    //         });
-    //     }
-    //     else{
-    //         $.ajax({
-    //             url: '../../users/change-password/' + email,
-    //             type: 'PUT',
-    //             data: {
-    //                 "password": password
-    //             },
-    //             success: function(data) { 
-    //                 $('#passwordModal').modal('toggle');
-    //                 $('#passwordReset').val('');
-    //                 $('#passwordResetConfirm').val('');
-    //                 $.notify("Successfully changed password", {
-    //                     style: "connected"
-    //                 });
-    //             }
-    //         });
-    //     }
-    // });
+    $('#forgotPassword').submit(function(e) {
+        e.preventDefault();
+        var email = $('#email').val();
+        $.ajax({
+            url: '/users/forgotPassword/',
+            type: 'POST',
+            data: {
+                email: email
+            },
+            success: function(data) { 
+                if (data == "no such user") {
+                    $.notify("Invalid email: no such user exists", {
+                        style: "failure"
+                    });
+                } else {
+                    window.location.assign("/users/passwordEmail")
+                }
+            }
+        });
+    });
+
+    $('#resetPassword').submit(function(e) {
+        e.preventDefault();
+        var email = this.className;
+        var password = $('#password').val();
+        var confirmPassword = $('#confirmPassword').val();
+        if (password.length < 6){
+            $.notify("Password must be at least 6 characters", {
+                style: "failure",
+            });
+        } else if (password !== confirmPassword){
+            $.notify("Passwords do not match.", {
+                style: "failure",
+            });
+        }
+        else{
+            $.ajax({
+                url: '/users/resetPassword/' + email,
+                type: 'POST',
+                data: {
+                    "password": password
+                },
+                success: function(data) { 
+                    window.location.assign("/users/passwordChanged")
+                }
+            });
+        }
+    });
+
+    //(method="post", action = "/users/resetPassword/#{email}")
 
 
     $('#registrationForm').submit(function(event){

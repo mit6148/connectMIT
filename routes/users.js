@@ -138,20 +138,23 @@ router.post('/forgotPassword', function(req, res){
         subject: 'Reset your connectMIT Password', // Subject line
         html: 'Click the following link to reset your connectMIT password:</p><p>http://localhost:3000/users/resetPassword/' + req.body.email + '</p>' // html body
     };
-    // nodemailer.createTransport.sendMail(mailOptions, function(error, info) {
-    //     if (error) {
-    //         utils.sendErrorResponse('Email could not be sent.');
-    //     }
-    // });
-    // nodemailer.createTransport(mailOptions).sendMail;
-    utils.transporter.sendMail(mailOptions, function(error, info) {
-        if (error) {
-            // utils.sendErrorResponse('Email could not be sent.');
-            console.log(error);
-            return;
+
+    User.findOne({
+        email: req.body.email
+    }, function(err, user) {
+        if (err) console.log(err);
+        if (user == null) {
+            res.send("no such user");
+        } else {
+            utils.transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error);
+                    return;
+                }
+            });
+            res.send('success');
         }
     });
-    res.render('passwordEmail');
 });
 
 router.get('/resetPassword/:email', function(req, res) {
@@ -168,7 +171,6 @@ router.post('/resetPassword/:email', function(req, res) {
             password = hashPassword(password);
             user.changePassword(password);
             user.save();
-            console.log("saved");
             res.render('passwordChanged');
         }      
     });
