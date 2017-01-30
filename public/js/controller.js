@@ -95,6 +95,8 @@ $(function() {
                 "border-radius": "4px",
                 "white-space": "nowrap",
                 "padding-left": "25px",
+                "margin-bottom": "250px",
+                "margin-left": "30px",
                 "background-repeat": "no-repeat",
                 "background-position": "3px 7px",
                 "color": "#B94A48",
