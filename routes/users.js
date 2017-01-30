@@ -21,7 +21,7 @@ var hashPassword = function(password) {
 };
 
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -122,7 +122,7 @@ router.post('/login', function(req, res, next) {
             if (!user) { 
                 console.log("no user")
                 res.send({
-                    error: true
+                    success: false
                 });
             }
             req.logIn(user, function(err) {

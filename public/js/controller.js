@@ -32,7 +32,7 @@ $(function() {
                 window.location.assign("/main");
             }, 
             error: function(err){
-                alert("fail");
+                console.log(err);
             }
         });
     });
