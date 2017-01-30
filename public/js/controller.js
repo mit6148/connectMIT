@@ -35,7 +35,7 @@ $(function() {
                 $.notify("Username or password is incorrect", {
                         style: "failure"
                     });
-                $('#userLogin').val('');
+
                 $('#passLogin').val('');
             }
         });
@@ -53,7 +53,11 @@ $(function() {
                     window.location.assign("/main");
                 }, 
                 error: function(err){
-                    alert("fail");
+                    $.notify("Username or password is incorrect", {
+                        style: "failure"
+                    });
+
+                    $('#passLogin').val('');
                 }
             });
         }
@@ -71,7 +75,10 @@ $(function() {
                     window.location.assign("/main");
                 }, 
                 error: function(err){
-                    alert("fail");
+                    $.notify("Username or password is incorrect", {
+                        style: "failure"
+                    });
+                    $('#passLogin').val('');
                 }
             });
         }
