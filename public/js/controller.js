@@ -894,6 +894,56 @@ $(function() {
     });
 
 
+    $('#registrationForm').submit(function(event){
+        event.preventDefault();
+        var first = $('#first').val();
+        var middle = $('#middle').val();
+        var last = $('#last').val();
+        var email = $('#email').val();
+        var name;
+        if (middle){
+            name = first + " " + middle + " " + last;
+        }
+        else{
+            name = first + " " + last;
+        }
+        var password = $('#password').val();
+        var passwordConfirm = $('#passwordConfirm').val();
+
+        var address = $('#pac-input').val();
+        var phoneNumber = $('#phoneNumber').val();
+
+        var gradYear = $('#gradYear').find(":selected").text();
+
+        var course = $('#selectedCourses').val().trim().replace(/<(.|\n)*?>/g, '');
+        var workLoc = $('#work').val();
+        var workPosition = $('#position').val();
+
+        var activities = $('#activities').val().split(', ');
+        activities = activities.splice(0, activities.length - 1);
+        $.ajax({
+                url: '/users/register',
+                type: 'POST',
+                data: {
+                    'name': name,
+                    'email': email,
+                    'password': password,
+                    'address': address,
+                    'phoneNumber': phoneNumber,
+                    'gradYear': gradYear,
+                    'course': course,
+                    'workLoc': workLoc,
+                    'workPosition': workPosition,
+                    'activities': activities
+                },
+                success: function(data) { 
+                    window.location.assign('/users/registrationSuccess');
+                }
+            });
+
+    });
+
+
 });
 
 

@@ -67,38 +67,28 @@ function(username, password, done) {
 
 router.post('/register', function(req, res){
     var user = req.body;
-    var majors = user.selectedCourses.split(',');
     var password = hashPassword(user.password);
-    var name;
-        if (req.body.middle === "") {
-            name = req.body.first + " " + req.body.last;
-        } else {
-            name = req.body.first + " " + req.body.middle + " " + req.body.last;
-        }
-    var phoneNumber = user.phoneNumber;
-    var address = user.address;
-    var gradYear = user.gradYear;
-    var workLoc = user.work;
-    var workPosition = user.position;
-    var activities = user.activities.split(", ");
-    activities = activities.splice(0, activities.length - 1);
     User.create({
         email: user.email,
         password: password,
-        name: name,
-        phoneNumber: phoneNumber,
-        address: address,
-        gradYear: gradYear,
-        workLoc: workLoc,
-        workPosition: workPosition,
-        course: majors,
-        activities: activities
+        name: user.name,
+        phoneNumber: user.phoneNumber,
+        address: user.address,
+        gradYear: user.gradYear,
+        workLoc: user.workLoc,
+        workPosition: user.workPosition,
+        course: user.course,
+        activities: user.activities
     }, function(err, user){
         if (err){
-            console.log(err);
+            res.send({
+                error: true
+            });
         }
         else{
-            res.redirect('/users/registrationSuccess');
+            res.send({
+                success: true
+            });
         }
     });
 });

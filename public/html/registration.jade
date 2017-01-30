@@ -22,7 +22,7 @@ html
           | Registration
         
       .panel-body(style='padding: 15px; text-align: center')
-           form(method="post", action="/users/register" id='registrationForm')
+           form(id='registrationForm')
             .form-group
               table.table(style="border: none;")
                 tr
@@ -62,7 +62,7 @@ html
                       #map_registration
                       label(style='float: left; margin-left: 10px;') Address*
                   td(style='text-align: left; border: none;')
-                    input.form-control(type='text', name = 'phoneNumber' id = 'phoneNumber' required)  
+                    input.form-control(type='number', name = 'phoneNumber' id = 'phoneNumber' required)  
                     label(style='margin-left: 10px;') Phone Number *
                 tr
                   td(colspan='3' style='border-top: none;')
@@ -222,4 +222,4 @@ html
 
             p(style="float: left;")
               | * Required
-            input.submitButtons(type="submit", value="Finish" style="float: right; margin-right: 10px; margin-top: 0px;")
+            input.submitButtons#finishReg(type="submit", value="Finish" style="float: right; margin-right: 10px; margin-top: 0px;")
