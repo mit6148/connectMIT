@@ -37,6 +37,41 @@ $(function() {
         });
     });
 
+    $('#userLogin').on('keydown', function(e){
+        if (e.which == 13) {
+            var email = $('#userLogin').val();
+            var password = $('#passLogin').val();
+            $.ajax({
+                url: '/users/login',
+                type: 'POST',
+                data: {username: email, password: password},
+                success: function(data) {
+                    window.location.assign("/main");
+                }, 
+                error: function(err){
+                    alert("fail");
+                }
+            });
+        }
+    });
+
+    $('#passLogin').on('keydown', function(e){
+        if (e.which == 13) {
+            var email = $('#userLogin').val();
+            var password = $('#passLogin').val();
+            $.ajax({
+                url: '/users/login',
+                type: 'POST',
+                data: {username: email, password: password},
+                success: function(data) {
+                    window.location.assign("/main");
+                }, 
+                error: function(err){
+                    alert("fail");
+                }
+            });
+        }
+    });
 
     $.notify.addStyle("failure", {
         html: "<div>\n<span data-notify-text></span>\n</div>",
