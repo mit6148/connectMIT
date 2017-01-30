@@ -6,6 +6,9 @@ var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
 var flash = require('connect-flash');
 var request = require('request');
+var nev = require('email-verification')(mongoose);
+var nodemailer = require('nodemailer');
+var utils = require('../utils/utils');
 
 
 router.use(flash());
@@ -65,6 +68,20 @@ function(username, password, done) {
     });
 }));
 
+nev.configure({
+    verificationURL: 'http://localhost:3000/users/email-verification/${URL}',
+    persistentUserModel: User,
+    tempUserCollection: 'rendezvous_tempusers',
+
+    transportOptions: {
+        service: 'Gmail',
+        auth: {
+            user: 'donotreplyconnectmit@gmail.com',
+            pass: 'hannahisanalrightperson'
+        }
+    }
+}, function(error, options) {});
+
 router.post('/register', function(req, res){
     var user = req.body;
     var majors = user.selectedCourses.split(',');
@@ -107,13 +124,60 @@ router.get('/registrationSuccess', function(req, res){
     res.render('registrationSuccess');
 });
 
+router.get('/passwordEmail', function(req, res){
+    res.render('passwordEmail');
+});
+
+router.get('/passwordChanged', function(req, res){
+    res.render('passwordChanged');
+});
+
 router.get('/forgotPassword', function(req, res){
     res.render('forgotPassword');
 });
 
-router.post('/resetPassword', function(req, res) {
-    var password = hashPassword(req.body.password);
-    res.redirect('/');
+router.post('/forgotPassword', function(req, res){
+    var email = req.body.email;
+    var mailOptions = {
+        from: '"connectMIT" <donotreplyconnectmit@gmail.com>',
+        to: email,
+        subject: 'Reset your connectMIT Password', // Subject line
+        html: 'Click the following link to reset your connectMIT password:</p><p>http://localhost:3000/users/resetPassword/' + req.body.email + '</p>' // html body
+    };
+    // nodemailer.createTransport.sendMail(mailOptions, function(error, info) {
+    //     if (error) {
+    //         utils.sendErrorResponse('Email could not be sent.');
+    //     }
+    // });
+    // nodemailer.createTransport(mailOptions).sendMail;
+    utils.transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            // utils.sendErrorResponse('Email could not be sent.');
+            console.log(error);
+            return;
+        }
+    });
+    res.render('passwordEmail');
+});
+
+router.get('/resetPassword/:email', function(req, res) {
+    res.render('resetPassword', {email: req.params.email});
+});
+
+router.post('/resetPassword/:email', function(req, res) {
+    User.findOne({
+        email: req.params.email
+    }, function(err, user){
+        if (err) console.log(err);
+        else{
+            var password = req.body.password;
+            password = hashPassword(password);
+            user.changePassword(password);
+            user.save();
+            console.log("saved");
+            res.render('passwordChanged');
+        }      
+    });
 });
 
 router.get('/register', function(req, res){
