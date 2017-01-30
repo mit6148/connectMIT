@@ -247,19 +247,19 @@ html
             tr
               th(style="font-weight: 700")
                 | Employer
-              th
+              th(style='padding-left: 10px')
                 | Position
             tr
               td
                 if user.workLoc != null && user.workLoc != ''
-                  input.form-control(type='text', name = 'work' id = 'work' value='#{user.workLoc}')
+                  input.form-control(type='text', name = 'work' id = 'workLocation' value='#{user.workLoc}')
                 else
-                  input.form-control(type='text', name = 'work' id = 'work')  
+                  input.form-control(type='text', name = 'work' id = 'workLocation')  
               td
                 if user.workPosition != null && user.workPosition != ''
-                  input.form-control(type='text', name = 'work' id = 'work' value='#{user.workPosition}')
+                  input.form-control(type='text', name = 'work' id = 'workPosition' value='#{user.workPosition}' style='margin-left: 10px')
                 else
-                  input.form-control(type='text', name = 'work' id = 'work')
+                  input.form-control(type='text', name = 'work' id = 'workPosition' style='margin-left: 10px')
         input.submitButtons#saveProfile(type="submit" value="Save" style="float: right;")
         input.submitButtons#cancelEdits(type="submit" value="Cancel" style="margin-right: 20px; float: right;")
         
