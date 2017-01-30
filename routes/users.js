@@ -122,7 +122,9 @@ router.post('/login', function(req, res, next) {
             }
             if (!user) { 
                 console.log("no user")
-                res.redirect('/')
+                res.send({
+                    error: true
+                });
             }
             req.logIn(user, function(err) {
                 if (err) { return next(err); 

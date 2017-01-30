@@ -32,7 +32,11 @@ $(function() {
                 window.location.assign("/main");
             }, 
             error: function(err){
-                console.log(err);
+                $.notify("Username or password is incorrect", {
+                        style: "failure"
+                    });
+                $('#userLogin').val('');
+                $('#passLogin').val('');
             }
         });
     });
