@@ -423,7 +423,7 @@ $(function() {
             'Course 9: Brain and Cognitive Sciences',
             'Course 10: Chemical Engineering',
             'Course 11: Urban Studies and Planning',
-            'Course 12: Earth, Atmospheric, and Planetary Sciences',
+            'Course 12: Earth + Atmospheric + Planetary Sciences',
             'Course 14: Economics',
             'Course 15: Management',
             'Course 16: Aeronautics and Astronautics',
