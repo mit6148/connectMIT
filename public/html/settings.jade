@@ -34,7 +34,7 @@ html
 
     h1(style="text-align: center; padding-bottom: 10px;") s e t t i n g s
 
-    .panel.panel-default.settings
+    .panel.panel-default.settings(style='margin-bottom: 30px;')
       .panel-heading
         h4(style="margin: 5px;")
           | &nbsp
@@ -70,7 +70,7 @@ html
                 h3(style="color: #A31F34; border-bottom: 1px solid gray;")
                   | MIT Info
             tr
-              th(style="font-weight: 700")
+              th(style="font-weight: 700;")
                 | Class Year
               th
                 | Course(s)
@@ -78,13 +78,13 @@ html
                 th
                   | Activities
             tr
-              td 
+              td(style='vertical-align: top;')
                 | !{user.gradYear}
-              td
+              td(style='padding-right: 10px; vertical-align: top;')
                 - each item in user.course
                   li=item
               if user.activities != null && user.activities != ''
-                td
+                td(style='vertical-align: top;')
                   - each item in user.activities
                     li=item
 

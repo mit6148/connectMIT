@@ -47,9 +47,9 @@ html
               | !{initials}
           .col-2-3
             .idk(style="background-color: #DDADB5; margin-left: 15px; padding: 10px; height: 43vh; ")
-              .vert-align(style="position: relative; top: 50%; transform: translateY(-50%);")
+              .vert-align(style="position: relative; top: 50%; transform: translateY(-50%); height: 300px; overflow: scroll;")
                 h2#login-heading(style="margin-bottom: 20px;" name='#{user.name}') !{user.name}
-                table(style='width: 100%; text-align: left; font-size: 18px; margin-left: 30px; margin-right: 50px; word-wrap: break-word;')
+                table(style='width: 100%; text-align: left; font-size: 18px; margin-left: 30px; margin-right: 50px;')
                   tr
                     th(style='width: 50%;')
                       | Email
@@ -67,11 +67,11 @@ html
                       th
                         | Activities
                   tr
-                    td(style='padding-bottom: 20px;')
+                    td(style='padding-bottom: 20px; padding-right: 10px; vertical-align: top;')
                       - each item in user.course
                         li=item
                     if user.activities != null && user.activities != ''
-                      td(style='padding-bottom: 20px;')
+                      td(style='padding-bottom: 20px; vertical-align: top;' )
                         - each item in user.activities
                           li=item
                 table(style='width: 90%; font-size: 18px; text-align: left; margin-left: 30px;')
