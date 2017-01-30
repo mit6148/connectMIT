@@ -21,7 +21,7 @@ var hashPassword = function(password) {
 };
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -39,24 +39,25 @@ function(username, password, done) {
         User.findOne({
           'email': username, 
       }, function(err, user) {
+        var message;
         if (err) {
             message = "Login failed. Please try again."
-            // req.flash('error', message);
+            console.log(message);
             return done(err);
         }
 
         if (!user) {
             message = "Username or password is incorrect."
             // req.flash('error', message);
+            console.log(message);
             return done(null, false);
         }
-        //delete this
         if (user.password == password){
             return done(null, user);
         }
         if (!bcrypt.compareSync(password, user.password)) {
             message = "Username or password is incorrect."
-            console.log(err);
+            console.log(message);
             return done(null, false);
         }
         return done(null, user);
@@ -121,9 +122,7 @@ router.post('/login', function(req, res, next) {
             }
             if (!user) { 
                 console.log("no user")
-                res.send({
-                    success: false
-                });
+                res.redirect('/')
             }
             req.logIn(user, function(err) {
                 if (err) { return next(err); 
