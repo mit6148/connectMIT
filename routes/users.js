@@ -111,6 +111,11 @@ router.get('/forgotPassword', function(req, res){
     res.render('forgotPassword');
 });
 
+router.post('/resetPassword', function(req, res) {
+    var password = hashPassword(req.body.password);
+    res.redirect('/');
+});
+
 router.get('/register', function(req, res){
     res.render('registration');
 });

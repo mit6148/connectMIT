@@ -59,6 +59,10 @@ html
                           | !{person.email}
                         - each item in person.course
                           p=item
+                        table
+                          tr
+                            td
+                              | !{person.address}
                         
                   .col-1-3
                     input.submitButtons.sendMessage(class = '#{person.email}', type='submit', value='send message' style='width: 100%; height: 70px; margin-left: 10px; margin-bottom: 10px;')
