@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="/css/stylesheet.css">
   <script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
   <script src='/js/bootstrap.js'></script>
+  <script src="/js/controller.js"></script>
   <script src='/js/notify.js'></script>
   <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
 </head>
@@ -15,13 +16,11 @@
       <div class ="panel-heading"><h3>connectMIT</h3></div>
       <div class="panel-body">
         <h4 id="login-heading">Login</h4>
-        <form method='get' action='../users/login'>
           <input id="userLogin" class="centered-input" name = "email" type="email" placeholder="MIT Email" required>
           <input id="passLogin" class="centered-input" name= "password" type="password" placeholder="Password" required>
           <div id="enter-button">
             <input id="loginBtn" class="submitButtons" type="submit" value="Enter">
           </div>
-        </form>
         <form method="get" action="users/forgotPassword">
           <input class="button-link" type="submit" value = "Forgot password?">
         </form>

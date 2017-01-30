@@ -21,22 +21,68 @@ $(function() {
         }
     });
 
-    // $('#loginBtn').on('click', function(){
-    //     var email = $('#userLogin').val();
-    //     var password = $('#passLogin').val();
-    //     $.ajax({
-    //         url: '/users/login',
-    //         email: email,
-    //         password: password,
-    //         success: function(data) {
-    //             window.location.assign("/main");
-    //         }, 
-    //         error: function(err){
-    //             alert("fail")
-    //         }
-    //     });
-    // });
+    $('#loginBtn').on('click', function(){
+        var email = $('#userLogin').val();
+        var password = $('#passLogin').val();
+        $.ajax({
+            url: '/users/login',
+            type: 'POST',
+            data: {username: email, password: password},
+            success: function(data) {
+                window.location.assign("/main");
+            }, 
+            error: function(err){
+                $.notify("Username or password is incorrect", {
+                        style: "failure"
+                    });
 
+                $('#passLogin').val('');
+            }
+        });
+    });
+
+    $('#userLogin').on('keydown', function(e){
+        if (e.which == 13) {
+            var email = $('#userLogin').val();
+            var password = $('#passLogin').val();
+            $.ajax({
+                url: '/users/login',
+                type: 'POST',
+                data: {username: email, password: password},
+                success: function(data) {
+                    window.location.assign("/main");
+                }, 
+                error: function(err){
+                    $.notify("Username or password is incorrect", {
+                        style: "failure"
+                    });
+
+                    $('#passLogin').val('');
+                }
+            });
+        }
+    });
+
+    $('#passLogin').on('keydown', function(e){
+        if (e.which == 13) {
+            var email = $('#userLogin').val();
+            var password = $('#passLogin').val();
+            $.ajax({
+                url: '/users/login',
+                type: 'POST',
+                data: {username: email, password: password},
+                success: function(data) {
+                    window.location.assign("/main");
+                }, 
+                error: function(err){
+                    $.notify("Username or password is incorrect", {
+                        style: "failure"
+                    });
+                    $('#passLogin').val('');
+                }
+            });
+        }
+    });
 
     $.notify.addStyle("failure", {
         html: "<div>\n<span data-notify-text></span>\n</div>",
@@ -49,6 +95,8 @@ $(function() {
                 "border-radius": "4px",
                 "white-space": "nowrap",
                 "padding-left": "25px",
+                "margin-bottom": "250px",
+                "margin-left": "30px",
                 "background-repeat": "no-repeat",
                 "background-position": "3px 7px",
                 "color": "#B94A48",
