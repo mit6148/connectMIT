@@ -202,7 +202,9 @@ router.put('/edit-profile/:email', function(req, res){
             console.log(err);
         } else{
             var activities = req.body.activities.split(",");
-            activities = activities.splice(0, activities.length - 1);
+            if (!(req.body.activities != '' && activities.length == 1)) {
+                activities = activities.splice(0, activities.length - 1);
+            }
             user.editInfo(req.body.course.split(','), req.body.phoneNumber, req.body.address, req.body.gradYear, req.body.workLoc, req.body.workPosition, activities);
             user.save();
             res.send({
