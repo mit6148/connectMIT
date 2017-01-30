@@ -919,12 +919,16 @@ $(function() {
         var workPosition = $('#position').val();
 
         var activities = $('#activities').val();
-        if (password.length < 6){
+        var emailEnd = email.split('@')[1];
+        if (!emailEnd.includes('mit.edu')){
+            $.notify("Must register with an MIT email", {
+                style: "failure"
+            });
+        } else if (password.length < 6){
             $.notify("Password must be longer than 6 characters", {
                 style: "failure"
             });
-        }
-        else if (password !== passwordConfirm){
+        } else if (password !== passwordConfirm){
             $.notify("Passwords do not match", {
                 style: "failure"
             });
