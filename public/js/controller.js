@@ -711,7 +711,7 @@ $(function() {
                 type: 'PUT',
                 success: function(data) {
                     currentButton.value = 'disconnect';
-                    $.notify("Successfully connected with " + $('#notifName').attr('name'), {
+                    $.notify("Successfully connected with " + $(currentButton).attr('name'), {
                         style: "connected"
                     });
                 }
@@ -724,7 +724,7 @@ $(function() {
                 type: 'PUT',
                 success: function(data) {
                     currentButton.value = 'connect';
-                    $.notify("Successfully disconnected from " + $('#notifName').attr('name'), {
+                    $.notify("Successfully disconnected from " + $(currentButton).attr('name'), {
                         style: "connected"
                     });
                 }
