@@ -928,6 +928,78 @@ $(function() {
     // });
 
 
+    $('#registrationForm').submit(function(event){
+        event.preventDefault();
+        var first = $('#first').val();
+        var middle = $('#middle').val();
+        var last = $('#last').val();
+        var email = $('#email').val();
+        var name;
+        if (middle){
+            name = first + " " + middle + " " + last;
+        }
+        else{
+            name = first + " " + last;
+        }
+        var password = $('#password').val();
+        var passwordConfirm = $('#passwordConfirm').val();
+        var address = $('#pac-input').val();
+        var phoneNumber = $('#phoneNumber').val();
+
+        var gradYear = $('#gradYear').find(":selected").text();
+
+        var course = $('#selectedCourses').val().trim().replace(/<(.|\n)*?>/g, '');
+        var workLoc = $('#work').val();
+        var workPosition = $('#position').val();
+
+        var activities = $('#activities').val();
+        var emailEnd = email.split('@')[1];
+        if (!emailEnd.includes('mit.edu')){
+            $.notify("Must register with an MIT email", {
+                style: "failure"
+            });
+        } else if (password.length < 6){
+            $.notify("Password must be longer than 6 characters", {
+                style: "failure"
+            });
+        } else if (password !== passwordConfirm){
+            $.notify("Passwords do not match", {
+                style: "failure"
+            });
+        } else if (phoneNumber.length != 10 && phoneNumber.length != 11){
+            $.notify("Must have a valid phone number (ex: 1234567890)", {
+                style: "failure"
+            });
+        } else{
+            $.ajax({
+                url: '/users/register',
+                type: 'POST',
+                data: {
+                    'name': name,
+                    'email': email,
+                    'password': password,
+                    'address': address,
+                    'phoneNumber': phoneNumber,
+                    'gradYear': gradYear,
+                    'course': course,
+                    'workLoc': workLoc,
+                    'workPosition': workPosition,
+                    'activities': activities
+                },
+                success: function(data) { 
+                    window.location.assign('/users/registrationSuccess');
+                },
+                error: function(data){
+                    $.notify("Registration failed. Please try again", {
+                        style: "failure"
+                    });
+                }
+            });
+
+        }
+    });
+
+
 });
 
 
