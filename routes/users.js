@@ -71,10 +71,6 @@ router.post('/register', function(req, res){
     var course = user.course.split(',');
     var activities = user.activities.split(', ');
     activities = activities.splice(0, activities.length - 1);
-    console.log("activities: ");
-    console.log(activities);
-    console.log("courses: ");
-    console.log(course);
 
     User.create({
         email: user.email,
