@@ -21,21 +21,21 @@ $(function() {
         }
     });
 
-    // $('#loginBtn').on('click', function(){
-    //     var email = $('#userLogin').val();
-    //     var password = $('#passLogin').val();
-    //     $.ajax({
-    //         url: '/users/login',
-    //         email: email,
-    //         password: password,
-    //         success: function(data) {
-    //             window.location.assign("/main");
-    //         }, 
-    //         error: function(err){
-    //             alert("fail")
-    //         }
-    //     });
-    // });
+    $('#loginBtn').on('click', function(){
+        var email = $('#userLogin').val();
+        var password = $('#passLogin').val();
+        $.ajax({
+            url: '/users/login',
+            type: 'POST',
+            data: {username: email, password: password},
+            success: function(data) {
+                window.location.assign("/main");
+            }, 
+            error: function(err){
+                alert("fail");
+            }
+        });
+    });
 
 
     $.notify.addStyle("failure", {

@@ -21,7 +21,7 @@ var hashPassword = function(password) {
 };
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  done(null, user);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -31,7 +31,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 passport.use(new LocalStrategy({
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password'
 },
 function(username, password, done) {
@@ -39,7 +39,6 @@ function(username, password, done) {
         User.findOne({
           'email': username, 
       }, function(err, user) {
-        var message;
         if (err) {
             message = "Login failed. Please try again."
             // req.flash('error', message);
@@ -115,19 +114,24 @@ router.get('/register', function(req, res){
     res.render('registration');
 });
 
-router.get('/login', function(req, res, next) {
+router.post('/login', function(req, res, next) {
       passport.authenticate('local', function(err, user, info) {
             if (err) { 
                 return next(err); 
             }
             if (!user) { 
-                return res.redirect('/'); 
+                console.log("no user")
+                res.send({
+                    error: true
+                });
             }
             req.logIn(user, function(err) {
                 if (err) { return next(err); 
                 }
                 req.session.email = user.email;
-                return res.redirect('/main');
+                res.send({
+                    success: true
+                });
             });
     })(req, res, next);
 });
