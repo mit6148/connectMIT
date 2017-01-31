@@ -33,6 +33,7 @@ passport.deserializeUser(function(id, done) {
   });
 });
 
+//passport.js
 passport.use(new LocalStrategy({
     usernameField: 'username',
     passwordField: 'password'
@@ -68,6 +69,7 @@ function(username, password, done) {
     });
 }));
 
+//email verification 
 nev.configure({
     verificationURL: 'http://connect-mit.herokuapp.com/users/email-verification/${URL}',
     persistentUserModel: User,

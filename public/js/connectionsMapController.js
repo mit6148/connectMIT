@@ -1,3 +1,5 @@
+//code from google maps API: https://developers.google.com/maps/web/
+
 $(function() {
 
     $.get('../users/user-location', function(resp) {

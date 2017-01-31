@@ -941,7 +941,6 @@ $(function() {
         }
     });
 
-    //(method="post", action = "/users/resetPassword/#{email}")
 
 
     $('#registrationForm').submit(function(event){
@@ -1018,7 +1017,7 @@ $(function() {
 
 });
 
-
+//code from google maps API: https://developers.google.com/maps/web/
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map_registration'), {
         center: {
