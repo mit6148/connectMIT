@@ -69,7 +69,7 @@ function(username, password, done) {
 }));
 
 nev.configure({
-    verificationURL: 'http://localhost:3000/users/email-verification/${URL}',
+    verificationURL: 'http://connect-mit.herokuapp.com/users/email-verification/${URL}',
     persistentUserModel: User,
     tempUserCollection: 'rendezvous_tempusers',
 
@@ -136,7 +136,7 @@ router.post('/forgotPassword', function(req, res){
         from: '"connectMIT" <donotreplyconnectmit@gmail.com>',
         to: email,
         subject: 'Reset your connectMIT Password', // Subject line
-        html: 'Click the following link to reset your connectMIT password:</p><p>http://localhost:3000/users/resetPassword/' + req.body.email + '</p>' // html body
+        html: 'Click the following link to reset your connectMIT password:</p><p>http://connect-mit.herokuapp.com/users/resetPassword/' + req.body.email + '</p>' // html body
     };
 
     User.findOne({
