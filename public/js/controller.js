@@ -942,7 +942,6 @@ $(function() {
     });
 
 
-
     $('#registrationForm').submit(function(event){
         event.preventDefault();
         var first = $('#first').val();
