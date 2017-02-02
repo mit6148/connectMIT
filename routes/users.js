@@ -9,8 +9,6 @@ var nev = require('email-verification')(mongoose);
 var nodemailer = require('nodemailer');
 var utils = require('../utils/utils');
 
-
-router.use(flash());
 router.use(passport.initialize());
 router.use(passport.session());
 
