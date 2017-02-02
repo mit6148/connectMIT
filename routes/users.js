@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require('bcrypt');
-var flash = require('connect-flash');
 var request = require('request');
 var nev = require('email-verification')(mongoose);
 var nodemailer = require('nodemailer');
